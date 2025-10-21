@@ -3,6 +3,8 @@ import MainLayouts from "../layouts/MainLayouts";
 import Home from "../pages/HomePage/Home";
 import AuthLayouts from "../layouts/AuthLayouts";
 import SignIn from "../pages/AuthPages/SignIn";
+import Forgot from "../pages/AuthPages/Forgot";
+import VerifyCode from "../pages/AuthPages/VerifyCode";
 
 
 export const router = createBrowserRouter([
@@ -30,6 +32,14 @@ export const router = createBrowserRouter([
             {
                 path: "sign-in",
                 Component: SignIn,
+            },
+            {
+                path: "forgot-pass",
+                Component: Forgot,
+            },
+            {
+                path: "verify-code",
+                Component: VerifyCode,
             },
           
         ]
