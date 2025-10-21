@@ -26,8 +26,8 @@ export default function Navbar() {
     ];
 
     return (
-        <header className="w-full bg-white">
-            <div className="2xl:max-w-9/12  bg-red-100 rounded-full mt-6 px-6  max-w-11/12 mx-auto py-4 shadow flex justify-between items-center">
+        <header className="w-full ">
+            <div className="2xl:max-w-9/12 bg-white rounded-full  px-6  max-w-11/12 mx-auto py-4 shadow-xs flex justify-between items-center">
 
                 {/* logo */}
                 <Link to="/" className="flex flex-col items-start space-y-2">
