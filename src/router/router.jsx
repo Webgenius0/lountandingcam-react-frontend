@@ -5,6 +5,7 @@ import AuthLayouts from "../layouts/AuthLayouts";
 import SignIn from "../pages/AuthPages/SignIn";
 import Forgot from "../pages/AuthPages/Forgot";
 import VerifyCode from "../pages/AuthPages/VerifyCode";
+import SetNewPass from "../pages/AuthPages/SetNewPass";
 
 
 export const router = createBrowserRouter([
@@ -40,6 +41,11 @@ export const router = createBrowserRouter([
             {
                 path: "verify-code",
                 Component: VerifyCode,
+            },
+          
+            {
+                path: "set-pass",
+                Component: SetNewPass,
             },
           
         ]
