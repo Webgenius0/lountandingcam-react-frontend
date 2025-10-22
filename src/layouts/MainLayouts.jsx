@@ -1,19 +1,20 @@
-import React from 'react'
-import { Outlet } from 'react-router'
-import NavBar from '../shared/NavBar'
-import Footer from '../shared/Footer'
+import React from "react";
+import { Outlet, ScrollRestoration } from "react-router";
+import Footer from "../shared/Footer";
+import Navbar from "../shared/NavBar";
 
 export default function MainLayouts() {
   return (
     <div>
+      <ScrollRestoration />
 
-       <NavBar></NavBar>
-        <main>
-            <Outlet></Outlet>
-        </main>
-        <Footer></Footer>
-
-
+      <nav className="sticky top-7 z-50">
+        <Navbar></Navbar>
+      </nav>
+      <main>
+        <Outlet></Outlet>
+      </main>
+      <Footer></Footer>
     </div>
-  )
+  );
 }
