@@ -34,7 +34,7 @@ export default function SignIn() {
 
 
         <div className="bg-[#F7F5FB] rounded-xl w-full max-w-[450px] border  p-7 sm:p-10">
-            <h3 className="text-xl  font-title inter-font text-primary semibold text-center sm:mb-6 ">
+            <h3 className="text-xl  font-semibold inter-font text-primary  text-center sm:mb-6 ">
                 Beaute Enterprise
             </h3>
             <p className="font-semibold text-xl inter-font  text-center mb-2 ">
