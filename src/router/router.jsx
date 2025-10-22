@@ -6,49 +6,66 @@ import SignIn from "../pages/AuthPages/SignIn";
 import Forgot from "../pages/AuthPages/Forgot";
 import VerifyCode from "../pages/AuthPages/VerifyCode";
 import SetNewPass from "../pages/AuthPages/SetNewPass";
-
+import Successful from "../pages/AuthPages/Successful";
+import SignUp from "../pages/AuthPages/SignUp";
+import Journaling from "../pages/JournalingPage/Journaling";
 
 export const router = createBrowserRouter([
-    {
-        path:"*",
-        element: <div className="text-center py-[120px] ">
-           <Link to="/" className="border-2 border-purple-300 p-4 "> Go to home page</Link>
-        </div>
-    },
-    {
-        path: '/',
-        Component: MainLayouts,
-        children: [
-            {
-                index: true,
-                Component: Home,
-            }
-        ]
-    },
+  {
+    path: "*",
+    element: (
+      <div className="text-center py-[120px] ">
+        <Link to="/" className="border-2 border-purple-300 p-4 ">
+          {" "}
+          Go to home page
+        </Link>
+      </div>
+    ),
+  },
+  {
+    path: "/",
+    Component: MainLayouts,
+    children: [
+      {
+        index: true,
+        Component: Home,
+      },
+      {
+        path: "journaling",
+        Component: Journaling,
+      },
+    ],
+  },
 
-        {
-        path: '/auth',
-        Component: AuthLayouts,
-        children:[
-            {
-                path: "sign-in",
-                Component: SignIn,
-            },
-            {
-                path: "forgot-pass",
-                Component: Forgot,
-            },
-            {
-                path: "verify-code",
-                Component: VerifyCode,
-            },
-          
-            {
-                path: "set-pass",
-                Component: SetNewPass,
-            },
-          
-        ]
+  {
+    path: "/auth",
+    Component: AuthLayouts,
+    children: [
+      {
+        path: "sign-in",
+        Component: SignIn,
+      },
+      {
+        path: "forgot-pass",
+        Component: Forgot,
+      },
+      {
+        path: "verify-code",
+        Component: VerifyCode,
+      },
 
-    },
-])
+      {
+        path: "set-pass",
+        Component: SetNewPass,
+      },
+      {
+        path: "successful",
+        Component: Successful,
+      },
+      {
+        path: "sign-up",
+        Component: SignUp,
+      },
+    ],
+  },
+]);
