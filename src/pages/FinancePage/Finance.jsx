@@ -2,6 +2,7 @@ import React from 'react'
 import Header from '../../components/common/Header'
 import HowItWorkFinance from '../../components/FinancePageComponents/HowItWorkFinance'
 import Cta from '../../components/common/Cta'
+import ReflectFinanceSection from '../../components/FinancePageComponents/ReflectFinanceSection'
 
 export default function Finance() {
   return (
@@ -13,6 +14,7 @@ export default function Finance() {
                 btnLink="/"
               />
               <HowItWorkFinance/>
+              <ReflectFinanceSection/>
               <Cta/>
     </div>
   )

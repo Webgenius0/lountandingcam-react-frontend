@@ -41,7 +41,7 @@ export default function Hero() {
 
           <div className="flex flex-col md:flex-row mt-12 items-center gap-4 justify-center md:justify-start">
             <PrimaryBtn text="Create a New Account" to="/auth/sign-up" />
-            <SecondaryBtn text="Explore Feature " />
+            <SecondaryBtn to='/dashboard' text="Explore Feature " />
           </div>
         </div>
 
