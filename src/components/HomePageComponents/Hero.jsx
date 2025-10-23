@@ -4,10 +4,27 @@ import SecondaryBtn from "../common/SecondaryBtn";
 import blueGirl from "../../assets/Img/BlueGirlPic.svg";
 import purpleGirl from "../../assets/Img/PurpleGirlPic.svg";
 import creative from "../../assets/Img/CreativePic.svg";
+import RedStarSvg from "../svg/RedStarSvg";
+import GreenStarSvg from "../svg/GreenStarSvg";
+import XSvg from "../svg/XSvg";
+import IdeaSvg  from "../svg/IdeaSvg";
 
 export default function Hero() {
   return (
-    <section className="relative mx-5   -mt-16 bg-linear-155 from-[rgba(236,244,250,1)] via-[rgba(235,233,247,1)] via-60% mb-5   lg:rounded-3xl py-70 px-5 lg:px-0 flex  ">
+    <section className="relative mx-5   -mt-16 bg-linear-155 from-[rgba(236,244,250,1)] via-[rgba(235,233,247,1)] via-60% mb-5   lg:rounded-3xl py-70 px-5 lg:px-0 flex ">
+      <span className="absolute bottom-4 right-4">
+        <RedStarSvg />
+      </span>
+      <span className="absolute bottom-40 right-240">
+        <GreenStarSvg />
+      </span>
+      <span className="absolute top-10 scale-75 -right-5">
+        <XSvg />
+      </span>
+      <span className="absolute top-10 scale-90 opacity-20 left-10">
+        <IdeaSvg />
+      </span>
+
       <div className="2xl:w-9/12 flex  items-start  justify-between mx-auto">
         {/* Content */}
         <div className="relative z-10 flex-1  lg:mr-auto   text-center md:text-left">
