@@ -12,6 +12,11 @@ import Journaling from "../pages/JournalingPage/Journaling";
 import Fashion from "../pages/FashionPage/Fashion";
 import Finance from "../pages/FinancePage/Finance";
 import CreativeDesign from "../pages/CreativeDesignPage/CreativeDesign";
+import DashboardLayouts from "../layouts/DashboardLayouts";
+import DashJournaling from "../pages/DashboardPages/DashJournaling/DashJournaling";
+import DashFashion from "../pages/DashboardPages/DashFashion/DashFashion";
+import DashFinance from "../pages/DashboardPages/DashFinance/DashFinance";
+import DashCreative from "../pages/DashboardPages/DashCreative/DashCreative";
 
 export const router = createBrowserRouter([
   {
@@ -83,4 +88,27 @@ export const router = createBrowserRouter([
       },
     ],
   },
+  {
+    path: '/dashboard',
+    Component: DashboardLayouts,
+    children: [
+      {
+        index: true,
+        Component: DashJournaling,
+      },
+      {
+        path: 'fashion',
+        Component: DashFashion,
+      },
+      {
+        path: 'finance',
+        Component: DashFinance,
+      },
+      {
+        path: 'creative-design',
+        Component: DashCreative,
+      },
+      
+    ]
+  }
 ]);
