@@ -20,6 +20,7 @@ export default function Navbar() {
     { to: "/about", label: "About" },
     { to: "/journaling", label: "Journaling" },
     { to: "/fashion", label: "Fashion" },
+    { to: "/finance", label: "Finance" },
     { to: "/creative-design", label: "Creative Design" },
     { to: "/contact", label: "Contact" },
   ];

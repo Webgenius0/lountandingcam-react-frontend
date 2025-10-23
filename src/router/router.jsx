@@ -9,6 +9,9 @@ import SetNewPass from "../pages/AuthPages/SetNewPass";
 import Successful from "../pages/AuthPages/Successful";
 import SignUp from "../pages/AuthPages/SignUp";
 import Journaling from "../pages/JournalingPage/Journaling";
+import Fashion from "../pages/FashionPage/Fashion";
+import Finance from "../pages/FinancePage/Finance";
+import CreativeDesign from "../pages/CreativeDesignPage/CreativeDesign";
 
 export const router = createBrowserRouter([
   {
@@ -33,6 +36,18 @@ export const router = createBrowserRouter([
       {
         path: "journaling",
         Component: Journaling,
+      },
+      {
+        path: "fashion",
+        Component: Fashion,
+      },
+      {
+        path: "finance",
+        Component: Finance,
+      },
+      {
+        path: "creative-design",
+        Component: CreativeDesign,
       },
     ],
   },

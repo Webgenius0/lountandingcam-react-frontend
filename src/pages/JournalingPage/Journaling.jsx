@@ -1,13 +1,20 @@
 import React from "react";
-import JournalingHeader from "../../components/JournalingPageComponents/JournalingHeader";
 import HowItWorkJournaling from "../../components/JournalingPageComponents/HowItWorkJournaling";
 import Cta from "../../components/common/Cta";
+import Header from "../../components/common/Header";
+import Reflect from "../../components/JournalingPageComponents/Reflect";
 
 export default function Journaling() {
   return (
     <div>
-      <JournalingHeader />
+      <Header
+        title="Discover Yourself Through Journaling"
+        subtitle="Reflect, write, and grow with 52 guided prompts designed to help you know yourself better."
+        btnText="Start Journaling"
+        btnLink="/"
+      />
       <HowItWorkJournaling />
+      <Reflect/>
       <Cta />
     </div>
   );

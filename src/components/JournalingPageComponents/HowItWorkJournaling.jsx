@@ -34,8 +34,7 @@ export default function HowItWorkJournaling() {
     <section className="py-30">
       <h2 className="text-5xl text-center mb-5 font-semibold">How It Works</h2>
       <p className="text-center w-4/12 mx-auto mb-12 text-gray-400">
-        Start your Beaute journey create an account, explore creativity, track
-        growth, and reflect weekly through journaling and design.
+        Each week, you’ll receive a new journaling prompt. Write your thoughts, save your entries, and revisit them anytime to see your personal growth.
       </p>
 
       <div className="2xl:w-9/12 bg-gray-100 mx-auto p-12 rounded-xl grid gap-10">
