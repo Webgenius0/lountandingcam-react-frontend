@@ -11,7 +11,7 @@ import PrimaryBtn from "../common/PrimaryBtn";
 
 export default function DiscoverSection() {
   return (
-    <section className="bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] relative py-30">
+    <section id="about-section" className="bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] relative py-30">
       {/* bg svg  */}
       <span className="absolute right-40">
         <StarSvg />
