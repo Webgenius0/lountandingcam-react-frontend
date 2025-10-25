@@ -1,8 +1,8 @@
 import React from "react";
-import img1 from "../../assets/Img/BrowseImg1.svg";
-import img2 from "../../assets/Img/BrowseImg2.svg";
-import img3 from "../../assets/Img/BrowseImg3.svg";
-import img4 from "../../assets/Img/BrowseImg4.svg";
+import img1 from "../../assets/Img/BrowseImg1.png";
+import img2 from "../../assets/Img/BrowseImg2.png";
+import img3 from "../../assets/Img/BrowseImg3.png";
+import img4 from "../../assets/Img/BrowseImg4.png";
 import hmLogo from "../../assets/Img/h&mLogo.svg";
 import zaraLogo from "../../assets/Img/zaraLogo.svg";
 import amazonLogo from "../../assets/Img/amazonLogo.svg";
@@ -23,8 +23,6 @@ export default function Browse() {
             <img className="rounded-xl" src={img2} alt="" />
             <img className="rounded-xl w-full" src={img4} alt="" />
           </div>
-
-
         </div>
         <div className="flex-1 max-w-6/12">
           <h2 className="text-5xl font-semibold mb-4">Browse & Explore</h2>
@@ -35,16 +33,33 @@ export default function Browse() {
             Beaute account.
           </p>
 
-        <PrimaryBtn className="mb-20" text="Explore Brands" to="/" />
+          <PrimaryBtn className="mb-20" text="Explore Brands" to="/" />
 
-         <Marquee autoFill={true}  pauseOnHover gradientColor="#f3f4f6" gradient={true}  speed={40}>
-          <div className=" px-5 py-5 flex items-center  gap-5">
-              <img className="p-4 bg-white border h-16 rounded-md" src={hmLogo} alt="" />
-            <img className="p-4 bg-white border h-16 rounded-md" src={zaraLogo} alt="" />
-            <img className="p-4  bg-white border h-16 rounded-md" src={amazonLogo} alt="" />
-          </div>
-          
-  </Marquee>
+          <Marquee
+            autoFill={true}
+            pauseOnHover
+            gradientColor="#f3f4f6"
+            gradient={true}
+            speed={40}
+          >
+            <div className=" px-5 py-5 flex items-center  gap-5">
+              <img
+                className="p-4 bg-white border h-16 rounded-md"
+                src={hmLogo}
+                alt=""
+              />
+              <img
+                className="p-4 bg-white border h-16 rounded-md"
+                src={zaraLogo}
+                alt=""
+              />
+              <img
+                className="p-4  bg-white border h-16 rounded-md"
+                src={amazonLogo}
+                alt=""
+              />
+            </div>
+          </Marquee>
         </div>
       </div>
     </section>

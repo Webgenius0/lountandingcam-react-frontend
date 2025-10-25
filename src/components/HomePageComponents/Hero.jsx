@@ -2,12 +2,12 @@ import React from "react";
 import PrimaryBtn from "../common/PrimaryBtn";
 import SecondaryBtn from "../common/SecondaryBtn";
 import blueGirl from "../../assets/Img/BlueGirlPic.svg";
-import purpleGirl from "../../assets/Img/PurpleGirlPic.svg";
+import purpleGirl from "../../assets/Img/PurpleGirlPic.png";
 import creative from "../../assets/Img/CreativePic.svg";
 import RedStarSvg from "../svg/RedStarSvg";
 import GreenStarSvg from "../svg/GreenStarSvg";
 import XSvg from "../svg/XSvg";
-import IdeaSvg  from "../svg/IdeaSvg";
+import IdeaSvg from "../svg/IdeaSvg";
 
 export default function Hero() {
   return (
@@ -41,7 +41,7 @@ export default function Hero() {
 
           <div className="flex flex-col md:flex-row mt-12 items-center gap-4 justify-center md:justify-start">
             <PrimaryBtn text="Create a New Account" to="/auth/sign-up" />
-            <SecondaryBtn to='/dashboard' text="Explore Feature " />
+            <SecondaryBtn to="/dashboard" text="Explore Feature " />
           </div>
         </div>
 

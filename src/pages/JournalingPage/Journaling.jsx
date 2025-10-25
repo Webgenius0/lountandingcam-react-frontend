@@ -14,7 +14,7 @@ export default function Journaling() {
         btnLink="/"
       />
       <HowItWorkJournaling />
-      <Reflect/>
+      <Reflect />
       <Cta />
     </div>
   );

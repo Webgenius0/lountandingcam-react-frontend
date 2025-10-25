@@ -39,7 +39,7 @@ export default function WeekProgressChart() {
         <div className="absolute inset-0 flex flex-col items-center justify-center">
           <p className="text-3xl font-bold text-[#8571f4]">{completedWeeks}</p>
           <p className="text-gray-500 text-sm text-center leading-tight">
-           Weeks <br /> completed
+            Weeks <br /> completed
           </p>
         </div>
       </div>

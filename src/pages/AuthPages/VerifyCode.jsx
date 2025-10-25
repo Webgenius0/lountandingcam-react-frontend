@@ -44,8 +44,8 @@ export default function VerifyCode() {
     const otpValue = otp.join("");
     if (otpValue.length === 4) {
       console.log("Entered OTP:", otpValue);
-     
-      navigate("/auth/set-pass"); 
+
+      navigate("/auth/set-pass");
     } else {
       alert("Please enter all 4 digits of the OTP!");
     }
@@ -105,4 +105,3 @@ export default function VerifyCode() {
     </div>
   );
 }
-

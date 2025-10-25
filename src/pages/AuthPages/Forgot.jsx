@@ -10,14 +10,13 @@ export default function Forgot() {
   } = useForm();
 
   const navigate = useNavigate();
-  
 
   const onSubmit = (data) => {
     // console.log(data);
 
     if (data.email) {
       navigate("/auth/verify-code", {
-         state: { email: data.email },
+        state: { email: data.email },
       });
     }
   };
@@ -33,7 +32,6 @@ export default function Forgot() {
 
       <form onSubmit={handleSubmit(onSubmit)}>
         <div className="mb-1 sm:mb-2">
-
           {/* email Input */}
           <div className="mb-4 relative">
             <label className="font-bold text-sm ">

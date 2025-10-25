@@ -7,6 +7,15 @@ import OpenLockSvg from "../svg/OpenLockSvg";
 import ResetSvg from "../svg/ReloadSvg";
 import CloseLockSvg from "../svg/CloseLockSvg";
 
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
+
 export default function Reflect() {
   const [weeks, setWeeks] = useState([
     {
@@ -14,21 +23,21 @@ export default function Reflect() {
       title: "Week 1",
       question: "What made you feel proud this week?",
       text: "",
-      locked: false
+      locked: false,
     },
     {
       id: 2,
       title: "Week 2",
       question: "A goal you want to achieve this month?",
       text: "",
-      locked: true
+      locked: true,
     },
     {
       id: 3,
       title: "Week 3",
       question: "What inspires you to be creative?",
       text: "",
-      locked: true
+      locked: true,
     },
   ]);
 
@@ -64,7 +73,9 @@ export default function Reflect() {
           Reflect, Write & Grow One Week at a Time
         </h2>
         <p className="text-center w-6/12 mx-auto mb-12 text-gray-400">
-          Each month brings a new question to inspire self-reflection and personal growth. Choose a prompt, write your thoughts, and save your entry to track your journey throughout the year.
+          Each month brings a new question to inspire self-reflection and
+          personal growth. Choose a prompt, write your thoughts, and save your
+          entry to track your journey throughout the year.
         </p>
 
         {/* text input box */}
@@ -74,16 +85,29 @@ export default function Reflect() {
               <div className="flex gap-3 mb-4 items-center">
                 <h4 className="text-2xl font-bold">{week.title}</h4>
                 <span className="bg-white p-1.5 rounded-full">
-                  {week.locked ? < CloseLockSvg /> : <OpenLockSvg />}
+                  {week.locked ? <CloseLockSvg /> : <OpenLockSvg />}
                 </span>
               </div>
 
               <div className="bg-gray-50 p-4 relative border rounded-xl hover:bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] duration-300 transition-all ease-in-out">
                 <div className="flex mb-4 items-center justify-between">
                   <p className="font-semibold">{week.question}</p>
-                  <span>
-                    <ThreeDotSvg />
-                  </span>
+
+                  {/* dropdown menu */}
+                  <DropdownMenu>
+                    <DropdownMenuTrigger>
+                      <span className="cursor-pointer hover:scale-105 duration-300 ease-in-out">
+                        <ThreeDotSvg />
+                      </span>
+                    </DropdownMenuTrigger>
+                    <DropdownMenuContent className="w-12" align="center">
+                      <DropdownMenuGroup>
+                        <DropdownMenuItem>Copy Link</DropdownMenuItem>
+                        <DropdownMenuSeparator />
+                        <DropdownMenuItem>Share Link</DropdownMenuItem>
+                      </DropdownMenuGroup>
+                    </DropdownMenuContent>
+                  </DropdownMenu>
                 </div>
 
                 <textarea

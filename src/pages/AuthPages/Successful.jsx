@@ -9,9 +9,9 @@ export default function Successful() {
   useEffect(() => {
     const timer = setTimeout(() => {
       navigate("/auth/sign-in");
-    }, 5000); 
+    }, 3000);
 
-    return () => clearTimeout(timer); 
+    return () => clearTimeout(timer);
   }, [navigate]);
 
   return (

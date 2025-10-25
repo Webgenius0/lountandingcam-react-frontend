@@ -1,9 +1,8 @@
-import React from 'react'
+import React from "react";
 
-import img1 from "../../assets/Img/HowItImg01.svg";
-import img2 from "../../assets/Img/HowItImg02.svg";
-import img3 from "../../assets/Img/HowItImg03.svg";
-
+import img1 from "../../assets/Img/HowItImg01.png";
+import img2 from "../../assets/Img/HowItImg02.png";
+import img3 from "../../assets/Img/HowItImg03.png";
 
 const stepsData = [
   {
@@ -77,5 +76,5 @@ export default function HowItWorkFashion() {
         ))}
       </div>
     </section>
-  )
+  );
 }

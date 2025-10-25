@@ -14,7 +14,9 @@ export default function Header({
     >
       <div className="text-center 2xl:w-9/12 mx-auto flex justify-center flex-col z-10">
         <h1 className="text-5xl font-semibold mb-4">{title}</h1>
-        <p className="mb-12 w-6/12 text-center mx-auto text-gray-400">{subtitle}</p>
+        <p className="mb-12 w-6/12 text-center mx-auto text-gray-400">
+          {subtitle}
+        </p>
         <PrimaryBtn text={btnText} to={btnLink} />
       </div>
     </section>

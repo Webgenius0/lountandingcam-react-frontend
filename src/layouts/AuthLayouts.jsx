@@ -8,9 +8,9 @@ export default function AuthLayouts() {
     <div className="bg-gray-50">
       <ScrollRestoration />
 
-      <nav className="sticky top-6 z-50">
+      <div className="sticky top-6 z-50">
         <Navbar></Navbar>
-      </nav>
+      </div>
 
       <div className="flex   items-center lg:flex-row py-20 justify-center  ">
         <Outlet></Outlet>

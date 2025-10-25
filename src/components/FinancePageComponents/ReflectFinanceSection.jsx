@@ -7,6 +7,14 @@ import OpenLockSvg from "../svg/OpenLockSvg";
 import ResetSvg from "../svg/ReloadSvg";
 import CloseLockSvg from "../svg/CloseLockSvg";
 import EqualSvg from "../svg/EqualSvg";
+import {
+  DropdownMenu,
+  DropdownMenuContent,
+  DropdownMenuGroup,
+  DropdownMenuItem,
+  DropdownMenuTrigger,
+  DropdownMenuSeparator,
+} from "@/components/ui/dropdown-menu";
 
 export default function ReflectFinanceSection() {
   const [months, setMonths] = useState([
@@ -71,9 +79,7 @@ export default function ReflectFinanceSection() {
   // handle allowance or expense change
   const handleInputChange = (monthId, field, value) => {
     setMonths((prev) =>
-      prev.map((m) =>
-        m.id === monthId ? { ...m, [field]: value } : m
-      )
+      prev.map((m) => (m.id === monthId ? { ...m, [field]: value } : m))
     );
   };
 
@@ -107,9 +113,21 @@ export default function ReflectFinanceSection() {
                 <div className="bg-gray-50 p-4 relative border rounded-xl hover:bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] duration-300 transition-all ease-in-out">
                   <div className="flex mb-4 items-center justify-between">
                     <p className="font-semibold">{month.question}</p>
-                    <span>
-                      <ThreeDotSvg />
-                    </span>
+                    {/* dropdown menu */}
+                    <DropdownMenu>
+                      <DropdownMenuTrigger>
+                        <span className="cursor-pointer hover:scale-105 duration-300 ease-in-out">
+                          <ThreeDotSvg />
+                        </span>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-12" align="center">
+                        <DropdownMenuGroup>
+                          <DropdownMenuItem>Copy Link</DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem>Share Link</DropdownMenuItem>
+                        </DropdownMenuGroup>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
                   </div>
 
                   {/* equation section */}
@@ -122,7 +140,11 @@ export default function ReflectFinanceSection() {
                         type="number"
                         value={month.allowance}
                         onChange={(e) =>
-                          handleInputChange(month.id, "allowance", e.target.value)
+                          handleInputChange(
+                            month.id,
+                            "allowance",
+                            e.target.value
+                          )
                         }
                         className="bg-white px-2 border placeholder:text-gray-300 py-3 w-34 rounded-sm"
                         placeholder="$100"

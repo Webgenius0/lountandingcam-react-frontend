@@ -89,7 +89,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path: '/dashboard',
+    path: "/dashboard",
     Component: DashboardLayouts,
     children: [
       {
@@ -97,18 +97,17 @@ export const router = createBrowserRouter([
         Component: DashJournaling,
       },
       {
-        path: 'fashion',
+        path: "fashion",
         Component: DashFashion,
       },
       {
-        path: 'finance',
+        path: "finance",
         Component: DashFinance,
       },
       {
-        path: 'creative-design',
+        path: "creative-design",
         Component: DashCreative,
       },
-      
-    ]
-  }
+    ],
+  },
 ]);

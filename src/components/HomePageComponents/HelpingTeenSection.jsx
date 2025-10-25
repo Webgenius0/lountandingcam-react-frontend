@@ -1,5 +1,5 @@
 import React from "react";
-import teenImg from "../../assets/Img/HelpingImg.svg";
+import teenImg from "../../assets/Img/GroupPhoto.png";
 
 export default function HelpingTeenSection() {
   return (

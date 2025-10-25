@@ -16,13 +16,22 @@ import SmallArtSvg from "../components/svg/SmallArtSvg";
 import SmallFianceSvg from "../components/svg/SmallFianceSvg";
 import SettingSvg from "../components/svg/SettingSvg";
 import LogOutSvg from "../components/svg/LogOutSvg";
+import { toast } from "sonner";
 
 export default function DashboardLayouts() {
   const navigate = useNavigate();
   const location = useLocation();
 
+  const handleSetting = () => {
+    toast.success("This feature is currently under development.");
+  };
+
   const handleLogout = () => {
-    navigate("/auth/log-in");
+    navigate("/auth/sign-in");
+
+    toast.success("Sign Out successfully.", {
+      className: "bg-primary ",
+    });
   };
 
   //   dynamic page title
@@ -115,13 +124,13 @@ export default function DashboardLayouts() {
         className=" mb-6 cursor-pointer justify-between mx-3 rounded bg-accent hover:bg-secondary duration-300 ease-in-out py-3 px-4  flex gap-2 items-center"
       >
         Log Out
-        <LogOutSvg/>
+        <LogOutSvg />
       </div>
     </div>
   );
 
   return (
-    <div className="w-[100%] flex h-screen">
+    <div className="w-full flex h-screen">
       {/* sidebar */}
       <div className="bg-white border-2 w-[280px] hidden xl:block h-screen ">
         <SidebarContent />
@@ -135,13 +144,13 @@ export default function DashboardLayouts() {
           </h3>
 
           <div className="flex items-center ">
-            <span className="bg-gray-100 p-2 rounded">
+            <button onClick={handleSetting} className="bg-gray-100 p-2 rounded">
               <SettingSvg />
-            </span>
+            </button>
             <Sheet>
-              <SheetTrigger className="p-0 md:ml-5 !px-0" asChild>
+              <SheetTrigger className="p-0 md:ml-5 px-0!" asChild>
                 <Button className="xl:hidden hover:bg-secondary p-0 cursor-pointer   bg-white rounded-none ">
-                  <IoMenu className="!size-7" color="black" size={24} />
+                  <IoMenu className="size-7!" color="black" size={24} />
                 </Button>
               </SheetTrigger>
 
