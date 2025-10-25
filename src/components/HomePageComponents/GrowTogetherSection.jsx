@@ -1,11 +1,10 @@
 import React from "react";
-import groupImg from "../../assets/Img/GroupImg.svg";
+import groupImg from "../../assets/Img/GroupImg.png";
 import PrimaryBtn from "../common/PrimaryBtn";
 
 export default function GrowTogetherSection() {
   return (
     <section className="relative   mx-auto  py-40 px-5 lg:px-0 flex items-center justify-center text-white overflow-hidden">
-
       {/* bg img + gradient */}
       <div className="absolute inset-0 z-0">
         <img

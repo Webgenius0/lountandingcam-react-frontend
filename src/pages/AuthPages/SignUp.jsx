@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export default function SignUp() {
   const [showPass, setShowPass] = useState(false);
@@ -18,7 +19,11 @@ export default function SignUp() {
     // console.log(data);
 
     if (data.email && data.password && data.date && data.name) {
+      toast.success("Account created successfully 🎉");
+
       navigate("/");
+    } else {
+      toast.error("Please fill out all required fields");
     }
   };
   return (

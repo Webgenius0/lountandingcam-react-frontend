@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
+import { toast } from "sonner";
 
 export default function SetNewPass() {
   const [showPass, setShowPass] = useState(false);
@@ -13,15 +14,15 @@ export default function SetNewPass() {
 
   const navigate = useNavigate();
 
-     const onSubmit = (data) => {
-        // console.log(data);
+  const onSubmit = (data) => {
+    // console.log(data);
 
-        if (data.password1 == data.password2) {
-            navigate("/auth/successful");
-        } else {
-            alert('password are not same')
-        }
+    if (data.password1 == data.password2) {
+      navigate("/auth/successful");
+    } else {
+      toast.error("Password are not same");
     }
+  };
 
   return (
     <div className="bg-[#F7F5FB] rounded-xl w-full max-w-[450px] border  p-7 sm:p-10">

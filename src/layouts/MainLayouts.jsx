@@ -8,9 +8,9 @@ export default function MainLayouts() {
     <div>
       <ScrollRestoration />
 
-      <nav className="sticky top-7 z-50">
+      <div className="sticky top-7 z-50">
         <Navbar></Navbar>
-      </nav>
+      </div>
       <main>
         <Outlet></Outlet>
       </main>

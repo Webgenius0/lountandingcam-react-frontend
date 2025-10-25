@@ -3,6 +3,7 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { Separator } from "@/components/ui/separator";
+import { toast } from "sonner";
 
 export default function SignIn() {
   const [showPass, setShowPass] = useState(false);
@@ -19,7 +20,11 @@ export default function SignIn() {
     // console.log(data);
 
     if (data.email && data.password) {
+      toast.success("Account created successfully 🎉");
+
       navigate("/");
+    } else {
+      toast.error("Please fill out all required fields");
     }
   };
   return (
@@ -106,11 +111,11 @@ export default function SignIn() {
         <Separator /> Or <Separator />
       </div>
 
-     <Link to='/auth/sign-up' >
-      <button className="rounded text-primary border border-primary w-full py-3 cursor-pointer hover:bg-secondary duration-300 ease-in-out">
-        Create a New Account
-      </button>
-     </Link>
+      <Link to="/auth/sign-up">
+        <button className="rounded text-primary border border-primary w-full py-3 cursor-pointer hover:bg-secondary duration-300 ease-in-out">
+          Create a New Account
+        </button>
+      </Link>
     </div>
   );
 }
