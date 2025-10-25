@@ -5,6 +5,7 @@ import { Textarea } from "@/components/ui/textarea";
 import ThreeDotSvg from "../svg/ThreeDotSvg";
 import OpenLockSvg from "../svg/OpenLockSvg";
 import ResetSvg from "../svg/ReloadSvg";
+import CloseLockSvg from "../svg/CloseLockSvg";
 
 export default function Reflect() {
   const [weeks, setWeeks] = useState([
@@ -13,18 +14,21 @@ export default function Reflect() {
       title: "Week 1",
       question: "What made you feel proud this week?",
       text: "",
+      locked: false
     },
     {
       id: 2,
       title: "Week 2",
       question: "A goal you want to achieve this month?",
       text: "",
+      locked: true
     },
     {
       id: 3,
       title: "Week 3",
       question: "What inspires you to be creative?",
       text: "",
+      locked: true
     },
   ]);
 
@@ -59,10 +63,8 @@ export default function Reflect() {
         <h2 className="text-5xl text-center mb-5 font-semibold">
           Reflect, Write & Grow One Week at a Time
         </h2>
-        <p className="text-center w-4/12 mx-auto mb-12 text-gray-400">
-          Each week brings a new question to inspire self-reflection and
-          personal growth. Choose a prompt, write your thoughts, and save your
-          entry to track your journey throughout the year.
+        <p className="text-center w-6/12 mx-auto mb-12 text-gray-400">
+          Each month brings a new question to inspire self-reflection and personal growth. Choose a prompt, write your thoughts, and save your entry to track your journey throughout the year.
         </p>
 
         {/* text input box */}
@@ -72,7 +74,7 @@ export default function Reflect() {
               <div className="flex gap-3 mb-4 items-center">
                 <h4 className="text-2xl font-bold">{week.title}</h4>
                 <span className="bg-white p-1.5 rounded-full">
-                  <OpenLockSvg />
+                  {week.locked ? < CloseLockSvg /> : <OpenLockSvg />}
                 </span>
               </div>
 
