@@ -17,6 +17,12 @@ import DashJournaling from "../pages/DashboardPages/DashJournaling/DashJournalin
 import DashFashion from "../pages/DashboardPages/DashFashion/DashFashion";
 import DashFinance from "../pages/DashboardPages/DashFinance/DashFinance";
 import DashCreative from "../pages/DashboardPages/DashCreative/DashCreative";
+import Profile from "../pages/DashboardPages/Profile/Profile";
+import ProfileSettings from "../components/DashboardComponents/ProfileSettingsComponents/ProfileSettings";
+import Setting from "../pages/DashboardPages/Setting/Setting";
+import ChangePassword from "../components/DashboardComponents/SettingComponents/ChangePassword";
+import Notification from "../components/DashboardComponents/SettingComponents/Notification";
+import HelpSupport from "../components/DashboardComponents/SettingComponents/HelpSupport";
 
 export const router = createBrowserRouter([
   {
@@ -107,6 +113,34 @@ export const router = createBrowserRouter([
       {
         path: "creative-design",
         Component: DashCreative,
+      },
+      {
+        path: "profile",
+        Component: Profile,
+        children: [
+          {
+            index: true,
+            Component: ProfileSettings,
+          },
+          {
+            path: 'setting',
+            Component: Setting,
+            children: [
+              {
+                index: true,
+                Component: ChangePassword
+              },
+              {
+                path: 'notification',
+                Component: Notification
+              },
+              {
+                path:'help-support',
+                Component: HelpSupport
+              }
+            ]
+          }
+        ]
       },
     ],
   },

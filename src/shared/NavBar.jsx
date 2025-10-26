@@ -29,7 +29,7 @@ export default function Navbar() {
     const section = document.querySelector(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
-      setOpen(false); // Close drawer if open
+      setOpen(false); 
     }
   };
 
