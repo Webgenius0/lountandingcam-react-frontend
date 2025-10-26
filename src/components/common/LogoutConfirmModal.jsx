@@ -1,5 +1,11 @@
 import React from "react";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogFooter } from "@/components/ui/dialog";
+import {
+  Dialog,
+  DialogContent,
+  DialogHeader,
+  DialogTitle,
+  DialogFooter,
+} from "@/components/ui/dialog";
 import { Button } from "@/components/ui/button";
 import LogOutRedSvg from "../svg/LogOutRedSvg";
 
@@ -9,7 +15,7 @@ export default function LogoutConfirmModal({ open, onClose, onConfirm }) {
       <DialogContent className="sm:max-w-[400px] text-center rounded-2xl">
         <div className="flex flex-col items-center justify-center space-y-3 py-4">
           <div className="bg-red-100 p-3 rounded-full">
-           <LogOutRedSvg/>
+            <LogOutRedSvg />
           </div>
 
           <DialogHeader>
