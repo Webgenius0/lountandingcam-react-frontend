@@ -7,7 +7,9 @@ export default function Profile() {
   return (
     <div className=" flex gap-6 items-start">
       {/* menu bar */}
-      <div className="bg-white w-[280px] rounded-xl p-4 border min-h-screen ">
+      <div
+        className="bg-white w-[280px] rounded-xl p-4 border lg:min-h-[700px]"
+      >
         <ul className="space-y-2 font-medium">
           <li>
             <NavLink
@@ -47,7 +49,7 @@ export default function Profile() {
 
       {/* outlet  */}
       <div className=" w-full ">
-        <Outlet/>
+        <Outlet />
       </div>
     </div>
   );

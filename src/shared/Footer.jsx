@@ -18,7 +18,7 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <section id="contact-section" className="bg-primary  text-white py-20">
+    <footer id="contact-section" className="bg-primary  text-white py-20">
       <div className="2xl:max-w-9/12 flex flex-col lg:flex-row   items-start gap-10 max-w-11/12 mx-auto ">
         <div className="lg:w-4/12">
           {/* logo */}
@@ -145,6 +145,6 @@ export default function Footer() {
           Fresh Fruit.
         </p>
       </div>
-    </section>
+    </footer>
   );
 }

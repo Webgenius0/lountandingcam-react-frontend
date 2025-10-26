@@ -16,7 +16,7 @@ export default function Navbar() {
 
   const navLinks = [
     { to: "/", label: "Home" },
-    { to: "#about-section", label: "About" },
+    { to: "/#about-section", label: "About" },
     { to: "/journaling", label: "Journaling" },
     { to: "/fashion", label: "Fashion" },
     { to: "/finance", label: "Finance" },
@@ -29,7 +29,7 @@ export default function Navbar() {
     const section = document.querySelector(id);
     if (section) {
       section.scrollIntoView({ behavior: "smooth" });
-      setOpen(false); 
+      setOpen(false);
     }
   };
 
@@ -59,7 +59,7 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   `text-sm ${
                     isActive
-                      ? "text-primary border-b-2 border-primary font-medium"
+                      ? `${link.label === "About" ? "text-gray-600 hover:text-black" : "text-primary border-b-2 border-primary font-medium"}`
                       : "text-gray-600 hover:text-black"
                   }`
                 }
@@ -125,8 +125,8 @@ export default function Navbar() {
               <div className="flex flex-col p-5 pt-0 space-y-4">
                 <PrimaryBtn
                   className="w-full"
-                  text="Get Started"
-                  to="/register"
+                  text="Sign Up"
+                  to="/auth/sign-up"
                 />
                 <SecondaryBtn
                   className="w-full"

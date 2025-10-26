@@ -3,7 +3,7 @@ import teenImg from "../../assets/Img/GroupPhoto.png";
 
 export default function HelpingTeenSection() {
   return (
-    <section className="2xl:w-9/12 mx-auto flex items-center  py-30">
+    <section id="about-section" className="2xl:w-9/12 mx-auto flex items-center  py-30">
       {/* img content */}
       <div className="flex-1">
         <img src={teenImg} alt="teen img" />

@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router";
+import { Link, NavLink, Outlet, ScrollRestoration, useLocation, useNavigate } from "react-router";
 import { IoMenu } from "react-icons/io5";
 
 import { Button } from "../components/ui/button";
@@ -26,7 +26,7 @@ export default function DashboardLayouts() {
   const [open, setOpen] = useState(false);
 
   const handleSetting = () => {
-    toast.success("This feature is currently under development.");
+    navigate("/dashboard/profile/setting");
   };
 
   const handleLogout = () => {
@@ -152,6 +152,7 @@ export default function DashboardLayouts() {
 
   return (
     <div className="w-full flex h-screen">
+       <ScrollRestoration />
       {/* sidebar */}
       <div className="bg-white border-2 w-[280px] hidden xl:block h-screen ">
         <SidebarContent />
@@ -165,7 +166,7 @@ export default function DashboardLayouts() {
           </h3>
 
           <div className="flex items-center ">
-            <button onClick={handleSetting} className="bg-gray-100 p-2 rounded">
+            <button onClick={handleSetting} className="bg-gray-100 cursor-pointer p-2 rounded">
               <SettingSvg />
             </button>
             <Sheet>
@@ -185,7 +186,7 @@ export default function DashboardLayouts() {
           </div>
         </header>
         {/*  content */}
-        <section className="flex-1 bg-gray-100 overflow-y-auto p-6">
+        <section className="flex-1 bg-gray-100 min-h-screen overflow-y-auto p-6">
           <Outlet />
         </section>
       </main>

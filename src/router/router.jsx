@@ -23,6 +23,7 @@ import Setting from "../pages/DashboardPages/Setting/Setting";
 import ChangePassword from "../components/DashboardComponents/SettingComponents/ChangePassword";
 import Notification from "../components/DashboardComponents/SettingComponents/Notification";
 import HelpSupport from "../components/DashboardComponents/SettingComponents/HelpSupport";
+import AllPages from "../pages/AllPagesLink/AllPages";
 
 export const router = createBrowserRouter([
   {
@@ -123,25 +124,29 @@ export const router = createBrowserRouter([
             Component: ProfileSettings,
           },
           {
-            path: 'setting',
+            path: "setting",
             Component: Setting,
             children: [
               {
                 index: true,
-                Component: ChangePassword
+                Component: ChangePassword,
               },
               {
-                path: 'notification',
-                Component: Notification
+                path: "notification",
+                Component: Notification,
               },
               {
-                path:'help-support',
-                Component: HelpSupport
-              }
-            ]
-          }
-        ]
+                path: "help-support",
+                Component: HelpSupport,
+              },
+            ],
+          },
+        ],
       },
     ],
   },
+  {
+    path:"all-pages",
+    Component:AllPages
+  }
 ]);
