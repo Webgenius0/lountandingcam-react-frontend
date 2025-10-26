@@ -20,7 +20,7 @@ export default function SignIn() {
     // console.log(data);
 
     if (data.email && data.password) {
-      toast.success("Account created successfully 🎉");
+      toast.success("Login successfully 🎉");
 
       navigate("/");
     } else {

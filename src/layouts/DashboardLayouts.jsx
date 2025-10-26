@@ -1,7 +1,6 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link, NavLink, Outlet, useLocation, useNavigate } from "react-router";
 import { IoMenu } from "react-icons/io5";
-import { RiLogoutBoxRLine } from "react-icons/ri";
 
 import { Button } from "../components/ui/button";
 import {
@@ -17,20 +16,25 @@ import SmallFianceSvg from "../components/svg/SmallFianceSvg";
 import SettingSvg from "../components/svg/SettingSvg";
 import LogOutSvg from "../components/svg/LogOutSvg";
 import { toast } from "sonner";
+import DownArrowSvg from "../components/svg/DownArrowSvg";
+import { FcBusinessman } from "react-icons/fc";
+import LogoutConfirmModal from "../components/common/LogoutConfirmModal";
 
 export default function DashboardLayouts() {
   const navigate = useNavigate();
   const location = useLocation();
+  const [open, setOpen] = useState(false);
 
   const handleSetting = () => {
     toast.success("This feature is currently under development.");
   };
 
   const handleLogout = () => {
+     setOpen(false);
     navigate("/auth/sign-in");
 
     toast.success("Sign Out successfully.", {
-      className: "bg-primary ",
+      className: "bg-primary",
     });
   };
 
@@ -40,6 +44,7 @@ export default function DashboardLayouts() {
     if (location.pathname.includes("fashion")) return "Fashion";
     if (location.pathname.includes("finance")) return "Finance";
     if (location.pathname.includes("creative-design")) return "Creative Design";
+    if (location.pathname.includes("profile")) return "Profile Settings";
     return "Dashboard";
   };
 
@@ -119,12 +124,28 @@ export default function DashboardLayouts() {
         </li>
       </ul>
 
-      <div
-        onClick={handleLogout}
-        className=" mb-6 cursor-pointer justify-between mx-3 rounded bg-accent hover:bg-secondary duration-300 ease-in-out py-3 px-4  flex gap-2 items-center"
-      >
-        Log Out
-        <LogOutSvg />
+      <div>
+        <NavLink
+          to="/dashboard/profile"
+          className=" mb-2 cursor-pointer justify-between mx-3 rounded bg-accent hover:bg-secondary duration-300 ease-in-out py-3 px-4  flex gap-2 items-center"
+        >
+          <span className="flex gap-2 items-center">
+            <FcBusinessman size={24} /> Noor H. Forhad
+          </span>
+          <DownArrowSvg />
+        </NavLink>
+        <div
+          onClick={() => setOpen(true)}
+          className=" mb-6 cursor-pointer justify-between mx-3 rounded bg-accent hover:bg-secondary duration-300 ease-in-out py-3 px-4  flex gap-2 items-center"
+        >
+          Log Out
+          <LogOutSvg />
+        </div>
+         <LogoutConfirmModal
+        open={open}
+        onClose={() => setOpen(false)}
+        onConfirm={handleLogout}
+      />
       </div>
     </div>
   );
@@ -149,7 +170,7 @@ export default function DashboardLayouts() {
             </button>
             <Sheet>
               <SheetTrigger className="p-0 md:ml-5 px-0!" asChild>
-                <Button className="xl:hidden hover:bg-secondary p-0 cursor-pointer   bg-white rounded-none ">
+                <Button className="xl:hidden hover:bg-secondary p-0 cursor-pointer  bg-white rounded-none ">
                   <IoMenu className="size-7!" color="black" size={24} />
                 </Button>
               </SheetTrigger>
