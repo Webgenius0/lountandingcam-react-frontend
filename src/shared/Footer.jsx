@@ -18,7 +18,10 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer id="contact-section" className="bg-primary  text-white py-20">
+    <footer
+      id="contact-section"
+      className="bg-primary overflow-x-hidden text-white py-20"
+    >
       <div className="2xl:max-w-9/12 flex flex-col lg:flex-row   items-start gap-10 max-w-11/12 mx-auto ">
         <div className="lg:w-4/12">
           {/* logo */}
@@ -124,18 +127,18 @@ export default function Footer() {
 
         {/* contact form  */}
 
-        <div className="  bg-[#75598a]   rounded-xl p-6">
-          <div className="mb-8">
-            <h2 className="font-bold text-white mb-2">Contact Us</h2>
-            <p className="flex gap-2 items-start  text-gray-200">
-              <LocationSvg />
-              37 avenue Ledru Rollin Paris, France 75012
-            </p>
-            <p className="flex gap-2 items-start mt-2  text-gray-200">
-              <SiteSvg />
-              lountanding@beauteenteprise.com
-            </p>
-          </div>
+        <div className="mb-8 bg-[#75598a] rounded-xl p-6">
+          <h2 className="font-bold text-white mb-2">Contact Us</h2>
+          <p className="flex gap-2 items-start  text-gray-200">
+            <LocationSvg />
+            37 avenue Ledru Rollin Paris, France 75012
+          </p>
+          <p className="flex gap-2  items-start mt-2  text-gray-200">
+            <SiteSvg />
+            lountanding@beauteen
+            <br className="sd:hidden" />
+            teprise.com
+          </p>
         </div>
       </div>
 

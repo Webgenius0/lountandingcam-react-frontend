@@ -11,7 +11,7 @@ export default function Journaling() {
         title="Discover Yourself Through Journaling"
         subtitle="Reflect, write, and grow with 52 guided prompts designed to help you know yourself better."
         btnText="Start Journaling"
-        btnLink="/"
+        btnLink="/dashboard"
       />
       <HowItWorkJournaling />
       <Reflect />

@@ -13,8 +13,8 @@ import PrimaryBtn from "../common/PrimaryBtn";
 export default function Browse() {
   return (
     <section className="bg-gray-100 py-20">
-      <div className="2xl:max-w-9/12 mx-auto gap-15 flex justify-between items-center ">
-        <div className="flex-1 flex  ">
+      <div className="2xl:max-w-9/12 w-11/12 mx-auto gap-15 flex flex-col lg:flex-row justify-between items-center ">
+        <div className="flex-1 flex gap-5 2xl:gap-0  ">
           <div className="flex flex-col gap-4 items-center">
             <img className="rounded-xl" src={img1} alt="" />
             <img className="rounded-xl" src={img3} alt="" />
@@ -24,8 +24,8 @@ export default function Browse() {
             <img className="rounded-xl w-full" src={img4} alt="" />
           </div>
         </div>
-        <div className="flex-1 max-w-6/12">
-          <h2 className="text-5xl font-semibold mb-4">Browse & Explore</h2>
+        <div className="flex-1 max-w-11/12 lg:max-w-6/12">
+          <h2 className="lg:text-5xl text-2xl md:text-3xl font-semibold mb-4">Browse & Explore</h2>
           <p className="mb-12 text-gray-400">
             Discover your style by browsing external fashion brands like Zara,
             H&M, or ASOS. When you click on a link, it opens the brand’s website
@@ -33,7 +33,7 @@ export default function Browse() {
             Beaute account.
           </p>
 
-          <PrimaryBtn className="mb-20" text="Explore Brands" to="/" />
+          <PrimaryBtn className="lg:mb-20 mb-10" text="Explore Brands" to="/" />
 
           <Marquee
             autoFill={true}

@@ -67,19 +67,19 @@ export default function Reflect() {
   };
 
   return (
-    <section className="bg-gray-100 py-30">
-      <div className="2xl:max-w-9/12 mx-auto">
-        <h2 className="text-5xl text-center mb-5 font-semibold">
+    <section className="bg-gray-100 py-10 lg:py-30">
+      <div className="2xl:max-w-9/12 w-11/12 mx-auto">
+        <h2 className="lg:text-5xl md:text-3xl text-2xl text-center mb-5 font-semibold">
           Reflect, Write & Grow One Week at a Time
         </h2>
-        <p className="text-center w-6/12 mx-auto mb-12 text-gray-400">
+        <p className="text-center text-sm md:text-base lg:w-8/12 xl:w-6/12 mx-auto mb-12 text-gray-400">
           Each month brings a new question to inspire self-reflection and
           personal growth. Choose a prompt, write your thoughts, and save your
           entry to track your journey throughout the year.
         </p>
 
         {/* text input box */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-4">
           {weeks.map((week) => (
             <div key={week.id}>
               <div className="flex gap-3 mb-4 items-center">
@@ -89,41 +89,49 @@ export default function Reflect() {
                 </span>
               </div>
 
-              <div className="bg-gray-50 p-4 relative border rounded-xl hover:bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] duration-300 transition-all ease-in-out">
-                <div className="flex mb-4 items-center justify-between">
-                  <p className="font-semibold">{week.question}</p>
+              <div className=" bg-gray-50 p-4 relative border rounded-xl overflow-hidden group ">
+                {/* Gradient overlay that transitions in */}
 
-                  {/* dropdown menu */}
-                  <DropdownMenu>
-                    <DropdownMenuTrigger>
-                      <span className="cursor-pointer hover:scale-105 duration-300 ease-in-out">
-                        <ThreeDotSvg />
-                      </span>
-                    </DropdownMenuTrigger>
-                    <DropdownMenuContent className="w-12" align="center">
-                      <DropdownMenuGroup>
-                        <DropdownMenuItem>Copy Link</DropdownMenuItem>
-                        <DropdownMenuSeparator />
-                        <DropdownMenuItem>Share Link</DropdownMenuItem>
-                      </DropdownMenuGroup>
-                    </DropdownMenuContent>
-                  </DropdownMenu>
+                <div className="absolute inset-0 bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
+
+                {/* Content */}
+
+                <div className="relative z-10">
+                  <div className="flex mb-4 items-center justify-between">
+                    <p className="font-semibold">{week.question}</p>
+
+                    {/* dropdown menu */}
+                    <DropdownMenu>
+                      <DropdownMenuTrigger>
+                        <span className="cursor-pointer hover:scale-105 duration-300 ease-in-out">
+                          <ThreeDotSvg />
+                        </span>
+                      </DropdownMenuTrigger>
+                      <DropdownMenuContent className="w-12" align="center">
+                        <DropdownMenuGroup>
+                          <DropdownMenuItem>Copy Link</DropdownMenuItem>
+                          <DropdownMenuSeparator />
+                          <DropdownMenuItem>Share Link</DropdownMenuItem>
+                        </DropdownMenuGroup>
+                      </DropdownMenuContent>
+                    </DropdownMenu>
+                  </div>
+
+                  <textarea
+                    placeholder="Write your thoughts here…"
+                    className="w-full h-40 px-4 py-4 placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
+                    readOnly
+                    onClick={() => handleOpenModal(week.id)}
+                    value={week.text}
+                  />
+
+                  <button
+                    onClick={() => handleReset(week.id)}
+                    className="p-1  absolute z-20 scale-105 bg-gray-50 right-7 top-15 rounded-sm hover:bg-gray-200 transition"
+                  >
+                    <ResetSvg />
+                  </button>
                 </div>
-
-                <textarea
-                  placeholder="Write your thoughts here…"
-                  className="w-full h-40 px-4 py-4 placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
-                  readOnly
-                  onClick={() => handleOpenModal(week.id)}
-                  value={week.text}
-                />
-
-                <button
-                  onClick={() => handleReset(week.id)}
-                  className="p-1  absolute z-20 scale-105 bg-gray-50 right-8 top-19 rounded-sm hover:bg-gray-200 transition"
-                >
-                  <ResetSvg />
-                </button>
               </div>
             </div>
           ))}

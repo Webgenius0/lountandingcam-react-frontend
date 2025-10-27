@@ -8,7 +8,7 @@ import Newsletter from "../../components/HomePageComponents/Newsletter";
 
 export default function Home() {
   return (
-    <div>
+    <div >
       <Hero />
       <HelpingTeenSection />
       <DiscoverSection />

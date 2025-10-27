@@ -50,7 +50,9 @@ export default function DashboardLayouts() {
 
   // sidebar links
   const SidebarContent = () => (
+    
     <div className="flex flex-col justify-between h-full py-5">
+   
       <ul className="space-y-2 font-medium">
         <Link to="/" className="flex items-center mb-6 px-6 gap-2">
           <h2 className="text-xl text-primary font-semibold">
@@ -125,6 +127,7 @@ export default function DashboardLayouts() {
       </ul>
 
       <div>
+            
         <NavLink
           to="/dashboard/profile"
           className=" mb-2 cursor-pointer justify-between mx-3 rounded bg-accent hover:bg-secondary duration-300 ease-in-out py-3 px-4  flex gap-2 items-center"

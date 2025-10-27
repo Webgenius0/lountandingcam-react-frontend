@@ -48,7 +48,7 @@ export default function Navbar() {
               <button
                 key={link.label}
                 onClick={() => handleScroll(link.to)}
-                className="text-sm text-gray-600 cursor-pointer hover:text-black"
+                className=" text-gray-600 cursor-pointer hover:text-black"
               >
                 {link.label}
               </button>
@@ -57,7 +57,7 @@ export default function Navbar() {
                 key={link.to}
                 to={link.to}
                 className={({ isActive }) =>
-                  `text-sm ${
+                  ` ${
                     isActive
                       ? `${link.label === "About" ? "text-gray-600 hover:text-black" : "text-primary border-b-2 border-primary font-medium"}`
                       : "text-gray-600 hover:text-black"
@@ -85,7 +85,7 @@ export default function Navbar() {
         <Drawer open={open} onOpenChange={setOpen} direction="left">
           <DrawerTrigger asChild>
             <button className="xl:hidden hover:scale-105 duration-300 text-gray-800">
-              <Menu className="h-6 w-6" />
+              <Menu color="#6e5084" className="h-6 w-6" />
             </button>
           </DrawerTrigger>
 
