@@ -18,7 +18,9 @@ export default function DashJournaling() {
 
         <div className="bg-white flex gap-3 flex-col items-center justify-center p-4 border rounded-xl">
           <WeekProgressChart />
-          <p className="text-gray-500 text-sm md:text-base">You’ve completed 5 out of 52 prompts.</p>
+          <p className="text-gray-500 text-sm md:text-base">
+            You’ve completed 5 out of 52 prompts.
+          </p>
         </div>
       </div>
 

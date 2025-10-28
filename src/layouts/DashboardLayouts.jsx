@@ -10,11 +10,7 @@ import {
 import { IoMenu } from "react-icons/io5";
 
 import { Button } from "../components/ui/button";
-import {
-  Sheet,
-  SheetContent,
-  SheetTrigger,
-} from "../components/ui/sheet";
+import { Sheet, SheetContent, SheetTrigger } from "../components/ui/sheet";
 
 import SmallBookSvg from "../components/svg/SmallBookSvg";
 import SmallArtSvg from "../components/svg/SmallArtSvg";
@@ -30,7 +26,7 @@ export default function DashboardLayouts() {
   const navigate = useNavigate();
   const location = useLocation();
 
-  const [logoutOpen, setLogoutOpen] = useState(false); 
+  const [logoutOpen, setLogoutOpen] = useState(false);
   const [sheetOpen, setSheetOpen] = useState(false);
 
   const handleSetting = () => {
@@ -59,7 +55,11 @@ export default function DashboardLayouts() {
   const SidebarContent = ({ closeSheet }) => (
     <div className="flex flex-col justify-between h-full py-5">
       <ul className="space-y-2 font-medium">
-        <Link to="/" className="flex items-center mb-6 px-6 gap-2" onClick={closeSheet}>
+        <Link
+          to="/"
+          className="flex items-center mb-6 px-6 gap-2"
+          onClick={closeSheet}
+        >
           <h2 className="text-xl text-primary font-semibold">
             Beaute Enterprise
           </h2>
@@ -195,7 +195,10 @@ export default function DashboardLayouts() {
                 </Button>
               </SheetTrigger>
 
-              <SheetContent side="left" className="p-0 w-[280px] pt-10 border-none">
+              <SheetContent
+                side="left"
+                className="p-0 w-[280px] pt-10 border-none"
+              >
                 <SidebarContent closeSheet={() => setSheetOpen(false)} />
               </SheetContent>
             </Sheet>
@@ -210,4 +213,3 @@ export default function DashboardLayouts() {
     </div>
   );
 }
-
