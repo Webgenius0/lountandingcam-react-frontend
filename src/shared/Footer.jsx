@@ -84,7 +84,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/ creative-design"
+                to="/creative-design"
                 className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
               >
                 Creative Design
@@ -100,7 +100,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/privacy"
+                to="/"
                 className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
               >
                 Privacy and Policy
@@ -108,7 +108,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/support"
+                to="/"
                 className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
               >
                 Support
@@ -116,7 +116,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/contact"
+                to="/#contact"
                 className="text-gray-200 transition-colors duration-300   hover:text-deep-purple-accent-400"
               >
                 Contact

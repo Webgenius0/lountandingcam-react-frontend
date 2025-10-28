@@ -13,7 +13,7 @@ export default function DashFinance() {
           description="Learn how to budget, track spending, and build smart saving habits to manage your money wisely each month."
           image={moneyGfx}
           gradientColors="from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)]"
-          className=" py-10"
+          className=" "
         />
 
         <div className="bg-white flex gap-2 flex-col items-center justify-center px-4 pb-4 border rounded-xl">
