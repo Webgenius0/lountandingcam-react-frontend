@@ -81,6 +81,7 @@ export default function Reflect() {
         {/* text input box */}
         <div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-4">
           {weeks.map((week) => (
+
             <div key={week.id}>
               <div className="flex gap-3 mb-4 items-center">
                 <h4 className="text-2xl font-bold">{week.title}</h4>
@@ -90,7 +91,7 @@ export default function Reflect() {
               </div>
 
               <div className=" bg-gray-50 p-4 relative border rounded-xl overflow-hidden group ">
-                {/* Gradient overlay that transitions in */}
+                {/* gradient overlay that transitions in */}
 
                 <div className="absolute inset-0 bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
 
@@ -133,7 +134,9 @@ export default function Reflect() {
                   </button>
                 </div>
               </div>
+
             </div>
+            
           ))}
         </div>
       </div>

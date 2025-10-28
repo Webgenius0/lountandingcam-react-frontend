@@ -44,7 +44,7 @@ const DesignGallery = () => {
   };
 
   return (
-    <div>
+    <div className="flex flex-col justify-center items-center md:justify-start md:items-start">
       {/* upload Section */}
       <label
         htmlFor="fileUpload"
@@ -71,7 +71,7 @@ const DesignGallery = () => {
           onChange={handleFileUpload}
         />
       </label>
-      <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 xl:grid-cols-5 gap-4">
+      <div className="flex items-center flex-wrap gap-4">
         {/* img Cards */}
         {images.map((img, index) => (
           <div
