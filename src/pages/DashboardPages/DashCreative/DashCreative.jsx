@@ -5,7 +5,7 @@ import DesignGallery from "../../../components/DashboardComponents/CreativeDesig
 
 export default function DashCreative() {
   return (
-    <div>
+    <div className="mb-20" >
       <HeaderCard
         title="Define Your Style, Express Your Confidence"
         description="Explore trending brands, save your favorite outfits, and curate a personal wardrobe that shows your true personality."

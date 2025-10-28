@@ -14,7 +14,7 @@ export default function ChangePassword() {
 
   return (
     <div className='p-4'>
-        <h4 className='text-2xl font-bold mb-4' >Change Password</h4>
+        <h4 className='md:text-2xl font-bold mb-4' >Change Password</h4>
 
         <form onSubmit={handleSubmit()}>
 
@@ -120,7 +120,9 @@ export default function ChangePassword() {
                       </div>
         </div>
 
-        <PrimaryBtn   type="submit" text='Save' className='w-64 mt-8' />
+       <div className='flex justify-center'>
+         <PrimaryBtn   type="submit" text='Save' className='w-64 mt-8' />
+       </div>
 
         </form>
     </div>

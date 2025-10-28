@@ -6,7 +6,7 @@ import MonthProgressChart from "../../../components/DashboardComponents/Finance/
 
 export default function DashFinance() {
   return (
-    <div>
+    <div className="mb-20">
       <div className="flex flex-col lg:flex-row items-center gap-4">
         <HeaderCard
           title="Master Your Money with Confidence"

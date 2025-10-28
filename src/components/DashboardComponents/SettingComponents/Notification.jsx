@@ -4,7 +4,7 @@ import { Switch } from "@/components/ui/switch"
 export default function Notification() {
   return (
     <div className='p-4' >
-        <h4 className='text-2xl font-bold mb-6'>
+        <h4 className='md:text-2xl font-bold mb-6'>
             Notification Settings
         </h4>
 

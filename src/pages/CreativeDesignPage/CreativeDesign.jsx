@@ -11,7 +11,7 @@ export default function CreativeDesign() {
         title="Your Imagination and Bring Ideas to Life"
         subtitle="Beaute Creative Design feature helps teens express their creativity through interactive design tools and inspiring challenges.."
         btnText="Start Editing"
-        btnLink="/"
+        btnLink="/dashboard/creative-design"
       />
       <HowItWorkCreative />
       <LearnDesignSection />

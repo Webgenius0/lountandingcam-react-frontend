@@ -168,14 +168,14 @@ export default function DashboardLayouts() {
             {getPageTitle()}
           </h3>
 
-          <div className="flex items-center ">
+          <div className="flex gap-1 items-center ">
             <button onClick={handleSetting} className="bg-gray-100 cursor-pointer p-2 rounded">
               <SettingSvg />
             </button>
             <Sheet>
               <SheetTrigger className="p-0 md:ml-5 px-0!" asChild>
-                <Button className="xl:hidden hover:bg-secondary p-0 cursor-pointer  bg-white rounded-none ">
-                  <IoMenu className="size-7!" color="black" size={24} />
+                <Button className="xl:hidden hover:bg-secondary px-1 cursor-pointer  bg-white rounded ">
+                  <IoMenu className="size-8!" color="black" size={24} />
                 </Button>
               </SheetTrigger>
 
@@ -189,7 +189,7 @@ export default function DashboardLayouts() {
           </div>
         </header>
         {/*  content */}
-        <section className="flex-1 bg-gray-100 min-h-screen overflow-y-auto p-6">
+        <section className="flex-1 bg-gray-100 min-h-screen mb-20 overflow-y-auto p-6">
           <Outlet />
         </section>
       </main>

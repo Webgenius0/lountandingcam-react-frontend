@@ -6,7 +6,7 @@ import WeekProgressChart from "../../../components/DashboardComponents/Journalin
 
 export default function DashJournaling() {
   return (
-    <div>
+    <div className="mb-20">
       <div className="flex flex-col lg:flex-row items-center gap-4">
         <HeaderCard
           title="Reflect, Write & Grow Each Week"
@@ -18,7 +18,7 @@ export default function DashJournaling() {
 
         <div className="bg-white flex gap-3 flex-col items-center justify-center p-4 border rounded-xl">
           <WeekProgressChart />
-          <p className="text-gray-500">You’ve completed 5 out of 52 prompts.</p>
+          <p className="text-gray-500 text-sm md:text-base">You’ve completed 5 out of 52 prompts.</p>
         </div>
       </div>
 

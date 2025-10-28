@@ -144,8 +144,7 @@ export default function Footer() {
 
       <div className="2xl:max-w-9/12 w-11/12 flex justify-center items-center gap-3 mt-10 pt-10 border-t-2 border-secondary/30 mx-auto">
         <p className=" text-center text-gray-200">
-          Copyright 2025. All Rights Reserved. Powered by the Awesomeness of
-          Fresh Fruit.
+          © Copyright 2025. All Rights Reserved by Beaute Enterprise
         </p>
       </div>
     </footer>
