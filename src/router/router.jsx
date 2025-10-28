@@ -30,7 +30,8 @@ export const router = createBrowserRouter([
     path: "*",
     element: (
       <div className="text-center py-[120px] ">
-        <Link to="/" className="border-2 border-purple-300 p-4 ">
+        <p className="text-8xl font-extrabold mb-16 text-primary">404</p>
+        <Link to="/" className="border-2 border-primary p-4 ">
           {" "}
           Go to home page
         </Link>
