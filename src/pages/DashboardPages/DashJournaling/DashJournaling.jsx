@@ -16,7 +16,7 @@ export default function DashJournaling() {
           className=" md:py-10"
         />
 
-        <div className="bg-white flex gap-3 flex-col items-center justify-center p-4 border rounded-xl">
+        <div className="bg-white flex gap-3 flex-col w-full lg:w-fit items-center justify-center p-4 border rounded-xl">
           <WeekProgressChart />
           <p className="text-gray-500 text-sm md:text-base">
             You’ve completed 5 out of 52 prompts.

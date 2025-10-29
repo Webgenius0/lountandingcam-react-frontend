@@ -6,6 +6,7 @@ import { toast } from "sonner";
 
 export default function SetNewPass() {
   const [showPass, setShowPass] = useState(false);
+  const [showPass1, setShowPass1] = useState(false);
   const {
     register,
     handleSubmit,
@@ -76,7 +77,7 @@ export default function SetNewPass() {
             <input
               placeholder="Your Password"
               {...register("password2", { required: true })}
-              type={showPass ? "text" : "password"}
+              type={showPass1 ? "text" : "password"}
               className={`w-full h-12 placeholder:text-gray-400 px-4 transition duration-200 bg-white border border-gray-300 rounded    ${
                 errors.password2
                   ? "border-red-500 focus:border-red-500"
@@ -89,11 +90,11 @@ export default function SetNewPass() {
             <button
               type="button"
               onClick={() => {
-                setShowPass(!showPass);
+                setShowPass1(!showPass1);
               }}
               className="btn btn-xs absolute top-9  right-6"
             >
-              {showPass ? (
+              {showPass1 ? (
                 <FaEyeSlash color="gray" size={22} />
               ) : (
                 <FaEye color="gray" size={22} />

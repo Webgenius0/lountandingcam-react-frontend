@@ -142,7 +142,7 @@ export default function ReflectFinanceSection() {
                     {/* equation section */}
                     <div className="my-4 flex items-center flex-wrap  justify-between max-w-fit gap-2">
                       <span className="flex flex-col">
-                        <label className="text-sm text-gray-400">
+                        <label className="text-sm text-gray-600">
                           Allowance Received
                         </label>
                         <input
@@ -160,12 +160,12 @@ export default function ReflectFinanceSection() {
                         />
                       </span>
 
-                      <span>
+                      <span className="mt-4">
                         <EqualSvg />
                       </span>
 
                       <span className="flex flex-col">
-                        <label className="text-sm text-gray-400">
+                        <label className="text-sm text-gray-600">
                           Expenses
                         </label>
                         <input
@@ -184,7 +184,7 @@ export default function ReflectFinanceSection() {
                       </span>
 
                       <span className="flex flex-col">
-                        <label className="text-sm text-gray-400">
+                        <label className="text-sm text-gray-600">
                           Amount Saved
                         </label>
                         <p className="bg-primary px-2 py-3 overflow-x-hidden text-center w-30 text-white rounded-sm">
@@ -196,7 +196,7 @@ export default function ReflectFinanceSection() {
                     {/* text area */}
                     <textarea
                       placeholder="Write your thoughts here…"
-                      className="w-full h-40 px-4 py-4 placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
+                      className="w-full h-40 px-4 py-4 resize-none placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
                       readOnly
                       onClick={() => handleOpenModal(month.id)}
                       value={month.text}
@@ -224,7 +224,7 @@ export default function ReflectFinanceSection() {
             placeholder="Write your thoughts here…"
             value={tempText}
             onChange={(e) => setTempText(e.target.value)}
-            className="h-48 bg-white mt-4"
+            className="h-48 bg-white resize-none mt-4"
           />
           <div className="flex justify-end mt-5">
             <Button

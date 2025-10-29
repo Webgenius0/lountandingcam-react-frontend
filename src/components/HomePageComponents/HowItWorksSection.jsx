@@ -47,7 +47,7 @@ export default function HowItWorksSection() {
             <div
               className={`${
                 index % 2 !== 0 ? "md:order-2" : "md:order-1"
-              } bg-white p-6 rounded-xl h-72 space-y-26`}
+              } bg-white p-6 rounded-xl md:h-72 space-y-10 md:space-y-26`}
             >
               <p className="text-gray-400 text-3xl font-semibold">
                 {step.step}

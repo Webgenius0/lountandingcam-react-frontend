@@ -120,7 +120,7 @@ export default function Reflect() {
 
                   <textarea
                     placeholder="Write your thoughts here…"
-                    className="w-full h-40 px-4 py-4 placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
+                    className="w-full h-40 px-4 py-4 placeholder:text-gray-400 resize-none bg-white border rounded-xl cursor-pointer"
                     readOnly
                     onClick={() => handleOpenModal(week.id)}
                     value={week.text}
@@ -148,7 +148,7 @@ export default function Reflect() {
             placeholder="Write your thoughts here…"
             value={tempText}
             onChange={(e) => setTempText(e.target.value)}
-            className="h-48 bg-white mt-4"
+            className="h-48 bg-white mt-4 resize-none"
           />
 
           <div className="flex justify-end mt-5">
