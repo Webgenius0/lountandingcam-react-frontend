@@ -14,7 +14,7 @@ export default function WeekProgressChart() {
   const COLORS = ["#8571f4", "#f1f2f6"];
 
   return (
-    <div className="flex flex-col items-center justify-center bg-white  ">
+    <div className="flex flex-col w-full h-36 items-center justify-center bg-white  ">
       <div style={{ width: 160, height: 160, position: "relative" }}>
         <ResponsiveContainer>
           <PieChart>

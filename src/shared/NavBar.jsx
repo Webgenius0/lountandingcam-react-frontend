@@ -59,7 +59,11 @@ export default function Navbar() {
                 className={({ isActive }) =>
                   ` ${
                     isActive
-                      ? `${link.label === "About" ? "text-gray-600 hover:text-black" : "text-primary border-b-2 border-primary font-medium"}`
+                      ? `${
+                          link.label === "About"
+                            ? "text-gray-600 hover:text-black"
+                            : "text-primary border-b-2 border-primary font-medium"
+                        }`
                       : "text-gray-600 hover:text-black"
                   }`
                 }

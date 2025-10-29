@@ -71,12 +71,12 @@ const DesignGallery = () => {
           onChange={handleFileUpload}
         />
       </label>
-      <div className="flex items-center flex-wrap gap-4">
+      <div className="flex items-center  flex-wrap gap-4">
         {/* img Cards */}
         {images.map((img, index) => (
           <div
             key={index}
-            className="relative group bg-white shadow-sm rounded-xl overflow-hidden py-4 px-2 hover:shadow-md transition-all w-72"
+            className="relative group bg-white shadow-sm rounded-xl overflow-hidden py-4 px-2 hover:shadow-md transition-all w-full md:w-72"
           >
             <div className="flex items-center justify-between mb-2 pr-2">
               <h4 className="text-sm font-medium text-gray-800 truncate">
@@ -124,3 +124,4 @@ const DesignGallery = () => {
 };
 
 export default DesignGallery;
+

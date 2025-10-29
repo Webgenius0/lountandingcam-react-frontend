@@ -6,6 +6,8 @@ import PrimaryBtn from '../../common/PrimaryBtn';
 export default function ChangePassword() {
 
       const [showPass, setShowPass] = useState(false);
+      const [showPass1, setShowPass1] = useState(false);
+      const [showPass2, setShowPass2] = useState(false);
       const {
         register,
         handleSubmit,
@@ -60,7 +62,7 @@ export default function ChangePassword() {
                         <input
                           placeholder="Your Password"
                           {...register("newPassword", { required: true })}
-                          type={showPass ? "text" : "password"}
+                          type={showPass1 ? "text" : "password"}
                           className={`w-full h-12 mt-2 placeholder:text-gray-400 px-4 transition duration-200 bg-gray-100 border border-gray-300 rounded-sm    ${
                             errors.newPassword
                               ? "border-red-500 focus:border-red-500"
@@ -73,11 +75,11 @@ export default function ChangePassword() {
                         <button
                           type="button"
                           onClick={() => {
-                            setShowPass(!showPass);
+                            setShowPass1(!showPass1);
                           }}
                           className="btn btn-xs absolute top-11 right-6"
                         >
-                          {showPass ? (
+                          {showPass1 ? (
                             <FaEyeSlash color="gray" size={22} />
                           ) : (
                             <FaEye color="gray" size={22} />
@@ -94,7 +96,7 @@ export default function ChangePassword() {
                         <input
                           placeholder="Your Password"
                           {...register("confirmPassword", { required: true })}
-                          type={showPass ? "text" : "password"}
+                          type={showPass2 ? "text" : "password"}
                           className={`w-full h-12 mt-2 placeholder:text-gray-400 px-4 transition duration-200 bg-gray-100 border border-gray-300 rounded-sm    ${
                             errors.confirmPassword
                               ? "border-red-500 focus:border-red-500"
@@ -107,11 +109,11 @@ export default function ChangePassword() {
                         <button
                           type="button"
                           onClick={() => {
-                            setShowPass(!showPass);
+                            setShowPass2(!showPass2);
                           }}
                           className="btn btn-xs absolute top-11 right-6"
                         >
-                          {showPass ? (
+                          {showPass2 ? (
                             <FaEyeSlash color="gray" size={22} />
                           ) : (
                             <FaEye color="gray" size={22} />

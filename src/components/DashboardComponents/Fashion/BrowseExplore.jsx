@@ -32,12 +32,12 @@ export default function BrowseExplore() {
         {brands.map((brand) => (
           <div
             key={brand.id}
-            className="border rounded-xl overflow-hidden p-1 space-y-4 shadow-sm hover:shadow-md transition bg-gray-50"
+            className="border rounded-xl overflow-hidden p-1 md:w-fit w-full space-y-4 shadow-sm hover:shadow-md transition bg-gray-50"
           >
             <img
               src={brand.image}
               alt={brand.name}
-              className="w-52 h-36 rounded-xl object-cover"
+              className="w-full h-36 rounded-xl object-cover"
             />
             <div className="flex flex-col gap-4  items-start p-3">
               <img src={brand.logo} alt="" className="h-8 mb-2" />
