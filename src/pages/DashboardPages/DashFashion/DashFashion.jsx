@@ -6,7 +6,7 @@ import FavoritesStyle from "../../../components/DashboardComponents/Fashion/Favo
 
 export default function DashFashion() {
   return (
-    <div>
+    <div className="mb-20">
       <div className="flex items-center gap-4">
         <HeaderCard
           title="Define Your Style, Express Your Confidence"

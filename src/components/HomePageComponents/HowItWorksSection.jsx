@@ -30,14 +30,14 @@ const stepsData = [
 
 export default function HowItWorksSection() {
   return (
-    <section className="py-30">
-      <h2 className="text-5xl text-center mb-5 font-semibold">How It Works</h2>
-      <p className="text-center w-4/12 mx-auto mb-12 text-gray-400">
+    <section className=" py-10  lg:py-30">
+      <h2 className="lg:text-5xl md:text-4xl text-2xl  text-center mb-5 font-semibold">How It Works</h2>
+      <p className="text-center text-sm md:text-base w-11/12 lg:w-4/12 mx-auto mb-12 text-gray-400">
         Start your Beaute journey create an account, explore creativity, track
         growth, and reflect weekly through journaling and design.
       </p>
 
-      <div className="2xl:w-9/12 bg-gray-100 mx-auto p-12 rounded-xl grid gap-10">
+      <div className="2xl:w-9/12 p-4 bg-gray-100 mx-auto  lg:p-12 rounded-xl grid gap-10">
         {stepsData.map((step, index) => (
           <div
             key={step.id}

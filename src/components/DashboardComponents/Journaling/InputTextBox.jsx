@@ -117,52 +117,63 @@ export default function InputTextBox() {
   return (
     <section className="bg-gray-100 py-10">
       {/* text input box */}
-      <div className="grid grid-cols-1 md:grid-cols-2 xl:grid-cols-3 gap-4">
+      <div className="grid grid-cols-1 md:grid-cols-2 2xl:grid-cols-3 gap-4">
         {weeks.map((week) => (
-          <div key={week.id}>
-            <div className="flex gap-3 mb-4 items-center">
-              <h4 className="text-2xl font-bold">{week.title}</h4>
-              <span className="bg-white p-1.5 rounded-full">
-                {week.locked ? <CloseLockSvg /> : <OpenLockSvg />}
-              </span>
-            </div>
 
-            <div className="bg-gray-50 p-4 relative border rounded-xl hover:bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] duration-300 transition-all ease-in-out">
-              <div className="flex mb-4 items-center justify-between">
-                <p className="font-semibold">{week.question}</p>
-                {/* dropdown menu */}
-                <DropdownMenu>
-                  <DropdownMenuTrigger>
-                    <span className="cursor-pointer hover:scale-105 duration-300 ease-in-out">
-                      <ThreeDotSvg />
-                    </span>
-                  </DropdownMenuTrigger>
-                  <DropdownMenuContent className="w-12" align="center">
-                    <DropdownMenuGroup>
-                      <DropdownMenuItem>Copy Link</DropdownMenuItem>
-                      <DropdownMenuSeparator />
-                      <DropdownMenuItem>Share Link</DropdownMenuItem>
-                    </DropdownMenuGroup>
-                  </DropdownMenuContent>
-                </DropdownMenu>
-              </div>
-
-              <textarea
-                placeholder="Write your thoughts here…"
-                className="w-full h-40 px-4 py-4 placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
-                readOnly
-                onClick={() => handleOpenModal(week.id)}
-                value={week.text}
-              />
-
-              <button
-                onClick={() => handleReset(week.id)}
-                className="p-1  absolute z-20 scale-105 bg-gray-50 right-8 top-19 rounded-sm hover:bg-gray-200 transition"
-              >
-                <ResetSvg />
-              </button>
-            </div>
-          </div>
+           <div key={week.id}>
+                       <div className="flex gap-3 mb-4 items-center">
+                         <h4 className="text-2xl font-bold">{week.title}</h4>
+                         <span className="bg-white p-1.5 rounded-full">
+                           {week.locked ? <CloseLockSvg /> : <OpenLockSvg />}
+                         </span>
+                       </div>
+         
+                       <div className=" bg-gray-50 p-4 relative border rounded-xl overflow-hidden group ">
+                         {/* gradient overlay that transitions in */}
+         
+                         <div className="absolute inset-0 bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
+         
+                         {/* Content */}
+         
+                         <div className="relative z-10">
+                           <div className="flex mb-4 items-center justify-between">
+                             <p className="font-semibold">{week.question}</p>
+         
+                             {/* dropdown menu */}
+                             <DropdownMenu>
+                               <DropdownMenuTrigger>
+                                 <span className="cursor-pointer hover:scale-105 duration-300 ease-in-out">
+                                   <ThreeDotSvg />
+                                 </span>
+                               </DropdownMenuTrigger>
+                               <DropdownMenuContent className="w-12" align="center">
+                                 <DropdownMenuGroup>
+                                   <DropdownMenuItem>Copy Link</DropdownMenuItem>
+                                   <DropdownMenuSeparator />
+                                   <DropdownMenuItem>Share Link</DropdownMenuItem>
+                                 </DropdownMenuGroup>
+                               </DropdownMenuContent>
+                             </DropdownMenu>
+                           </div>
+         
+                           <textarea
+                             placeholder="Write your thoughts here…"
+                             className="w-full h-40 px-4 py-4 placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
+                             readOnly
+                             onClick={() => handleOpenModal(week.id)}
+                             value={week.text}
+                           />
+         
+                           <button
+                             onClick={() => handleReset(week.id)}
+                             className="p-1  absolute z-20 scale-105 bg-gray-50 right-7 top-15 rounded-sm hover:bg-gray-200 transition"
+                           >
+                             <ResetSvg />
+                           </button>
+                         </div>
+                       </div>
+         
+                     </div>
         ))}
       </div>
 

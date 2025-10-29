@@ -11,7 +11,7 @@ export default function Fashion() {
         title="Discover & Define Your Unique Style"
         subtitle="Explore, save, and curate your favorite looks from top brands while building confidence in your personal fashion identity."
         btnText="Discover Your Fashion Style"
-        btnLink="/"
+        btnLink="/dashboard/fashion"
       />
       <HowItWorkFashion />
       <Browse />

@@ -143,7 +143,7 @@ export default function ProfileSettings() {
             )}
           </div>
 
-          <div className="md:col-span-2 flex justify-start">
+          <div className="md:col-span-2 flex justify-center lg:justify-start">
            <PrimaryBtn  type="submit" text="Save" className="w-64"/>
           </div>
         </form>

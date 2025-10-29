@@ -27,7 +27,7 @@ export default function HelpSupport() {
 
   return (
     <div className='p-4'>
-        <h4 className='text-2xl font-bold mb-4' >FAQ</h4>
+        <h4 className='md:text-2xl font-bold mb-4' >FAQ</h4>
 
         <div className="space-y-4">
         {faqs.map((faq, index) => (

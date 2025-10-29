@@ -11,7 +11,7 @@ export default function Finance() {
         title="Smart Money Habits"
         subtitle="Understand budgeting, spending, and saving while tracking your monthly allowance and personal financial growth."
         btnText="Start Writing"
-        btnLink="/"
+        btnLink="/dashboard/finance"
       />
       <HowItWorkFinance />
       <ReflectFinanceSection />

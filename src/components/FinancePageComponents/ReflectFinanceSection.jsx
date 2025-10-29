@@ -84,19 +84,20 @@ export default function ReflectFinanceSection() {
   };
 
   return (
-    <section className="bg-gray-100 py-30">
-      <div className="2xl:max-w-9/12 mx-auto">
-        <h2 className="text-5xl text-center mb-5 font-semibold">
+    <section className="bg-gray-100 py-10 lg:py-30">
+      <div className="2xl:max-w-9/12 w-11/12 mx-auto">
+        <h2 className="lg:text-5xl text-2xl md:text-3xl
+         text-center mb-5 font-semibold">
           Reflect, Write & Grow One Month at a Time
         </h2>
-        <p className="text-center w-6/12 mx-auto mb-12 text-gray-400">
+        <p className="text-center text-sm md:text-base xl:w-6/12 mx-auto mb-12 text-gray-400">
           Each month brings a new question to inspire self-reflection and
           personal growth. Choose a prompt, write your thoughts, and save your
           entry to track your journey throughout the year.
         </p>
 
         {/* month boxes */}
-        <div className="grid grid-cols-3 gap-4">
+        <div className="grid md:grid-cols-2 grid-cols-1 lg:grid-cols-3 gap-4">
           {months.map((month) => {
             const saved =
               (Number(month.allowance) || 0) - (Number(month.expense) || 0);
@@ -110,90 +111,105 @@ export default function ReflectFinanceSection() {
                   </span>
                 </div>
 
-                <div className="bg-gray-50 p-4 relative border rounded-xl hover:bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] duration-300 transition-all ease-in-out">
-                  <div className="flex mb-4 items-center justify-between">
-                    <p className="font-semibold">{month.question}</p>
-                    {/* dropdown menu */}
-                    <DropdownMenu>
-                      <DropdownMenuTrigger>
-                        <span className="cursor-pointer hover:scale-105 duration-300 ease-in-out">
-                          <ThreeDotSvg />
-                        </span>
-                      </DropdownMenuTrigger>
-                      <DropdownMenuContent className="w-12" align="center">
-                        <DropdownMenuGroup>
-                          <DropdownMenuItem>Copy Link</DropdownMenuItem>
-                          <DropdownMenuSeparator />
-                          <DropdownMenuItem>Share Link</DropdownMenuItem>
-                        </DropdownMenuGroup>
-                      </DropdownMenuContent>
-                    </DropdownMenu>
+                <div className=" bg-gray-50 p-4 relative border rounded-xl overflow-hidden group ">
+                  {/* Gradient overlay that transitions in */}
+
+                  <div className="absolute inset-0 bg-linear-90 from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)] opacity-0 group-hover:opacity-100 transition-opacity duration-300 ease-in-out" />
+
+                  {/* Content */}
+
+                  <div className="relative z-10">
+
+                    <div className="flex mb-4 items-center justify-between">
+                      <p className="font-semibold">{month.question}</p>
+                      {/* dropdown menu */}
+                      <DropdownMenu>
+                        <DropdownMenuTrigger>
+                          <span className="cursor-pointer hover:scale-105 duration-300 ease-in-out">
+                            <ThreeDotSvg />
+                          </span>
+                        </DropdownMenuTrigger>
+                        <DropdownMenuContent className="w-12" align="center">
+                          <DropdownMenuGroup>
+                            <DropdownMenuItem>Copy Link</DropdownMenuItem>
+                            <DropdownMenuSeparator />
+                            <DropdownMenuItem>Share Link</DropdownMenuItem>
+                          </DropdownMenuGroup>
+                        </DropdownMenuContent>
+                      </DropdownMenu>
+                    </div>
+
+                    {/* equation section */}
+                    <div className="my-4 flex items-center flex-wrap  justify-between max-w-fit gap-2">
+                      <span className="flex flex-col">
+                        <label className="text-sm text-gray-400">
+                          Allowance Received
+                        </label>
+                        <input
+                          type="number"
+                          value={month.allowance}
+                          onChange={(e) =>
+                            handleInputChange(
+                              month.id,
+                              "allowance",
+                              e.target.value
+                            )
+                          }
+                          className="bg-white px-2 border placeholder:text-gray-300 py-3 w-34 rounded-sm"
+                          placeholder="$100"
+                        />
+                      </span>
+
+                      <span>
+                        <EqualSvg />
+                      </span>
+
+                      <span className="flex flex-col">
+                        <label className="text-sm text-gray-400">
+                          Expenses
+                        </label>
+                        <input
+                          type="number"
+                          value={month.expense}
+                          onChange={(e) =>
+                            handleInputChange(
+                              month.id,
+                              "expense",
+                              e.target.value
+                            )
+                          }
+                          className="bg-white px-2 border placeholder:text-gray-300 py-3 w-30 rounded-sm"
+                          placeholder="$30"
+                        />
+                      </span>
+
+                      <span className="flex flex-col">
+                        <label className="text-sm text-gray-400">
+                          Amount Saved
+                        </label>
+                        <p className="bg-primary px-2 py-3 overflow-x-hidden text-center w-30 text-white rounded-sm">
+                          {saved ? saved : "$70"}
+                        </p>
+                      </span>
+                    </div>
+
+                    {/* text area */}
+                    <textarea
+                      placeholder="Write your thoughts here…"
+                      className="w-full h-40 px-4 py-4 placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
+                      readOnly
+                      onClick={() => handleOpenModal(month.id)}
+                      value={month.text}
+                    />
+
+                    {/* reset button */}
+                    <button
+                      onClick={() => handleReset(month.id)}
+                      className="p-1 absolute z-20 scale-105 bg-gray-50 right-8 top-61 md:top-55 2xl:top-37 rounded-sm hover:bg-gray-200 transition"
+                    >
+                      <ResetSvg />
+                    </button>
                   </div>
-
-                  {/* equation section */}
-                  <div className="my-4 flex items-center justify-between max-w-fit gap-2">
-                    <span className="flex flex-col">
-                      <label className="text-sm text-gray-400">
-                        Allowance Received
-                      </label>
-                      <input
-                        type="number"
-                        value={month.allowance}
-                        onChange={(e) =>
-                          handleInputChange(
-                            month.id,
-                            "allowance",
-                            e.target.value
-                          )
-                        }
-                        className="bg-white px-2 border placeholder:text-gray-300 py-3 w-34 rounded-sm"
-                        placeholder="$100"
-                      />
-                    </span>
-
-                    <span>
-                      <EqualSvg />
-                    </span>
-
-                    <span className="flex flex-col">
-                      <label className="text-sm text-gray-400">Expenses</label>
-                      <input
-                        type="number"
-                        value={month.expense}
-                        onChange={(e) =>
-                          handleInputChange(month.id, "expense", e.target.value)
-                        }
-                        className="bg-white px-2 border placeholder:text-gray-300 py-3 w-30 rounded-sm"
-                        placeholder="$30"
-                      />
-                    </span>
-
-                    <span className="flex flex-col">
-                      <label className="text-sm text-gray-400">
-                        Amount Saved
-                      </label>
-                      <p className="bg-primary px-2 py-3 text-center w-30 text-white rounded-sm">
-                        {saved ? saved : "$70"}
-                      </p>
-                    </span>
-                  </div>
-
-                  {/* text area */}
-                  <textarea
-                    placeholder="Write your thoughts here…"
-                    className="w-full h-40 px-4 py-4 placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
-                    readOnly
-                    onClick={() => handleOpenModal(month.id)}
-                    value={month.text}
-                  />
-
-                  {/* reset button */}
-                  <button
-                    onClick={() => handleReset(month.id)}
-                    className="p-1 absolute z-20 scale-105 bg-gray-50 right-8 top-40 rounded-sm hover:bg-gray-200 transition"
-                  >
-                    <ResetSvg />
-                  </button>
                 </div>
               </div>
             );
@@ -210,7 +226,6 @@ export default function ReflectFinanceSection() {
             onChange={(e) => setTempText(e.target.value)}
             className="h-48 bg-white mt-4"
           />
-
           <div className="flex justify-end mt-5">
             <Button
               variant="outline"

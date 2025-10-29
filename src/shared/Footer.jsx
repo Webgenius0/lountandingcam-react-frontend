@@ -18,7 +18,10 @@ const socialLinks = [
 
 export default function Footer() {
   return (
-    <footer id="contact-section" className="bg-primary  text-white py-20">
+    <footer
+      id="contact-section"
+      className="bg-primary overflow-x-hidden text-white py-20"
+    >
       <div className="2xl:max-w-9/12 flex flex-col lg:flex-row   items-start gap-10 max-w-11/12 mx-auto ">
         <div className="lg:w-4/12">
           {/* logo */}
@@ -81,7 +84,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/ creative-design"
+                to="/creative-design"
                 className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
               >
                 Creative Design
@@ -97,7 +100,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/privacy"
+                to="/"
                 className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
               >
                 Privacy and Policy
@@ -105,7 +108,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/support"
+                to="/"
                 className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
               >
                 Support
@@ -113,7 +116,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/contact"
+                to="/#contact"
                 className="text-gray-200 transition-colors duration-300   hover:text-deep-purple-accent-400"
               >
                 Contact
@@ -124,25 +127,24 @@ export default function Footer() {
 
         {/* contact form  */}
 
-        <div className="  bg-[#75598a]   rounded-xl p-6">
-          <div className="mb-8">
-            <h2 className="font-bold text-white mb-2">Contact Us</h2>
-            <p className="flex gap-2 items-start  text-gray-200">
-              <LocationSvg />
-              37 avenue Ledru Rollin Paris, France 75012
-            </p>
-            <p className="flex gap-2 items-start mt-2  text-gray-200">
-              <SiteSvg />
-              lountanding@beauteenteprise.com
-            </p>
-          </div>
+        <div className="mb-8 bg-[#75598a] rounded-xl p-6">
+          <h2 className="font-bold text-white mb-2">Contact Us</h2>
+          <p className="flex gap-2 items-start  text-gray-200">
+            <LocationSvg />
+            37 avenue Ledru Rollin Paris, France 75012
+          </p>
+          <p className="flex gap-2  items-start mt-2  text-gray-200">
+            <SiteSvg />
+            lountanding@beauteen
+            <br className="sd:hidden" />
+            teprise.com
+          </p>
         </div>
       </div>
 
       <div className="2xl:max-w-9/12 w-11/12 flex justify-center items-center gap-3 mt-10 pt-10 border-t-2 border-secondary/30 mx-auto">
         <p className=" text-center text-gray-200">
-          Copyright 2025. All Rights Reserved. Powered by the Awesomeness of
-          Fresh Fruit.
+          © Copyright 2025. All Rights Reserved by Beaute Enterprise
         </p>
       </div>
     </footer>

@@ -12,7 +12,7 @@ export default function AuthLayouts() {
         <Navbar></Navbar>
       </div>
 
-      <div className="flex   items-center lg:flex-row py-20 justify-center  ">
+      <div className="flex  w-11/12 mx-auto items-center lg:flex-row py-15 lg:py-20 justify-center  ">
         <Outlet></Outlet>
       </div>
 
