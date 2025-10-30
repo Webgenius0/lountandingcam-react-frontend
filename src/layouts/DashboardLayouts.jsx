@@ -206,7 +206,7 @@ export default function DashboardLayouts() {
         </header>
 
         {/* content */}
-        <section className="flex-1 bg-gray-100 min-h-screen mb-20 overflow-y-auto p-6">
+        <section className="flex-1 bg-gray-100 min-h-screen mb-20 overflow-y-auto px-4 py-6">
           <Outlet />
         </section>
       </main>

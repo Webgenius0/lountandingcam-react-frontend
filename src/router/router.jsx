@@ -24,6 +24,9 @@ import ChangePassword from "../components/DashboardComponents/SettingComponents/
 import Notification from "../components/DashboardComponents/SettingComponents/Notification";
 import HelpSupport from "../components/DashboardComponents/SettingComponents/HelpSupport";
 import AllPages from "../pages/AllPagesLink/AllPages";
+import Privacy from "../pages/PrivacyPage/Privacy";
+import Cookie from "../pages/CookiePage/Cookie";
+import Terms from "../pages/TermsPage/Terms";
 
 export const router = createBrowserRouter([
   {
@@ -61,6 +64,18 @@ export const router = createBrowserRouter([
       {
         path: "creative-design",
         Component: CreativeDesign,
+      },
+      {
+        path: "privacy",
+        Component: Privacy,
+      },
+      {
+        path: "cookie",
+        Component: Cookie,
+      },
+      {
+        path: "terms",
+        Component: Terms,
       },
     ],
   },
