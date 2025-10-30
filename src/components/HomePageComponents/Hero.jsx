@@ -8,7 +8,8 @@ import RedStarSvg from "../svg/RedStarSvg";
 import GreenStarSvg from "../svg/GreenStarSvg";
 import XSvg from "../svg/XSvg";
 import IdeaSvg from "../svg/IdeaSvg";
-import heroImg from '../../assets/Img/heroImg.png'
+import heroImg from "../../assets/Img/heroImg.png";
+import penSvg from "../../assets/Img/penSvg.svg";
 // import circleImg from '../../assets/Img/heroBlueSvg.png'
 // import circleImg1 from '../../assets/Img/heroPurpleSvg.png'
 
@@ -21,11 +22,14 @@ export default function Hero() {
       <span className="absolute hidden lg:block bottom-40 right-240">
         <GreenStarSvg />
       </span>
-      <span className="absolute hidden lg:block 2xl:top-18 top-12 lg:scale-50 2xl:scale-75 -right-30 2xl:-right-2">
+      <span className="absolute hidden lg:block 2xl:top-10 top-5 lg:scale-50 2xl:scale-75 -right-30 2xl:-right-2">
         <XSvg />
       </span>
       <span className="absolute hidden lg:block top-10 scale-90 opacity-20 left-10">
         <IdeaSvg />
+      </span>
+      <span className="absolute hidden lg:block bottom-40  right-70">
+        <img src={penSvg} alt="pen svg" />
       </span>
 
       <div className="2xl:w-9/12 w-11/12  flex flex-col-reverse lg:flex-row items-center 2xl:gap-30  justify-between mx-auto">
@@ -58,13 +62,13 @@ export default function Hero() {
 
         {/* hero picture */}
 
-          <div className="flex-1 flex justify-end mb-10  ">
+        <div className="flex-1 flex justify-end mb-10  ">
           <img
             className="relative xl:w-150 md:w-120 w-80"
             src={heroImg}
             alt="hero img"
           />
-          </div>
+        </div>
 
         {/* <div className="flex-1 relative  flex  lg:-mt-30 2xl:pl-40 mb-10">
     
@@ -162,7 +166,6 @@ export default function Hero() {
 
 
         </div> */}
-        
       </div>
     </section>
   );
