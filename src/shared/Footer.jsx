@@ -100,7 +100,7 @@ export default function Footer() {
             </li>
             <li>
               <Link
-                to="/"
+                to="/privacy"
                 className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
               >
                 Privacy and Policy
