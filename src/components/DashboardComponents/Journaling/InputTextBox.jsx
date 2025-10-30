@@ -166,7 +166,7 @@ export default function InputTextBox() {
          
                            <button
                              onClick={() => handleReset(week.id)}
-                             className="p-1  absolute z-20 scale-105 bg-gray-50 right-7 top-15 rounded-sm hover:bg-gray-200 transition"
+                             className="p-1  absolute z-20 scale-105 bg-gray-50 right-7 bottom-32 rounded-sm hover:bg-gray-200 transition"
                            >
                              <ResetSvg />
                            </button>

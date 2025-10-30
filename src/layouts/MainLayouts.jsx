@@ -11,7 +11,7 @@ export default function MainLayouts() {
       <div className="sticky top-7 z-50">
         <Navbar></Navbar>
       </div>
-      <main>
+      <main >
         <Outlet></Outlet>
       </main>
       <Footer></Footer>

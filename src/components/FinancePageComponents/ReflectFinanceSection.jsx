@@ -205,7 +205,7 @@ export default function ReflectFinanceSection() {
                     {/* reset button */}
                     <button
                       onClick={() => handleReset(month.id)}
-                      className="p-1 absolute z-20 scale-105 bg-gray-50 right-8 top-61 md:top-55 2xl:top-37 rounded-sm hover:bg-gray-200 transition"
+                      className="p-1 absolute z-20 scale-105 bg-gray-50 right-8 bottom-32 md:top-55 2xl:top-37 rounded-sm hover:bg-gray-200 transition"
                     >
                       <ResetSvg />
                     </button>
