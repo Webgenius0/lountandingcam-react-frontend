@@ -37,6 +37,12 @@ const AllPages = () => {
     { name: "🔑 Change Password", link: "/dashboard/profile/setting" },
     { name: "🔔 Notification Settings", link: "/dashboard/profile/setting/notification" },
     { name: "💬 Help & Support", link: "/dashboard/profile/setting/help-support" },
+    { name: "", link: "" },
+
+    // ==== LEGAL PAGES ====
+    { name: "📜 Privacy Policy", link: "/privacy" },
+    { name: "🍪 Cookie Policy", link: "/cookie" },
+    { name: "⚖️ Terms & Conditions", link: "/terms" },
   ];
 
   return (
@@ -46,13 +52,17 @@ const AllPages = () => {
       <ul className="text-lg flex flex-col gap-3">
         {AllPagesLinks.map((item, index) => (
           <li key={index}>
-            <Link
-              to={item.link}
-              target="_blank"
-              className="text-gray-700 hover:text-primary font-medium duration-300"
-            >
-              {item.name}
-            </Link>
+            {item.name ? (
+              <Link
+                to={item.link}
+                target="_blank"
+                className="text-gray-700 hover:text-primary font-medium duration-300"
+              >
+                {item.name}
+              </Link>
+            ) : (
+              <div className="my-2 border-b border-gray-300 w-1/2"></div>
+            )}
           </li>
         ))}
       </ul>
@@ -61,4 +71,3 @@ const AllPages = () => {
 };
 
 export default AllPages;
-
