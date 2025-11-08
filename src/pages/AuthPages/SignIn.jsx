@@ -4,28 +4,62 @@ import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { Separator } from "@/components/ui/separator";
 import { toast } from "sonner";
+import useLogin from "../../hooks/auth/useLogin";
+import Loader from "../../components/common/loader/Loader";
+import { useDispatch } from "react-redux";
+import { userData } from "../../redux/userSlice";
+import { userToken } from "../../redux/userTokenSlice";
 
 export default function SignIn() {
+  // States
   const [showPass, setShowPass] = useState(false);
 
+  // Universal
+  const dispatch = useDispatch()
+
+  // Navigator
+  const navigate = useNavigate();
+
+  // Hook Form
   const {
     register,
     handleSubmit,
+    reset,
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
 
+  // API Calling
+  const { mutate: loginMutate, isPending: loginPending } = useLogin({
+    onSuccess: (res) => {
+      console.log(res);
+      toast.success(res?.message || "Login Succesfull")
+      reset()
+      
+      dispatch(userToken(res?.access_token))
+      dispatch(userData(JSON.stringify(res?.data)))
+
+      setTimeout(() => {
+        navigate("/");
+      }, 500);
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(err?.response?.data?.message || "Something went wrong");
+    },
+  });
+
+  // Submitting Form
   const onSubmit = (data) => {
     // console.log(data);
+    loginMutate(data);
+    // if (data.email && data.password) {
+    //   toast.success("Login successfully 🎉");
 
-    if (data.email && data.password) {
-      toast.success("Login successfully 🎉");
-
-      navigate("/");
-    } else {
-      toast.error("Please fill out all required fields");
-    }
+    //   navigate("/");
+    // } else {
+    //   toast.error("Please fill out all required fields");
+    // }
   };
   return (
     <div className="bg-[#F7F5FB] rounded-xl w-full max-w-[450px] border  p-7 sm:p-10">
@@ -116,6 +150,7 @@ export default function SignIn() {
           Create a New Account
         </button>
       </Link>
+      {loginPending && <Loader />}
     </div>
   );
 }
