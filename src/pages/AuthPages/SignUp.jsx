@@ -3,28 +3,59 @@ import { FaEye, FaEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import useAxiosPublic from "../../hooks/useAxiosPublic";
+import { useMutation } from "@tanstack/react-query";
 
 export default function SignUp() {
+  // State
   const [showPass, setShowPass] = useState(false);
+  const [showPassTwo, setShowPassTwo] = useState(false);
+  
+  // NAVIGATOR
+  const navigate = useNavigate();
 
+  // Hook FORM
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
+  // API CALLING
+  const axiosPublic = useAxiosPublic()
 
+  const singUpMutation = useMutation({
+    mutationKey: ['signUp'],
+    mutationFn: async (data) => {
+      const res = await axiosPublic.post("/auth/register", data)
+      return res?.data
+    },
+    onSuccess: (res) => {
+      console.log(res)
+      // toast.success(res?.message || "Form Submitted");
+      toast.success(res?.message)
+      sessionStorage.setItem("LTGEmailVerify", res?.data?.email)
+      navigate("/auth/email-verify")
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(err?.response?.data?.message || 'Something Went Wrong!')
+    },
+  })
+
+
+  // FORM SUBMISSION
   const onSubmit = (data) => {
+    singUpMutation.mutate(data)
     // console.log(data);
 
-    if (data.email && data.password && data.date && data.name) {
-      toast.success("Account created successfully 🎉");
+    // if (data.email && data.password && data.date && data.name) {
+    //   toast.success("Account created successfully 🎉");
 
-      navigate("/");
-    } else {
-      toast.error("Please fill out all required fields");
-    }
+    //   navigate("/");
+    // } else {
+    //   toast.error("Please fill out all required fields");
+    // }
   };
   return (
     <div className="bg-[#F7F5FB] rounded-xl w-full max-w-[450px] border  p-7 sm:p-10">
@@ -81,16 +112,16 @@ export default function SignUp() {
             </label>
             <input
               placeholder="Enter your birthday date"
-              {...register("date", { required: true })}
-              type="text"
+              {...register("dob", { required: true })}
+              type="date"
               onFocus={(e) => (e.target.type = "date")}
               className={`w-full h-12 placeholder:text-gray-400 px-4 transition duration-200 bg-white border border-gray-300 rounded    ${
-                errors.email
+                errors.dob
                   ? "border-red-500 focus:border-red-500"
                   : "border-gray-300 focus:border-deep-purple-accent-400"
               }
             focus:outline-primary focus:shadow-outline`}
-              name="date"
+              name="dob"
             />
           </div>
 
@@ -120,6 +151,39 @@ export default function SignUp() {
               className="btn btn-xs absolute top-9  right-6"
             >
               {showPass ? (
+                <FaEyeSlash color="gray" size={22} />
+              ) : (
+                <FaEye color="gray" size={22} />
+              )}
+            </button>
+          </div>
+
+          {/* password input */}
+          <div className="mb-4 relative">
+            <label className="font-bold text-sm ">
+              Password <span className="text-red-500">*</span>
+            </label>
+            <input
+              placeholder="Your Password"
+              {...register("password_confirmation", { required: true })}
+              type={showPassTwo ? "text" : "password"}
+              className={`w-full h-12 placeholder:text-gray-400 px-4 transition duration-200 bg-white border border-gray-300 rounded    ${
+                errors.password_confirmation
+                  ? "border-red-500 focus:border-red-500"
+                  : "border-gray-300 focus:border-deep-purple-accent-400"
+              }
+            focus:outline-primary focus:shadow-outline`}
+              name="password_confirmation"
+            />
+
+            <button
+              type="button"
+              onClick={() => {
+                setShowPassTwo(!showPassTwo);
+              }}
+              className="btn btn-xs absolute top-9  right-6"
+            >
+              {showPassTwo ? (
                 <FaEyeSlash color="gray" size={22} />
               ) : (
                 <FaEye color="gray" size={22} />

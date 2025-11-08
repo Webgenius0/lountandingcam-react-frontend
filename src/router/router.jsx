@@ -27,6 +27,7 @@ import AllPages from "../pages/AllPagesLink/AllPages";
 import Privacy from "../pages/PrivacyPage/Privacy";
 import Cookie from "../pages/CookiePage/Cookie";
 import Terms from "../pages/TermsPage/Terms";
+import EmailVerify from "../pages/AuthPages/EmailVerify";
 
 export const router = createBrowserRouter([
   {
@@ -109,6 +110,10 @@ export const router = createBrowserRouter([
         path: "sign-up",
         Component: SignUp,
       },
+      {
+        path: "email-verify",
+        Component: EmailVerify
+      }
     ],
   },
   {
