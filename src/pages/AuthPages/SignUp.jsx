@@ -5,12 +5,14 @@ import { useForm } from "react-hook-form";
 import { toast } from "sonner";
 import useAxiosPublic from "../../hooks/useAxiosPublic";
 import { useMutation } from "@tanstack/react-query";
+import Loader from "../../components/common/loader/Loader";
+
 
 export default function SignUp() {
   // State
   const [showPass, setShowPass] = useState(false);
   const [showPassTwo, setShowPassTwo] = useState(false);
-  
+
   // NAVIGATOR
   const navigate = useNavigate();
 
@@ -18,35 +20,38 @@ export default function SignUp() {
   const {
     register,
     handleSubmit,
+    watch,
     formState: { errors },
   } = useForm();
 
-  // API CALLING
-  const axiosPublic = useAxiosPublic()
 
-  const singUpMutation = useMutation({
-    mutationKey: ['signUp'],
+  // FOR WATCH
+  const watchPass = watch('password')
+
+  // API CALLING
+  const axiosPublic = useAxiosPublic();
+
+  const { mutate: singUpMutation, isPending } = useMutation({
+    mutationKey: ["signUp"],
     mutationFn: async (data) => {
-      const res = await axiosPublic.post("/auth/register", data)
-      return res?.data
+      const res = await axiosPublic.post("/auth/register", data);
+      return res?.data;
     },
     onSuccess: (res) => {
-      console.log(res)
-      // toast.success(res?.message || "Form Submitted");
-      toast.success(res?.message)
-      sessionStorage.setItem("LTGEmailVerify", res?.data?.email)
-      navigate("/auth/email-verify")
+      console.log(res);
+      toast.success(res?.message || "Form Submitted");
+      sessionStorage.setItem("LTGEmailVerify", res?.data?.email);
+      navigate("/auth/email-verify");
     },
     onError: (err) => {
       console.log(err);
-      toast.error(err?.response?.data?.message || 'Something Went Wrong!')
+      toast.error(err?.response?.data?.message || "Something Went Wrong!");
     },
-  })
-
+  });
 
   // FORM SUBMISSION
   const onSubmit = (data) => {
-    singUpMutation.mutate(data)
+    singUpMutation(data);
     // console.log(data);
 
     // if (data.email && data.password && data.date && data.name) {
@@ -94,7 +99,7 @@ export default function SignUp() {
             </label>
             <input
               placeholder="Enter your email"
-              {...register("email", { required: true })}
+              {...register("email", { required: true, pattern: /^\S+@\S+$/i })}
               type="email"
               className={`w-full h-12 placeholder:text-gray-400 px-4 transition duration-200 bg-white border border-gray-300 rounded    ${
                 errors.email
@@ -132,7 +137,7 @@ export default function SignUp() {
             </label>
             <input
               placeholder="Your Password"
-              {...register("password", { required: true })}
+              {...register("password", { required: true, minLength: 8 })}
               type={showPass ? "text" : "password"}
               className={`w-full h-12 placeholder:text-gray-400 px-4 transition duration-200 bg-white border border-gray-300 rounded    ${
                 errors.password
@@ -161,11 +166,11 @@ export default function SignUp() {
           {/* password input */}
           <div className="mb-4 relative">
             <label className="font-bold text-sm ">
-              Password <span className="text-red-500">*</span>
+              Confirm Password <span className="text-red-500">*</span>
             </label>
             <input
               placeholder="Your Password"
-              {...register("password_confirmation", { required: true })}
+              {...register("password_confirmation", { required: true, validate: (value)=> value === watchPass || "Password Do Not Match" })}
               type={showPassTwo ? "text" : "password"}
               className={`w-full h-12 placeholder:text-gray-400 px-4 transition duration-200 bg-white border border-gray-300 rounded    ${
                 errors.password_confirmation
@@ -175,7 +180,9 @@ export default function SignUp() {
             focus:outline-primary focus:shadow-outline`}
               name="password_confirmation"
             />
-
+            
+            <p className="text-red-400 text-[12px] my-1">{errors?.password_confirmation?.message}</p>
+            
             <button
               type="button"
               onClick={() => {
@@ -208,6 +215,7 @@ export default function SignUp() {
           </Link>
         </div>
       </form>
+      {isPending && <Loader />}
     </div>
   );
 }

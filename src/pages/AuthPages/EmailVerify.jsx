@@ -9,17 +9,18 @@ export default function EmailVerify() {
   // STATES
   const [timer, setTimer] = useState(59);
   const [otp, setOtp] = useState(["", "", "", ""]);
+  const [MaskedEmail, setMaskedEmail] = useState("");
   const inputsRef = useRef([]);
   const navigate = useNavigate();
 
   //   SESSIONSTORAGE
-  const email = sessionStorage.getItem("LTGEmailVerify");
+  const gotenEmail = sessionStorage.getItem("LTGEmailVerify");
 
   //   CUSTOMHOOKFORAPI
   const { mutate: emailVerify, isPending: isEmailPending } = useVerifyEmail({
     onSuccess: (res) => {
       console.log(res);
-      navigate("/auth/sign-in")
+      navigate("/auth/sign-in");
     },
     onError: (err) => {
       console.log(err);
@@ -31,7 +32,7 @@ export default function EmailVerify() {
   const { mutate: resendOtp, isPending: isOtpPending } = useResendOtp({
     onSuccess: (res) => {
       console.log(res);
-      toast.success(res?.message || "OTP has Sent to your Email")
+      toast.success(res?.message || "OTP has Sent to your Email");
     },
     onError: (err) => {
       console.log(err);
@@ -67,9 +68,9 @@ export default function EmailVerify() {
     setOtp(["", "", "", ""]);
     inputsRef.current[0].focus();
 
-    const resendOtpData = new FormData()
-    resendOtpData.append("email", email)
-    resendOtp(resendOtpData)
+    const resendOtpData = new FormData();
+    resendOtpData.append("email", email);
+    resendOtp(resendOtpData);
   };
 
   // handle verify btn
@@ -85,6 +86,32 @@ export default function EmailVerify() {
     }
   };
 
+  //============== email mask ================ //
+
+  const email = gotenEmail ? gotenEmail : null;
+
+  function maskEmail() {
+    if (!email || typeof email !== "string") {
+      setMaskedEmail("");
+      return;
+    }
+
+    const [localPart, domain] = email.split("@") || [];
+
+    if (localPart && domain) {
+      const maskedLocalPart =
+        localPart[0] +
+        "*".repeat(localPart.length - 2) +
+        localPart[localPart.length - 1];
+      setMaskedEmail(maskedLocalPart + "@" + domain);
+    }
+  }
+
+  // UseEffect
+  useEffect(() => {
+    maskEmail();
+  }, [email]);
+
   return (
     <div className="flex items-center justify-center border bg-[#F7F5FB] rounded-xl w-full max-w-[450px] p-4">
       <div className="rounded-xl p-8 w-96 text-center">
@@ -93,7 +120,7 @@ export default function EmailVerify() {
         </h2>
         <p className="text-sm text-gray-600 mb-6">
           We've sent a code to{" "}
-          <span className="font-medium text-black">{email}</span>
+          <span className="font-medium text-black">{MaskedEmail}</span>
         </p>
 
         <div className="flex justify-center gap-3 mb-6">
