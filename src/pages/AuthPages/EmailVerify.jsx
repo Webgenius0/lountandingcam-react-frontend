@@ -1,17 +1,43 @@
 import React, { useEffect, useState, useRef } from "react";
-import { useLocation, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
+import useVerifyEmail from "../../hooks/auth/useVerifyEmail";
+import { toast } from "sonner";
+import Loader from "../../components/common/loader/Loader";
+import useResendOtp from "../../hooks/auth/useResendOtp";
 
-export default function VerifyCode() {
+export default function EmailVerify() {
+  // STATES
   const [timer, setTimer] = useState(59);
   const [otp, setOtp] = useState(["", "", "", ""]);
   const inputsRef = useRef([]);
   const navigate = useNavigate();
 
-  const location = useLocation();
-  const email = location.state?.email;
+  //   SESSIONSTORAGE
+  const email = sessionStorage.getItem("LTGEmailVerify");
 
-  
+  //   CUSTOMHOOKFORAPI
+  const { mutate: emailVerify, isPending: isEmailPending } = useVerifyEmail({
+    onSuccess: (res) => {
+      console.log(res);
+      navigate("/auth/sign-in")
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(err?.response?.data?.message || "Something went wrong");
+    },
+  });
 
+  // CustomAPIForSendOTP
+  const { mutate: resendOtp, isPending: isOtpPending } = useResendOtp({
+    onSuccess: (res) => {
+      console.log(res);
+      toast.success(res?.message || "OTP has Sent to your Email")
+    },
+    onError: (err) => {
+      console.log(err);
+      toast.error(err?.response?.data?.message || "Something went wrong");
+    },
+  });
 
   // countdown timer
   useEffect(() => {
@@ -40,15 +66,20 @@ export default function VerifyCode() {
     setTimer(59);
     setOtp(["", "", "", ""]);
     inputsRef.current[0].focus();
+
+    const resendOtpData = new FormData()
+    resendOtpData.append("email", email)
+    resendOtp(resendOtpData)
   };
 
   // handle verify btn
   const handleVerify = () => {
     const otpValue = otp.join("");
     if (otpValue.length === 4) {
-      console.log("Entered OTP:", otpValue);
-
-      navigate("/auth/set-pass");
+      const submissionData = new FormData();
+      submissionData.append("email", email);
+      submissionData.append("otp", otpValue);
+      emailVerify(submissionData);
     } else {
       alert("Please enter all 4 digits of the OTP!");
     }
@@ -58,7 +89,7 @@ export default function VerifyCode() {
     <div className="flex items-center justify-center border bg-[#F7F5FB] rounded-xl w-full max-w-[450px] p-4">
       <div className="rounded-xl p-8 w-96 text-center">
         <h2 className="font-semibold text-xl inter-font mb-2">
-          Verify Your Code
+          Verify Your Email
         </h2>
         <p className="text-sm text-gray-600 mb-6">
           We've sent a code to{" "}
@@ -105,6 +136,8 @@ export default function VerifyCode() {
           </button>
         </div>
       </div>
+      {isEmailPending && <Loader />}
+      {isOtpPending && <Loader />}
     </div>
   );
 }
