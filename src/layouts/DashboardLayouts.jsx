@@ -22,6 +22,8 @@ import DownArrowSvg from "../components/svg/DownArrowSvg";
 import { FcBusinessman } from "react-icons/fc";
 import LogoutConfirmModal from "../components/common/LogoutConfirmModal";
 import { useSelector } from "react-redux";
+import useLogout from "../hooks/auth/useLogout";
+import Loader from "../components/common/loader/Loader";
 
 export default function DashboardLayouts() {
   // Universal State
@@ -38,12 +40,11 @@ export default function DashboardLayouts() {
     navigate("/dashboard/profile/setting");
   };
 
+  const { mutate: logout, isPending: isLogoutPending } = useLogout();
+
   const handleLogout = () => {
     setLogoutOpen(false);
-    navigate("/auth/sign-in");
-    toast.success("Sign Out successfully.", {
-      className: "bg-primary",
-    });
+    logout();
   };
 
   // dynamic page title
@@ -178,54 +179,56 @@ export default function DashboardLayouts() {
 
   return (
     <>
-    {userData && userToken && (
-      <div className="w-full flex h-screen">
-        <ScrollRestoration />
-        {/* desktop sidebar */}
-        <div className="bg-white border-2 w-[280px] hidden xl:block h-screen">
-          <SidebarContent closeSheet={() => {}} />
-        </div>
+      {userData && userToken && (
+        <div className="w-full flex h-screen">
+          <ScrollRestoration />
+          {/* desktop sidebar */}
+          <div className="bg-white border-2 w-[280px] hidden xl:block h-screen">
+            <SidebarContent closeSheet={() => {}} />
+          </div>
 
-        <main className="flex-1 lg:w-[calc(100%-300px)] flex flex-col overflow-y-hidden">
-          {/* top bar */}
-          <header className="sticky top-0 z-30 bg-white border-b shadow-sm flex justify-between items-center px-6 py-4 md:py-5">
-            <h3 className="text-[16px] md:text-xl lg:text-4xl font-semibold text-gray-800">
-              {getPageTitle()}
-            </h3>
+          <main className="flex-1 lg:w-[calc(100%-300px)] flex flex-col overflow-y-hidden">
+            {/* top bar */}
+            <header className="sticky top-0 z-30 bg-white border-b shadow-sm flex justify-between items-center px-6 py-4 md:py-5">
+              <h3 className="text-[16px] md:text-xl lg:text-4xl font-semibold text-gray-800">
+                {getPageTitle()}
+              </h3>
 
-            <div className="flex gap-1 items-center">
-              <button
-                onClick={handleSetting}
-                className="bg-gray-100 cursor-pointer p-2 rounded"
-              >
-                <SettingSvg />
-              </button>
-
-              {/* mobile sidebar */}
-              <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
-                <SheetTrigger asChild>
-                  <Button className="xl:hidden hover:bg-secondary  cursor-pointer  bg-white rounded ">
-                    <IoMenu className="size-8!" color="black" size={24} />
-                  </Button>
-                </SheetTrigger>
-
-                <SheetContent
-                  side="left"
-                  className="p-0 w-[280px] pt-10 border-none"
+              <div className="flex gap-1 items-center">
+                <button
+                  onClick={handleSetting}
+                  className="bg-gray-100 cursor-pointer p-2 rounded"
                 >
-                  <SidebarContent closeSheet={() => setSheetOpen(false)} />
-                </SheetContent>
-              </Sheet>
-            </div>
-          </header>
+                  <SettingSvg />
+                </button>
 
-          {/* content */}
-          <section className="flex-1 bg-gray-100 min-h-screen mb-20 overflow-y-auto px-4 py-6">
-            <Outlet />
-          </section>
-        </main>
-      </div>
-    )}
+                {/* mobile sidebar */}
+                <Sheet open={sheetOpen} onOpenChange={setSheetOpen}>
+                  <SheetTrigger asChild>
+                    <Button className="xl:hidden hover:bg-secondary  cursor-pointer  bg-white rounded ">
+                      <IoMenu className="size-8!" color="black" size={24} />
+                    </Button>
+                  </SheetTrigger>
+
+                  <SheetContent
+                    side="left"
+                    className="p-0 w-[280px] pt-10 border-none"
+                  >
+                    <SidebarContent closeSheet={() => setSheetOpen(false)} />
+                  </SheetContent>
+                </Sheet>
+              </div>
+            </header>
+
+            {/* content */}
+            <section className="flex-1 bg-gray-100 min-h-screen mb-20 overflow-y-auto px-4 py-6">
+              <Outlet />
+            </section>
+          </main>
+        </div>
+      )}
+
+      {isLogoutPending && <Loader />}
     </>
   );
 }
