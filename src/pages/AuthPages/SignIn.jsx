@@ -40,7 +40,7 @@ export default function SignIn() {
       dispatch(userData(JSON.stringify(res?.data)))
 
       setTimeout(() => {
-        navigate("/");
+        navigate("/dashboard");
       }, 500);
     },
     onError: (err) => {
