@@ -44,6 +44,7 @@ export default function Navbar() {
   const { mutate: logout, isPending: isLogoutPending } = useLogout();
 
   const handleLogout = () => {
+    setOpen(false);
     logout();
   };
 
@@ -157,18 +158,34 @@ export default function Navbar() {
                   )}
                 </div>
 
-                <div className="flex flex-col p-5 pt-0 space-y-4">
-                  <PrimaryBtn
-                    className="w-full"
-                    text="Sign Up"
-                    to="/auth/sign-up"
-                  />
-                  <SecondaryBtn
-                    className="w-full"
-                    text="Log In"
-                    to="/auth/sign-in"
-                  />
-                </div>
+                {userToken ? (
+                  <div className="flex flex-col p-5 pt-0 space-y-4">
+                    <PrimaryBtn
+                      className="w-full"
+                      text="Go to Dashboard"
+                      to="/dashboard"
+                    />
+                    <SecondaryBtn
+                      className="w-full"
+                      text="Log Out"
+                      onClick={handleLogout}
+                      varient={"button"}
+                    />
+                  </div>
+                ) : (
+                  <div className="flex flex-col p-5 pt-0 space-y-4">
+                    <PrimaryBtn
+                      className="w-full"
+                      text="Sign Up"
+                      to="/auth/sign-up"
+                    />
+                    <SecondaryBtn
+                      className="w-full"
+                      text="Log In"
+                      to="/auth/sign-in"
+                    />
+                  </div>
+                )}
               </nav>
             </DrawerContent>
           </Drawer>
