@@ -10,10 +10,14 @@ import XSvg from "../svg/XSvg";
 import IdeaSvg from "../svg/IdeaSvg";
 import heroImg from "../../assets/Img/heroImg.png";
 import penSvg from "../../assets/Img/penSvg.svg";
+import { useSelector } from "react-redux";
 // import circleImg from '../../assets/Img/heroBlueSvg.png'
 // import circleImg1 from '../../assets/Img/heroPurpleSvg.png'
 
 export default function Hero() {
+  // Universal States
+  const userData = useSelector((state) => state?.userData?.value);
+
   return (
     <section className="relative  lg:mx-5 -mt-16 bg-linear-155 from-[rgba(236,244,250,1)] via-[rgba(235,233,247,1)] via-100% mb-5   lg:rounded-3xl xl:py-20 xl:pt-40 pt-30 pb-10  flex ">
       <span className="absolute hidden lg:block bottom-4 right-4">
@@ -47,14 +51,22 @@ export default function Hero() {
           {/* hero btn */}
 
           <div className="flex flex-col md:flex-row lg:mt-12 items-center gap-4 justify-center lg:justify-start">
-            <PrimaryBtn
-              className="text-sm lg:text-base"
-              text="Create a New Account"
-              to="/auth/sign-up"
-            />
+            {userData ? (
+              <PrimaryBtn
+                className="text-sm lg:text-base"
+                text="Go to Dashboard"
+                to="/dashboard"
+              />
+            ) : (
+              <PrimaryBtn
+                className="text-sm lg:text-base"
+                text="Create a New Account"
+                to="/auth/sign-up"
+              />
+            )}
             <SecondaryBtn
               className="text-sm lg:text-base"
-              to="/dashboard"
+              to="/dashboard/finance"
               text="Explore Feature "
             />
           </div>
