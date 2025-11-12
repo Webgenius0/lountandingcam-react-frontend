@@ -1,5 +1,8 @@
 import React, { useEffect, useState, useRef } from "react";
 import { useLocation, useNavigate } from "react-router";
+import useVerifyForgetOTP from "../../hooks/auth/useVerifyForgetOTP";
+import { toast } from "sonner";
+import Loader from "../../components/common/loader/Loader";
 
 export default function VerifyCode() {
   const [timer, setTimer] = useState(59);
@@ -9,9 +12,31 @@ export default function VerifyCode() {
 
   const location = useLocation();
   const email = location.state?.email;
+  const [MaskedEmail, setMaskedEmail] = useState("");
 
-  
+  //============== email mask ================ //
 
+  function maskEmail() {
+    if (!email || typeof email !== "string") {
+      setMaskedEmail("");
+      return;
+    }
+
+    const [localPart, domain] = email.split("@") || [];
+
+    if (localPart && domain) {
+      const maskedLocalPart =
+        localPart[0] +
+        "*".repeat(localPart.length - 2) +
+        localPart[localPart.length - 1];
+      setMaskedEmail(maskedLocalPart + "@" + domain);
+    }
+  }
+
+  // UseEffect
+  useEffect(() => {
+    maskEmail();
+  }, [email]);
 
   // countdown timer
   useEffect(() => {
@@ -24,13 +49,29 @@ export default function VerifyCode() {
   // handle otp input
   const handleChange = (e, index) => {
     const value = e.target.value.replace(/\D/, "");
-    if (value) {
-      const newOtp = [...otp];
-      newOtp[index] = value;
-      setOtp(newOtp);
+    const newOtp = [...otp];
+    newOtp[index] = value;
+    setOtp(newOtp);
 
-      if (index < 3) {
-        inputsRef.current[index + 1].focus();
+    // move to next input automatically
+    if (value && index < otp.length - 1) {
+      inputsRef.current[index + 1].focus();
+    }
+  };
+
+  // handle backspace key
+  const handleKeyDown = (e, index) => {
+    if (e.key === "Backspace") {
+      if (otp[index] === "") {
+        // if empty, go back to previous input
+        if (index > 0) {
+          inputsRef.current[index - 1].focus();
+        }
+      } else {
+        // clear current input
+        const newOtp = [...otp];
+        newOtp[index] = "";
+        setOtp(newOtp);
       }
     }
   };
@@ -42,15 +83,33 @@ export default function VerifyCode() {
     inputsRef.current[0].focus();
   };
 
+  // Verify OTP Hook
+  const { mutate: verifyForgetOTP, isPending: isOtpPending } =
+    useVerifyForgetOTP({
+      onSuccess: (res) => {
+        toast.success(res?.message || "OTP has Sent to your Email");
+
+        navigate("/auth/set-pass", {
+          state: { token: res?.access_token, email: res?.data?.email },
+        });
+      },
+      onError: (err) => {
+        console.log(err);
+        toast.error(err?.response?.data?.message || "Something went wrong");
+      },
+    });
+
   // handle verify btn
   const handleVerify = () => {
     const otpValue = otp.join("");
-    if (otpValue.length === 4) {
-      console.log("Entered OTP:", otpValue);
 
-      navigate("/auth/set-pass");
+    if (otpValue.length === 4) {
+      const submittedData = new FormData();
+      submittedData.append("email", email);
+      submittedData.append("otp", otpValue);
+      verifyForgetOTP(submittedData);
     } else {
-      alert("Please enter all 4 digits of the OTP!");
+      toast.error("Please enter all 4 digits of the OTP!");
     }
   };
 
@@ -62,11 +121,11 @@ export default function VerifyCode() {
         </h2>
         <p className="text-sm text-gray-600 mb-6">
           We've sent a code to{" "}
-          <span className="font-medium text-black">{email}</span>
+          <span className="font-medium text-black">{MaskedEmail}</span>
         </p>
 
         <div className="flex justify-center gap-3 mb-6">
-          {otp.map((digit, index) => (
+          {otp?.map((digit, index) => (
             <input
               key={index}
               type="text"
@@ -74,6 +133,7 @@ export default function VerifyCode() {
               value={digit}
               ref={(el) => (inputsRef.current[index] = el)}
               onChange={(e) => handleChange(e, index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
               className="w-16 h-16 text-center text-lg font-semibold bg-white rounded focus:outline-none focus:ring-2 focus:ring-primary border"
             />
           ))}
@@ -105,6 +165,8 @@ export default function VerifyCode() {
           </button>
         </div>
       </div>
+
+      {isOtpPending && <Loader />}
     </div>
   );
 }
