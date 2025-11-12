@@ -1,25 +1,50 @@
-import React, { useState } from "react";
+import { useState } from "react";
 import { FaEye, FaEyeSlash } from "react-icons/fa";
-import { Link, useNavigate } from "react-router";
+import { useNavigate } from "react-router";
 import { useForm } from "react-hook-form";
 import { toast } from "sonner";
+import { useLocation } from "react-router";
+import useSetNewPassword from "../../hooks/auth/useSetNewPassword";
+import Loader from "../../components/common/loader/Loader";
 
 export default function SetNewPass() {
+  // Common States
+  const navigate = useNavigate();
+  const location = useLocation();
+  const apiParamsEmail = location?.state?.email;
+  const apiParamsToken = location?.state?.token;
+
   const [showPass, setShowPass] = useState(false);
   const [showPass1, setShowPass1] = useState(false);
+
+  // React Hook Form
   const {
     register,
     handleSubmit,
     formState: { errors },
   } = useForm();
 
-  const navigate = useNavigate();
+  // Set New Password Hook
+  const { mutate: setNewPassword, isPending: setNewPassPending } =
+    useSetNewPassword({
+      onSuccess: (res) => {
+        res?.success &&
+          (toast.success(res?.message), navigate("/auth/successful"));
+      },
+      onError: (err) => {
+        toast.error(err?.response?.data?.message || "Something went wrong");
+      },
+    });
 
   const onSubmit = (data) => {
-    // console.log(data);
+    if (data.password1 === data.password2) {
+      const submittedData = new FormData();
+      submittedData.append("email", apiParamsEmail);
+      submittedData.append("token", apiParamsToken);
+      submittedData.append("password", data.password1);
+      submittedData.append("password_confirmation", data.password2);
 
-    if (data.password1 == data.password2) {
-      navigate("/auth/successful");
+      setNewPassword(submittedData);
     } else {
       toast.error("Password are not same");
     }
@@ -112,6 +137,8 @@ export default function SetNewPass() {
           </button>
         </div>
       </form>
+
+      {setNewPassPending && <Loader />}
     </div>
   );
 }
