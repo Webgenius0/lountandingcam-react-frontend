@@ -3,8 +3,33 @@ import JournalImg from "../../../assets/Img/dashJournalImg.svg";
 import HeaderCard from "../../../components/common/DashHeaderCard";
 import InputTextBox from "../../../components/DashboardComponents/Journaling/InputTextBox";
 import WeekProgressChart from "../../../components/DashboardComponents/Journaling/WeekProgressChart";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useQuery } from "@tanstack/react-query";
 
 export default function DashJournaling() {
+  const axiosSecure = useAxiosSecure();
+
+  const { data: journals = [], isLoading } = useQuery({
+    queryKey: ["journaling"],
+    queryFn: async () => {
+      const res = await axiosSecure.get("/journaling");
+      return res.data;
+    },
+  });
+
+  if (isLoading) {
+    return (
+      <>
+        <p>loading....</p>
+      </>
+    );
+  }
+
+  const journalData = journals.data.journals;
+  const progress = journals.data.progress;
+
+  console.log("progress", progress);
+
   return (
     <div className="mb-20">
       <div className="flex flex-col lg:flex-row items-center gap-4">
@@ -17,14 +42,14 @@ export default function DashJournaling() {
         />
 
         <div className="bg-white flex gap-3 flex-col w-full lg:w-fit items-center justify-center p-4 border rounded-xl">
-          <WeekProgressChart />
+          <WeekProgressChart progress={progress} />
           <p className="text-gray-500 text-sm md:text-base">
-            You’ve completed 5 out of 52 prompts.
+            You’ve completed {progress.completed} out of {progress.total} prompts.
           </p>
         </div>
       </div>
 
-      <InputTextBox />
+      <InputTextBox journalData={journalData} />
     </div>
   );
 }
