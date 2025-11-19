@@ -5,10 +5,13 @@ import InputTextBox from "../../../components/DashboardComponents/Journaling/Inp
 import WeekProgressChart from "../../../components/DashboardComponents/Journaling/WeekProgressChart";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import JournelLoader from "../../../components/common/loader/JournelLoader";
 
 export default function DashJournaling() {
+
   const axiosSecure = useAxiosSecure();
 
+// Get method
   const { data: journals = [], isLoading } = useQuery({
     queryKey: ["journaling"],
     queryFn: async () => {
@@ -17,14 +20,16 @@ export default function DashJournaling() {
     },
   });
 
+  //loading-skeleton
   if (isLoading) {
     return (
       <>
-        <p>loading....</p>
+        <JournelLoader/>
       </>
     );
   }
 
+  //  extracting journals and progress from API response
   const journalData = journals.data.journals;
   const progress = journals.data.progress;
 
@@ -37,7 +42,6 @@ export default function DashJournaling() {
           title="Reflect, Write & Grow Each Week"
           description="Capture your thoughts weekly, track your emotions, and build self-awareness through guided prompts and personal reflections."
           image={JournalImg}
-          gradientColors="from-[rgba(246,205,219,1)] via-[rgba(217,235,246,1)] via-46% to-[rgba(215,204,237,1)]"
           className=" md:py-10"
         />
 

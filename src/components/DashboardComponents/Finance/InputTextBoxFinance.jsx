@@ -15,97 +15,93 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { toast } from "sonner";
+import { useMutation } from "@tanstack/react-query";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
 
-export default function InputTextBoxFinance() {
-  const [months, setMonths] = useState([
-    {
-      id: 1,
-      title: "January",
-      question: "What did you learn about saving this month?",
-      text: "",
-      locked: false,
-      allowance: "",
-      expense: "",
-    },
-    {
-      id: 2,
-      title: "February",
-      question: "What did you learn about saving this month?",
-      text: "",
-      locked: true,
-      allowance: "",
-      expense: "",
-    },
-    {
-      id: 3,
-      title: "March",
-      question: "What did you learn about saving this month?",
-      text: "",
-      locked: true,
-      allowance: "",
-      expense: "",
-    },
-    {
-      id: 4,
-      title: "April",
-      question: "What did you learn about saving this month?",
-      text: "",
-      locked: true,
-      allowance: "",
-      expense: "",
-    },
-    {
-      id: 5,
-      title: "May",
-      question: "What did you learn about saving this month?",
-      text: "",
-      locked: true,
-      allowance: "",
-      expense: "",
-    },
-    {
-      id: 6,
-      title: "June",
-      question: "What did you learn about saving this month?",
-      text: "",
-      locked: true,
-      allowance: "",
-      expense: "",
-    },
-  ]);
+export default function InputTextBoxFinance({ financesData }) {
+  const [months, setMonths] = useState(financesData);
+  const axiosSecure = useAxiosSecure();
 
   const [open, setOpen] = useState(false);
   const [activeMonth, setActiveMonth] = useState(null);
   const [tempText, setTempText] = useState("");
 
+  const { mutateAsync: saveFinances, isPending } = useMutation({
+    mutationFn: async (pay) => {
+      const res = await axiosSecure.post("/finances/submit", pay);
+      return res.data;
+    },
+  });
+
   // save modal
-  const handleSave = () => {
-    setMonths((prev) =>
-      prev.map((m) => (m.id === activeMonth ? { ...m, text: tempText } : m))
-    );
-    setOpen(false);
+  const handleSave = async () => {
+    try {
+      // Post request
+     const currentMonth = months.find((m) => m.id === activeMonth);
+
+    await saveFinances({
+      finance_id: activeMonth,
+      allowance: Number(currentMonth.allowance) || 0,
+      expenses: Number(currentMonth.expenses) || 0,
+      content: tempText || "",
+    });
+
+      setMonths((prev) =>
+        prev.map((m) =>
+          m.id === activeMonth ? { ...m, content: tempText } : m
+        )
+      );
+
+      toast.success("Saved!");
+      setOpen(false);
+    } catch (error) {
+      toast.error("Failed to save!");
+      console.log(error);
+    }
   };
 
   const handleOpenModal = (monthId) => {
     const month = months.find((m) => m.id === monthId);
+
+    if (!month?.is_current) {
+      toast.error("This month is locked!");
+      return;
+    }
+
     setActiveMonth(monthId);
-    setTempText(month.text || "");
+    setTempText(month.content || "");
     setOpen(true);
   };
 
   // reset btn
-  const handleReset = (monthId) => {
-    setMonths((prev) =>
-      prev.map((m) =>
-        m.id === monthId ? { ...m, text: "", allowance: "", expense: "" } : m
-      )
-    );
-  };
+  // const handleReset = (monthId) => {
+  //   setMonths((prev) =>
+  //     prev.map((m) =>
+  //       m.id === monthId ? { ...m, text: "", allowance: "", expenses: "" } : m
+  //     )
+  //   );
+  // };
 
   // handle allowance or expense change
+
   const handleInputChange = (monthId, field, value) => {
     setMonths((prev) =>
-      prev.map((m) => (m.id === monthId ? { ...m, [field]: value } : m))
+      prev.map((m) =>
+        m.id === monthId
+          ? {
+              ...m,
+              [field]: value,
+              save_amount:
+                field === "allowance" || field === "expenses"
+                  ? (field === "allowance"
+                      ? Number(value)
+                      : Number(m.allowance)) -
+                    (field === "expenses" ? Number(value) : Number(m.expenses))
+                  : m.save_amount,
+            }
+          : m
+      )
     );
   };
 
@@ -114,15 +110,17 @@ export default function InputTextBoxFinance() {
       {/* text input box */}
       <div className="grid md:grid-cols-2 grid-cols-1 2xl:grid-cols-3 gap-4">
         {months.map((month) => {
-          const saved =
-            (Number(month.allowance) || 0) - (Number(month.expense) || 0);
 
           return (
             <div key={month.id}>
               <div className="flex gap-3 mb-4 items-center">
-                <h4 className="text-2xl font-bold">{month.title}</h4>
+                <h4 className="text-2xl font-bold">{month.month}</h4>
                 <span className="bg-white p-1.5 rounded-full">
-                  {month.locked ? <CloseLockSvg /> : <OpenLockSvg />}
+                  {month?.is_current === false ? (
+                    <CloseLockSvg />
+                  ) : (
+                    <OpenLockSvg />
+                  )}
                 </span>
               </div>
 
@@ -135,7 +133,9 @@ export default function InputTextBoxFinance() {
 
                 <div className="relative z-10">
                   <div className="flex mb-4 items-center justify-between">
-                    <p className="font-semibold">{month.question}</p>
+                    <p className="font-semibold">
+                      What did you learn about saving this month?
+                    </p>
                     {/* dropdown menu */}
                     <DropdownMenu>
                       <DropdownMenuTrigger>
@@ -154,7 +154,8 @@ export default function InputTextBoxFinance() {
                   </div>
 
                   {/* equation section */}
-                  <div className="my-4 flex items-center flex-wrap  justify-between max-w-fit gap-2">
+                  <form className="my-4 flex items-center flex-wrap justify-between max-w-fit gap-2">
+                    {/* Allowance */}
                     <span className="flex flex-col">
                       <label className="text-sm text-gray-400">
                         Allowance Received
@@ -171,6 +172,7 @@ export default function InputTextBoxFinance() {
                         }
                         className="bg-white px-2 border placeholder:text-gray-300 py-3 w-34 rounded-sm"
                         placeholder="$100"
+                        name="allowance"
                       />
                     </span>
 
@@ -178,28 +180,36 @@ export default function InputTextBoxFinance() {
                       <EqualSvg />
                     </span>
 
+                    {/* Expenses */}
                     <span className="flex flex-col">
                       <label className="text-sm text-gray-400">Expenses</label>
                       <input
                         type="number"
-                        value={month.expense}
+                        value={month.expenses}
                         onChange={(e) =>
-                          handleInputChange(month.id, "expense", e.target.value)
+                          handleInputChange(
+                            month.id,
+                            "expenses",
+                            e.target.value
+                          )
                         }
                         className="bg-white px-2 border placeholder:text-gray-300 py-3 w-30 rounded-sm"
                         placeholder="$30"
+                        name="expenses"
                       />
                     </span>
 
+                    {/* Saved Amount */}
                     <span className="flex flex-col">
                       <label className="text-sm text-gray-400">
                         Amount Saved
                       </label>
                       <p className="bg-primary px-2 py-3 overflow-x-hidden text-center w-30 text-white rounded-sm">
-                        {saved ? saved : "$70"}
+                        {Number(month.allowance || 0) -
+                          Number(month.expenses || 0)}
                       </p>
                     </span>
-                  </div>
+                  </form>
 
                   {/* text area */}
                   <textarea
@@ -207,16 +217,16 @@ export default function InputTextBoxFinance() {
                     className="w-full h-40 px-4 py-4 resize-none placeholder:text-gray-400 bg-white border rounded-xl cursor-pointer"
                     readOnly
                     onClick={() => handleOpenModal(month.id)}
-                    value={month.text}
+                    value={month.content}
                   />
 
                   {/* reset button */}
-                  <button
+                  {/* <button
                     onClick={() => handleReset(month.id)}
                     className="p-1 absolute z-20 scale-105 bg-gray-50 right-8 bottom-32 md:top-55  lg:top-37  rounded-sm hover:bg-gray-200 transition"
                   >
                     <ResetSvg />
-                  </button>
+                  </button> */}
                 </div>
               </div>
             </div>
@@ -238,10 +248,19 @@ export default function InputTextBoxFinance() {
             <Button
               variant="outline"
               onClick={handleSave}
-              className="mr-3 cursor-pointer"
+              disabled={isPending}
+              className={`mr-2 bg-primary text-white duration-300 ease-in-out hover:bg-secondary ${
+                isPending ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
             >
-              Close
+              {isPending ? "Saving..." : "Save"}
             </Button>
+            <button
+              onClick={() => setOpen(false)}
+              className="text-white bg-red-500 rounded-lg text-sm px-3 duration-300 ease-in-out hover:bg-red-500/50 cursor-pointer py-1"
+            >
+              Cancel
+            </button>
           </div>
         </DialogContent>
       </Dialog>

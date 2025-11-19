@@ -15,9 +15,19 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import { toast } from "sonner";
+import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { useMutation } from "@tanstack/react-query";
 
 export default function InputTextBox({ journalData }) {
+  const axiosSecure = useAxiosSecure();
   const [weeks, setWeeks] = useState(journalData);
+
+  const { mutateAsync: saveJournal, isPending } = useMutation({
+    mutationFn: async (payload) => {
+      const res = await axiosSecure.post("/journal-submit", payload);
+      return res.data;
+    },
+  });
 
   console.log(journalData);
 
@@ -28,24 +38,39 @@ export default function InputTextBox({ journalData }) {
   const handleOpenModal = (weekId) => {
     const week = weeks.find((w) => w.id === weekId);
 
-      if (!week?.is_unlock) {
-    toast.error("This week is locked!");
-    return;
-  }
+    if (!week?.is_unlock) {
+      toast.error("This week is locked!");
+      return;
+    }
 
     setActiveWeek(weekId);
     setTempText(week.content || "");
     setOpen(true);
   };
 
-  const handleSave = () => {
-    setWeeks((prev) =>
-      prev.map((w) => (w.id === activeWeek ? { ...w, text: tempText } : w))
-    );
-    setOpen(false);
-  };
+  const handleSave = async () => {
+    try {
+      // POST request
+      await saveJournal({
+        content: tempText || "",
+      });
 
-  
+      // await axiosSecure.post("/journal-submit", {
+      //   content: tempText
+      // });
+
+      // UI update
+      setWeeks((prev) =>
+        prev.map((w) => (w.id === activeWeek ? { ...w, content: tempText } : w))
+      );
+
+      toast.success("Saved!");
+      setOpen(false);
+    } catch (error) {
+      toast.error("Failed to save!");
+      console.log(error);
+    }
+  };
 
   // reset btn
   // const handleReset = (weekId) => {
@@ -131,15 +156,19 @@ export default function InputTextBox({ journalData }) {
             <Button
               variant="outline"
               onClick={handleSave}
-              className="mr-2 bg-primary text-white duration-300 ease-in-out hover:bg-secondary cursor-pointer"
+              disabled={isPending}
+              className={`mr-2 bg-primary text-white duration-300 ease-in-out hover:bg-secondary ${
+                isPending ? "cursor-not-allowed" : "cursor-pointer"
+              }`}
             >
-              Save
+              {isPending ? "Saving..." : "Save"}
             </Button>
-             <button 
-             onClick={()=> (setOpen(false))}
-             className="text-white bg-red-500 rounded-lg text-sm px-3 duration-300 ease-in-out hover:bg-red-500/50 cursor-pointer py-1">
+            <button
+              onClick={() => setOpen(false)}
+              className="text-white bg-red-500 rounded-lg text-sm px-3 duration-300 ease-in-out hover:bg-red-500/50 cursor-pointer py-1"
+            >
               Cancel
-             </button>
+            </button>
           </div>
         </DialogContent>
       </Dialog>
