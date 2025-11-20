@@ -52,15 +52,6 @@ export default function SignUp() {
   // FORM SUBMISSION
   const onSubmit = (data) => {
     singUpMutation(data);
-    // console.log(data);
-
-    // if (data.email && data.password && data.date && data.name) {
-    //   toast.success("Account created successfully 🎉");
-
-    //   navigate("/");
-    // } else {
-    //   toast.error("Please fill out all required fields");
-    // }
   };
   return (
     <div className="bg-[#F7F5FB] rounded-xl w-full max-w-[450px] border  p-7 sm:p-10">

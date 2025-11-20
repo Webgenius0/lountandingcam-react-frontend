@@ -62,6 +62,23 @@ export default function EmailVerify() {
     }
   };
 
+    // handle backspace key
+  const handleKeyDown = (e, index) => {
+    if (e.key === "Backspace") {
+      if (otp[index] === "") {
+        // if empty, go back to previous input
+        if (index > 0) {
+          inputsRef.current[index - 1].focus();
+        }
+      } else {
+        // clear current input
+        const newOtp = [...otp];
+        newOtp[index] = "";
+        setOtp(newOtp);
+      }
+    }
+  };
+
   // handle resend otp
   const handleResend = () => {
     setTimer(59);
@@ -82,7 +99,7 @@ export default function EmailVerify() {
       submissionData.append("otp", otpValue);
       emailVerify(submissionData);
     } else {
-      alert("Please enter all 4 digits of the OTP!");
+      toast.error("Please enter all 4 digits of the OTP!");
     }
   };
 
@@ -132,6 +149,7 @@ export default function EmailVerify() {
               value={digit}
               ref={(el) => (inputsRef.current[index] = el)}
               onChange={(e) => handleChange(e, index)}
+               onKeyDown={(e) => handleKeyDown(e, index)}
               className="w-16 h-16 text-center text-lg font-semibold bg-white rounded focus:outline-none focus:ring-2 focus:ring-primary border"
             />
           ))}

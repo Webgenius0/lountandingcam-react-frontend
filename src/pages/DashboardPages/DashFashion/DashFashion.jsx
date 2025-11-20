@@ -18,7 +18,7 @@ export default function DashFashion() {
       </div>
 
       <BrowseExplore />
-      <FavoritesStyle />
+      {/* <FavoritesStyle /> */}
     </div>
   );
 }

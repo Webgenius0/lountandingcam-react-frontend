@@ -1,14 +1,14 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
-export default function WeekProgressChart() {
-  const totalWeeks = 52;
-  const completedWeeks = 5;
-  const progress = (completedWeeks / totalWeeks) * 100;
+export default function WeekProgressChart({progress}) {
+  const totalWeeks = progress.total;
+  const completedWeeks = progress.completed;
+  const progressWeek = (completedWeeks / totalWeeks) * 100;
 
   const data = [
-    { name: "Completed", value: progress },
-    { name: "Remaining", value: 100 - progress },
+    { name: "Completed", value: progressWeek },
+    { name: "Remaining", value: 100 - progressWeek},
   ];
 
   const COLORS = ["#8571f4", "#f1f2f6"];

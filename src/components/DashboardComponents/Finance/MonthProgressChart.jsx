@@ -1,14 +1,14 @@
 import React from "react";
 import { PieChart, Pie, Cell, ResponsiveContainer } from "recharts";
 
-export default function MonthProgressChart() {
-  const totalMonths = 12;
-  const completedMonths = 1;
-  const progress = (completedMonths / totalMonths) * 100;
+export default function MonthProgressChart({progress}) {
+  const totalMonths = progress.total;
+  const completedMonths = progress.completed;
+  const progressMonth = (completedMonths / totalMonths) * 100;
 
   const data = [
-    { name: "Completed", value: progress },
-    { name: "Remaining", value: 100 - progress },
+    { name: "Completed", value: progressMonth },
+    { name: "Remaining", value: 100 - progressMonth },
   ];
 
   const COLORS = ["#8571f4", "#f1f2f6"];

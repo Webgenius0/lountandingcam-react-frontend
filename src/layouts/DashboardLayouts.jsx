@@ -17,7 +17,7 @@ import SmallArtSvg from "../components/svg/SmallArtSvg";
 import SmallFianceSvg from "../components/svg/SmallFianceSvg";
 import SettingSvg from "../components/svg/SettingSvg";
 import LogOutSvg from "../components/svg/LogOutSvg";
-import { toast } from "sonner";
+// import { toast } from "sonner";
 import DownArrowSvg from "../components/svg/DownArrowSvg";
 import { FcBusinessman } from "react-icons/fc";
 import LogoutConfirmModal from "../components/common/LogoutConfirmModal";
