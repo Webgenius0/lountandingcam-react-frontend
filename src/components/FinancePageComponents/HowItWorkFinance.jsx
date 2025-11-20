@@ -1,30 +1,30 @@
 import React from "react";
-import img1 from "../../assets/Img/HowItImg01.png";
-import img2 from "../../assets/Img/HowItImg02.png";
-import img3 from "../../assets/Img/HowItImg03.png";
+import img1 from "../../assets/Img/FinanceImg1.png";
+import img2 from "../../assets/Img/Financeimg2.png";
+import img3 from "../../assets/Img/Financeimg3.png";
 
 const stepsData = [
   {
     id: 1,
     step: "Step:1",
-    title: "Create Your Account",
-    description: "Personalize your profile and access your private workspace.",
+    title: "Add Your Allowance",
+    description: "Enter how much money you received this month to start your budget tracker.",
     image: img1,
   },
   {
     id: 2,
     step: "Step:2",
-    title: "Write & Save Your Prompts",
+    title: "Record Your Spending",
     description:
-      "Capture your thoughts with weekly prompts, save entries securely, and reflect on your personal growth journey.",
+      "List what you spent and where it went. Watch how your habits shape up.",
     image: img2,
   },
   {
     id: 3,
     step: "Step:3",
-    title: "Track Your Growth",
+    title: "Reflect & Save",
     description:
-      "See your progress over time, revisit past reflections, and celebrate how much you’ve grown each week.",
+      "Write short reflections on what you learned, set savings goals, and track your progress each month.",
     image: img3,
   },
 ];
@@ -34,8 +34,7 @@ export default function HowItWorkFinance() {
     <section className="py-10 lg:py-30">
      <h2 className="lg:text-5xl md:text-4xl text-2xl  text-center mb-5 font-semibold">How It Works</h2>
      <p className="text-center text-sm md:text-base lg:w-6/12 xl:w-4/12 w-11/12 mx-auto mb-12 text-gray-400">
-        Start your Beaute journey create an account, explore creativity, track
-        growth, and reflect weekly through journaling and design.
+      Learn, track, and improve your financial habits through simple monthly entries that help you save smarter.
       </p>
 
       <div className="2xl:w-9/12  bg-gray-100 mx-auto p-4 lg:p-12 rounded-xl grid gap-10">
@@ -65,11 +64,13 @@ export default function HowItWorkFinance() {
 
             {/* img Section */}
             <div className={`${index % 2 !== 0 ? "md:order-1" : "md:order-2"}`}>
-              <img
+               <div className="w-full overflow-hidden rounded-xl  h-72">
+               <img
                 src={step.image}
                 alt={step.title}
-                className="w-full h-72 object-cover rounded-xl"
+                className=" w-full h-full  hover:scale-105 duration-300 object-cover "
               />
+             </div>
             </div>
           </div>
         ))}

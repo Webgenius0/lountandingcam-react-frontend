@@ -1,30 +1,30 @@
 import React from "react";
-import img1 from "../../assets/Img/HowItImg01.png";
-import img2 from "../../assets/Img/HowItImg02.png";
-import img3 from "../../assets/Img/HowItImg03.png";
+import img1 from "../../assets/Img/CreativeImg1.png";
+import img2 from "../../assets/Img/CreativeImg2.png";
+import img3 from "../../assets/Img/CreativeImg3.png";
 
 const stepsData = [
   {
     id: 1,
     step: "Step:1",
-    title: "Create Your Account",
-    description: "Personalize your profile and access your private workspace.",
+    title: "Choose Your Object",
+    description: "Pick what you want to design shoes, cars, or other creative items. Each object comes with a blank template ready for customization.",
     image: img1,
   },
   {
     id: 2,
     step: "Step:2",
-    title: "Write & Save Your Prompts",
+    title: "Design Your Way",
     description:
-      "Capture your thoughts with weekly prompts, save entries securely, and reflect on your personal growth journey.",
+      "Use the built-in graphic tool to paint, color, and decorate. Add patterns, stickers, or textures to make each creation unique.",
     image: img2,
   },
   {
     id: 3,
     step: "Step:3",
-    title: "Track Your Growth",
+    title: "Save & Share",
     description:
-      "See your progress over time, revisit past reflections, and celebrate how much you’ve grown each week.",
+      "Once your masterpiece is complete, save it to your gallery. Revisit, edit, or share your creations with friends for inspiration.",
     image: img3,
   },
 ];
@@ -65,11 +65,13 @@ export default function HowItWorkCreative() {
 
             {/* img Section */}
             <div className={`${index % 2 !== 0 ? "md:order-1" : "md:order-2"}`}>
-              <img
+              <div className="w-full overflow-hidden rounded-xl  h-72">
+               <img
                 src={step.image}
                 alt={step.title}
-                className="w-full h-72 object-cover rounded-xl"
+                className=" w-full h-full  hover:scale-105 duration-300 object-cover "
               />
+             </div>
             </div>
           </div>
         ))}

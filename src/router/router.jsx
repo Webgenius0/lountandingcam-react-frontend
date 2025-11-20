@@ -1,4 +1,4 @@
-import { createBrowserRouter, Link } from "react-router";
+import { createBrowserRouter, Link, Navigate } from "react-router";
 import MainLayouts from "../layouts/MainLayouts";
 import Home from "../pages/HomePage/Home";
 import AuthLayouts from "../layouts/AuthLayouts";
@@ -28,6 +28,7 @@ import Privacy from "../pages/PrivacyPage/Privacy";
 import Cookie from "../pages/CookiePage/Cookie";
 import Terms from "../pages/TermsPage/Terms";
 import EmailVerify from "../pages/AuthPages/EmailVerify";
+import AccountDelete from "../components/DashboardComponents/SettingComponents/AccountDelete";
 
 export const router = createBrowserRouter([
   {
@@ -86,6 +87,11 @@ export const router = createBrowserRouter([
     Component: AuthLayouts,
     children: [
       {
+        index: true,
+        element: <Navigate replace to="/auth/sign-in" />,
+      },
+
+      {
         path: "sign-in",
         Component: SignIn,
       },
@@ -112,8 +118,8 @@ export const router = createBrowserRouter([
       },
       {
         path: "email-verify",
-        Component: EmailVerify
-      }
+        Component: EmailVerify,
+      },
     ],
   },
   {
@@ -153,8 +159,8 @@ export const router = createBrowserRouter([
                 Component: ChangePassword,
               },
               {
-                path: "notification",
-                Component: Notification,
+                path: "delete-account",
+                Component: AccountDelete,
               },
               {
                 path: "help-support",
@@ -167,7 +173,7 @@ export const router = createBrowserRouter([
     ],
   },
   {
-    path:"all-pages",
-    Component:AllPages
-  }
+    path: "all-pages",
+    Component: AllPages,
+  },
 ]);

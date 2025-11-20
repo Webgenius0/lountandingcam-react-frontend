@@ -16,16 +16,43 @@ export default function Browse() {
       <div className="2xl:max-w-9/12 w-11/12 mx-auto gap-15 flex flex-col lg:flex-row justify-between items-center ">
         <div className="flex-1 flex gap-5 2xl:gap-0  ">
           <div className="flex flex-col gap-4 items-center">
-            <img className="rounded-xl" src={img1} alt="" />
-            <img className="rounded-xl" src={img3} alt="" />
+            <div className="overflow-hidden rounded-xl">
+              <img
+                className="rounded-xl w-full h-full duration-300 ease-in-out hover:scale-105"
+                src={img1}
+                alt="man img"
+              />
+            </div>
+            <div className="overflow-hidden rounded-xl">
+              <img
+                className="rounded-xl w-full h-full duration-300 ease-in-out hover:scale-105"
+                src={img3}
+                alt="girl img"
+              />
+            </div>
           </div>
           <div className="flex flex-col mt-15 gap-4 items-center">
-            <img className="rounded-xl" src={img2} alt="" />
-            <img className="rounded-xl w-full" src={img4} alt="" />
+            <div className="overflow-hidden rounded-xl">
+              {" "}
+              <img
+                className="rounded-xl w-full h-full duration-300 ease-in-out hover:scale-105"
+                src={img2}
+                alt="man img"
+              />
+            </div>
+            <div className="overflow-hidden rounded-xl">
+              <img
+                className="rounded-xl w-full h-full duration-300 ease-in-out hover:scale-105"
+                src={img4}
+                alt="girl img"
+              />
+            </div>
           </div>
         </div>
         <div className="flex-1 max-w-11/12 lg:max-w-6/12">
-          <h2 className="lg:text-5xl text-2xl md:text-3xl font-semibold mb-4">Browse & Explore</h2>
+          <h2 className="lg:text-5xl text-2xl md:text-3xl font-semibold mb-4">
+            Browse & Explore
+          </h2>
           <p className="mb-12 text-gray-400">
             Discover your style by browsing external fashion brands like Zara,
             H&M, or ASOS. When you click on a link, it opens the brand’s website
@@ -46,17 +73,17 @@ export default function Browse() {
               <img
                 className="p-4 bg-white border h-16 rounded-md"
                 src={hmLogo}
-                alt=""
+                alt="hm logo"
               />
               <img
                 className="p-4 bg-white border h-16 rounded-md"
                 src={zaraLogo}
-                alt=""
+                alt="zara logo"
               />
               <img
                 className="p-4  bg-white border h-16 rounded-md"
                 src={amazonLogo}
-                alt=""
+                alt="amazon Logo"
               />
             </div>
           </Marquee>

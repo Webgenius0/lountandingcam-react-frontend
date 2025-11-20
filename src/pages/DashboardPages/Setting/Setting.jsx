@@ -3,6 +3,7 @@ import { NavLink, Outlet } from 'react-router'
 import LockSvg from '../../../components/svg/LockSvg'
 import NotificationSvg from '../../../components/svg/NotificationSvg'
 import HelpSvg from '../../../components/svg/HelpSvg'
+import DeleteSvg from '../../../components/svg/DeleteSvg'
 
 export default function Setting() {
 
@@ -26,20 +27,7 @@ export default function Setting() {
               Change Password
             </NavLink>
           </li>
-      
-          <li className="w-full flex-1 place-c">
-            <NavLink
-              to="/dashboard/profile/setting/notification"
-              end
-              className={({ isActive }) =>
-                `relative flex items-center p-1 justify-center before:absolute before:bottom-0  before:h-[3px] before:w-0 before:bg-primary before:transition-all before:duration-300 ${
-                  isActive ? "before:w-full" : ""
-                }`
-              }
-            >
-                Notification
-            </NavLink>
-          </li>
+     
           <li className="w-full flex-1 place-c">
             <NavLink
               to="/dashboard/profile/setting/help-support"
@@ -51,6 +39,20 @@ export default function Setting() {
               }
             >
                Help & Support
+            </NavLink>
+          </li>
+           
+          <li className="w-full flex-1 place-c">
+            <NavLink
+              to="/dashboard/profile/setting/delete-account"
+              end
+              className={({ isActive }) =>
+                `relative flex items-center p-1 justify-center before:absolute before:bottom-0  before:h-[3px] before:w-0 before:bg-primary before:transition-all before:duration-300 ${
+                  isActive ? "before:w-full" : ""
+                }`
+              }
+            >
+               Delete Account
             </NavLink>
           </li>
         </ul>
@@ -82,22 +84,6 @@ export default function Setting() {
 
           <li>
             <NavLink
-              to="/dashboard/profile/setting/notification"
-              className={({ isActive }) =>
-                `flex items-center gap-2 p-3 border-2   ${
-                  isActive
-                    ? "bg-gray-100 border-2 rounded-sm"
-                    : "hover:bg-gray-100 border-transparent rounded-sm duration-300"
-                }`
-              }
-              end
-            >
-              <NotificationSvg />
-             Notification
-            </NavLink>
-          </li>
-          <li>
-            <NavLink
               to="/dashboard/profile/setting/help-support"
               className={({ isActive }) =>
                 `flex items-center gap-2 p-3 border-2   ${
@@ -110,6 +96,24 @@ export default function Setting() {
             >
               <HelpSvg/>
             Help & Support
+            </NavLink>
+          </li>
+
+          
+          <li>
+            <NavLink
+              to="/dashboard/profile/setting/delete-account"
+              className={({ isActive }) =>
+                `flex items-center gap-2 p-3 border-2   ${
+                  isActive
+                    ? "bg-gray-100 border-2 rounded-sm"
+                    : "hover:bg-gray-100 border-transparent rounded-sm duration-300"
+                }`
+              }
+              end
+            >
+              <DeleteSvg />
+            Delete Account
             </NavLink>
           </li>
         </ul>
