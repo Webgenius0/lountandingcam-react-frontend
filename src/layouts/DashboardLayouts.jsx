@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useMemo, useState } from "react";
 import {
   Link,
   NavLink,
@@ -29,6 +29,18 @@ export default function DashboardLayouts() {
   // Universal State
   const userData = useSelector((state) => state?.userData?.value);
   const userToken = useSelector((state) => state.userToken?.value);
+
+const storedUser = useMemo(() => {
+  try {
+    return JSON.parse(localStorage.getItem("LG_userData")) || {};
+  } catch {
+    return {};
+  }
+}, []);
+
+
+  
+  const userName = storedUser?.name;
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -148,7 +160,7 @@ export default function DashboardLayouts() {
           onClick={closeSheet}
         >
           <span className="flex gap-2 items-center">
-            <FcBusinessman size={24} /> Noor H. Forhad
+            <FcBusinessman size={24} /> {userName}
           </span>
           <DownArrowSvg />
         </NavLink>
