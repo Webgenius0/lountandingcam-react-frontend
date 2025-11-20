@@ -33,7 +33,7 @@ export default function DashFinance() {
   const financesData = finances.data.finances;
   const progress = finances.data.progress;
 
-  console.log(" finances" , financesData, progress)
+  // console.log(" finances" , financesData, progress)
 
 
   return (

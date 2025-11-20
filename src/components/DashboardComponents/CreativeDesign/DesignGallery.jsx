@@ -13,19 +13,10 @@ import DownloadSvg from "../../svg/DownloadSvg";
 import { FcBusinessman } from "react-icons/fc";
 import { toast } from "sonner";
 
-const DesignGallery = () => {
-  const [images, setImages] = useState([
-    {
-      title: "Digital Shoes Design.PNG",
-      size: "3.56 MB",
-      imgSrc: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29",
-    },
-    {
-      title: "Digital Shoes Design.PNG",
-      size: "3.56 MB",
-      imgSrc: "https://images.unsplash.com/photo-1501594907352-04cda38ebc29",
-    },
-  ]);
+const DesignGallery = ({ creativeDesignData }) => {
+
+  const [images, setImages] = useState(creativeDesignData);
+  
 
   // handle file upload
   const handleFileUpload = (event) => {
@@ -38,9 +29,8 @@ const DesignGallery = () => {
     setImages((prev) => [...newImages, ...prev]);
   };
 
- const handleDownload = () => {
-     toast.success("This feature is currently under development.");
-    
+  const handleDownload = () => {
+    toast.error("This feature is currently under development.");
   };
 
   return (
@@ -79,7 +69,7 @@ const DesignGallery = () => {
             className="relative group bg-white shadow-sm rounded-xl overflow-hidden py-4 px-2 hover:shadow-md transition-all w-full md:w-72"
           >
             <div className="flex items-center justify-between mb-2 pr-2">
-              <h4 className="text-sm font-medium text-gray-800 truncate">
+              <h4 className="text-sm font-medium  w-64 text-gray-800 truncate">
                 {img.title}
               </h4>
 
@@ -96,13 +86,13 @@ const DesignGallery = () => {
                     <DropdownMenuSeparator />
                     <DropdownMenuItem>Share Design</DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem >Download</DropdownMenuItem>
+                    <DropdownMenuItem>Download</DropdownMenuItem>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
             <img
-              src={img.imgSrc}
+              src={img.image_url || img.imgSrc}
               alt={img.title}
               className="w-full h-40 rounded object-cover"
             />
@@ -113,7 +103,9 @@ const DesignGallery = () => {
               </span>
               <div className="flex items-center gap-3">
                 <p className="text-xs  text-gray-500">{img.size}</p>
-                <span  onClick={handleDownload}><DownloadSvg /></span>
+                <span onClick={handleDownload}>
+                  <DownloadSvg />
+                </span>
               </div>
             </div>
           </div>
@@ -124,4 +116,3 @@ const DesignGallery = () => {
 };
 
 export default DesignGallery;
-

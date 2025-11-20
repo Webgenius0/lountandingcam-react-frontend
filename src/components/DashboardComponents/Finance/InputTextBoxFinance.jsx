@@ -38,14 +38,13 @@ export default function InputTextBoxFinance({ financesData }) {
   const handleSave = async () => {
     try {
       // Post request
-     const currentMonth = months.find((m) => m.id === activeMonth);
-
-    await saveFinances({
-      finance_id: activeMonth,
-      allowance: Number(currentMonth.allowance) || 0,
-      expenses: Number(currentMonth.expenses) || 0,
-      content: tempText || "",
-    });
+      const currentMonth = months.find((m) => m.id === activeMonth);
+      await saveFinances({
+        finance_id: activeMonth,
+        allowance: Number(currentMonth.allowance) || 0,
+        expenses: Number(currentMonth.expenses) || 0,
+        content: tempText || "",
+      });
 
       setMonths((prev) =>
         prev.map((m) =>
@@ -110,7 +109,6 @@ export default function InputTextBoxFinance({ financesData }) {
       {/* text input box */}
       <div className="grid md:grid-cols-2 grid-cols-1 2xl:grid-cols-3 gap-4">
         {months.map((month) => {
-
           return (
             <div key={month.id}>
               <div className="flex gap-3 mb-4 items-center">
