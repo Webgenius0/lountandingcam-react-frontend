@@ -10,14 +10,19 @@ import {
 } from "@/components/ui/drawer";
 import PrimaryBtn from "../components/common/PrimaryBtn";
 import SecondaryBtn from "../components/common/SecondaryBtn";
-import { useSelector } from "react-redux";
+// import { useSelector } from "react-redux";
 import useLogout from "../hooks/auth/useLogout";
 import Loader from "../components/common/loader/Loader";
+import { useSelector } from "react-redux";
 
 export default function Navbar() {
   // Universal States
-  const userData = useSelector((state) => state?.userData?.value);
-  const userToken = useSelector((state) => state?.userData?.value);
+  // const userData = useSelector((state) => state?.userData?.value);
+  // const userToken = useSelector((state) => state?.userToken?.value);
+  const userToken = useSelector((state) => state?.userToken?.value);
+
+
+
 
   // Common States
   const [open, setOpen] = useState(false);

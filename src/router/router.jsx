@@ -29,6 +29,7 @@ import Cookie from "../pages/CookiePage/Cookie";
 import Terms from "../pages/TermsPage/Terms";
 import EmailVerify from "../pages/AuthPages/EmailVerify";
 import AccountDelete from "../components/DashboardComponents/SettingComponents/AccountDelete";
+import PrivateRoute from "../components/common/PrivateRoute";
 
 export const router = createBrowserRouter([
   {
@@ -124,7 +125,11 @@ export const router = createBrowserRouter([
   },
   {
     path: "/dashboard",
-    Component: DashboardLayouts,
+    element: (
+      <PrivateRoute>
+        <DashboardLayouts />
+      </PrivateRoute>
+    ),
     children: [
       {
         index: true,

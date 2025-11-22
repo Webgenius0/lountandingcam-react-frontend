@@ -22,13 +22,13 @@ export default function useLogout() {
     },
     onSuccess: (res) => {
       toast.success(res?.message || "Logout successfully");
-
-      localStorage.removeItem("LG_AccessToken");
-      localStorage.removeItem("LG_userData");
-      dispatch(userData(null));
-      dispatch(userToken(null));
-
-      navigate("/");
+      if (res.success) {
+        localStorage.removeItem("LG_AccessToken");
+        localStorage.removeItem("LG_userData");
+        dispatch(userData(null));
+        dispatch(userToken(null));
+        navigate("/");
+      }
     },
     onError: (err) => {
       toast.success(res?.message || "Logout successfully");

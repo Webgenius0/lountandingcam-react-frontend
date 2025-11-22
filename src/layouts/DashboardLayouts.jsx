@@ -19,7 +19,7 @@ import SettingSvg from "../components/svg/SettingSvg";
 import LogOutSvg from "../components/svg/LogOutSvg";
 // import { toast } from "sonner";
 import DownArrowSvg from "../components/svg/DownArrowSvg";
-import { FcBusinessman } from "react-icons/fc";
+import profileSvg from '../assets/Img/ProfileSvg (2).png'
 import LogoutConfirmModal from "../components/common/LogoutConfirmModal";
 import { useSelector } from "react-redux";
 import useLogout from "../hooks/auth/useLogout";
@@ -160,7 +160,7 @@ const storedUser = useMemo(() => {
           onClick={closeSheet}
         >
           <span className="flex gap-2 items-center">
-            <FcBusinessman size={24} /> {userName}
+           <img src={profileSvg} className="rounded-full bg-primary size-10" alt="svg" />  {userName}
           </span>
           <DownArrowSvg />
         </NavLink>

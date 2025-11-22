@@ -15,8 +15,12 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { useNavigate } from "react-router";
 
 export default function Reflect() {
+
+  const navigate = useNavigate()
+
   const [weeks, setWeeks] = useState([
     {
       id: 1,
@@ -42,22 +46,25 @@ export default function Reflect() {
   ]);
 
   const [open, setOpen] = useState(false);
-  const [activeWeek, setActiveWeek] = useState(null);
+  // const [activeWeek, setActiveWeek] = useState(null);
   const [tempText, setTempText] = useState("");
 
-  const handleOpenModal = (weekId) => {
-    const week = weeks.find((w) => w.id === weekId);
-    setActiveWeek(weekId);
-    setTempText(week.text || "");
-    setOpen(true);
+  const handleOpenModal = () => {
+
+    navigate('/dashboard')
+
+    // const week = weeks.find((w) => w.id === weekId);
+    // setActiveWeek(weekId);
+    // setTempText(week.text || "");
+    // setOpen(true);
   };
 
-  const handleSave = () => {
-    setWeeks((prev) =>
-      prev.map((w) => (w.id === activeWeek ? { ...w, text: tempText } : w))
-    );
-    setOpen(false);
-  };
+  // const handleSave = () => {
+  //   setWeeks((prev) =>
+  //     prev.map((w) => (w.id === activeWeek ? { ...w, text: tempText } : w))
+  //   );
+  //   setOpen(false);
+  // };
 
   // reset btn
   const handleReset = (weekId) => {
@@ -154,7 +161,7 @@ export default function Reflect() {
           <div className="flex justify-end mt-5">
             <Button
               variant="outline"
-              onClick={handleSave}
+              // onClick={handleSave}
               className="mr-3 cursor-pointer"
             >
               Close

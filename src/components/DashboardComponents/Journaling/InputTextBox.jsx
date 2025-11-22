@@ -29,7 +29,7 @@ export default function InputTextBox({ journalData }) {
     },
   });
 
-  console.log(journalData);
+  // console.log(journalData);
 
   const [open, setOpen] = useState(false);
   const [activeWeek, setActiveWeek] = useState(null);

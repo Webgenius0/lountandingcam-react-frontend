@@ -143,7 +143,14 @@ export default function ProfileSettings() {
 
           {/* Save Button */}
           <div className="md:col-span-2 flex justify-center lg:justify-start">
-            <PrimaryBtn type="submit" text="Save" className="w-64" />
+             <button
+            type="submit"
+            className={`relative rounded-full cursor-pointer  py-3 overflow-hidden group bg-primary hover:bg-gradient-to-r hover:from-primary hover:to-primary/80 text-white  transition-all ease-out duration-300 px-10 mt-4`}
+          >
+            <span className="absolute right-0 w-8 h-32 -mt-12 transition-all duration-1000 transform translate-x-12 bg-white opacity-10 rotate-12 group-hover:-translate-x-40 ease"></span>
+
+            <span className="relative">Save</span>
+          </button>
           </div>
         </form>
       </div>

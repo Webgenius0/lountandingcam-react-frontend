@@ -15,6 +15,7 @@ import {
   DropdownMenuTrigger,
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
+import { useNavigate } from "react-router";
 
 export default function ReflectFinanceSection() {
   const [months, setMonths] = useState([
@@ -47,34 +48,39 @@ export default function ReflectFinanceSection() {
     },
   ]);
 
+  const navigate = useNavigate()
+
   const [open, setOpen] = useState(false);
-  const [activeMonth, setActiveMonth] = useState(null);
+  // const [activeMonth, setActiveMonth] = useState(null);
   const [tempText, setTempText] = useState("");
 
   // open modal
-  const handleOpenModal = (monthId) => {
-    const month = months.find((m) => m.id === monthId);
-    setActiveMonth(monthId);
-    setTempText(month.text || "");
-    setOpen(true);
+  const handleOpenModal = () => {
+
+    navigate('/dashboard/finance')
+
+    // const month = months.find((m) => m.id === monthId);
+    // setActiveMonth(monthId);
+    // setTempText(month.text || "");
+    // setOpen(true);
   };
 
   // save modal
-  const handleSave = () => {
-    setMonths((prev) =>
-      prev.map((m) => (m.id === activeMonth ? { ...m, text: tempText } : m))
-    );
-    setOpen(false);
-  };
+  // const handleSave = () => {
+  //   setMonths((prev) =>
+  //     prev.map((m) => (m.id === activeMonth ? { ...m, text: tempText } : m))
+  //   );
+  //   setOpen(false);
+  // };
 
   // reset btn
-  const handleReset = (monthId) => {
-    setMonths((prev) =>
-      prev.map((m) =>
-        m.id === monthId ? { ...m, text: "", allowance: "", expense: "" } : m
-      )
-    );
-  };
+  // const handleReset = (monthId) => {
+  //   setMonths((prev) =>
+  //     prev.map((m) =>
+  //       m.id === monthId ? { ...m, text: "", allowance: "", expense: "" } : m
+  //     )
+  //   );
+  // };
 
   // handle allowance or expense change
   const handleInputChange = (monthId, field, value) => {
@@ -204,7 +210,7 @@ export default function ReflectFinanceSection() {
 
                     {/* reset button */}
                     <button
-                      onClick={() => handleReset(month.id)}
+                      // onClick={() => handleReset(month.id)}
                       className="p-1 absolute z-20 scale-105 bg-gray-50 right-8 bottom-32 md:top-55 2xl:top-37 rounded-sm hover:bg-gray-200 transition"
                     >
                       <ResetSvg />
@@ -229,7 +235,7 @@ export default function ReflectFinanceSection() {
           <div className="flex justify-end mt-5">
             <Button
               variant="outline"
-              onClick={handleSave}
+              // onClick={handleSave}
               className="mr-3 cursor-pointer"
             >
               Close
