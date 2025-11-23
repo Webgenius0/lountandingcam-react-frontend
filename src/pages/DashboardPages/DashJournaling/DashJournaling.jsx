@@ -8,10 +8,9 @@ import { useQuery } from "@tanstack/react-query";
 import JournelLoader from "../../../components/common/loader/JournelLoader";
 
 export default function DashJournaling() {
-
   const axiosSecure = useAxiosSecure();
 
-// Get method
+  // get method
   const { data: journals = [], isLoading } = useQuery({
     queryKey: ["journaling"],
     queryFn: async () => {
@@ -24,7 +23,7 @@ export default function DashJournaling() {
   if (isLoading) {
     return (
       <>
-        <JournelLoader/>
+        <JournelLoader />
       </>
     );
   }
@@ -33,7 +32,7 @@ export default function DashJournaling() {
   const journalData = journals.data.journals;
   const progress = journals.data.progress;
 
-  console.log("progress", progress);
+  // console.log("progress", progress);
 
   return (
     <div className="mb-20">
@@ -48,7 +47,8 @@ export default function DashJournaling() {
         <div className="bg-white flex gap-3 flex-col w-full lg:w-fit items-center justify-center p-4 border rounded-xl">
           <WeekProgressChart progress={progress} />
           <p className="text-gray-500 text-sm md:text-base">
-            You’ve completed {progress.completed} out of {progress.total} prompts.
+            You’ve completed {progress.completed} out of {progress.total}{" "}
+            prompts.
           </p>
         </div>
       </div>

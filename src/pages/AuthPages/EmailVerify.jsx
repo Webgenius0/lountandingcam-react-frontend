@@ -62,7 +62,7 @@ export default function EmailVerify() {
     }
   };
 
-    // handle backspace key
+  // handle backspace key
   const handleKeyDown = (e, index) => {
     if (e.key === "Backspace") {
       if (otp[index] === "") {
@@ -149,7 +149,7 @@ export default function EmailVerify() {
               value={digit}
               ref={(el) => (inputsRef.current[index] = el)}
               onChange={(e) => handleChange(e, index)}
-               onKeyDown={(e) => handleKeyDown(e, index)}
+              onKeyDown={(e) => handleKeyDown(e, index)}
               className="w-16 h-16 text-center text-lg font-semibold bg-white rounded focus:outline-none focus:ring-2 focus:ring-primary border"
             />
           ))}

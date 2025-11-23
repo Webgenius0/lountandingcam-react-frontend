@@ -63,10 +63,42 @@ const DesignGallery = ({ creativeDesignData }) => {
     }
   };
 
-const handleDownload = (url, title) => {
-  saveAs(url, title || "design.jpg");
-};
+  const handleDownload = (url, title) => {
+    saveAs(url, title || "design.jpg");
+  };
 
+// const handleDownload = async (url, title, forceDownload = false) => {
+//   try {
+//     if (forceDownload) {
+//       // Force download method - fetches and creates blob URL
+//       const response = await fetch(url);
+//       const buffer = await response.arrayBuffer();
+//       const blob = new Blob([buffer], { type: "image/jpeg" });
+//       const blobUrl = URL.createObjectURL(blob);
+      
+//       const link = document.createElement("a");
+//       link.href = blobUrl;
+//       link.download = title;
+//       document.body.appendChild(link);
+//       link.click();
+//       document.body.removeChild(link);
+      
+//       // Clean up the blob URL after download
+//       setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
+//     } else {
+//       // Simple method - uses the original URL
+//       const link = document.createElement("a");
+//       link.href = url;
+//       link.download = title;
+//       document.body.appendChild(link);
+//       link.click();
+//       document.body.removeChild(link);
+//     }
+//   } catch (error) {
+//     console.error('Download failed:', error);
+//     // You might want to show a user-friendly error message here
+//   }
+// };
 
   return (
     <div className="flex flex-col justify-center items-center md:justify-start md:items-start">
@@ -140,12 +172,14 @@ const handleDownload = (url, title) => {
               </span>
               <div className="flex items-center gap-3">
                 <p className="text-xs text-gray-500">{img.size}</p>
-                <button
+                <a
+                  // href={img.image_url || img.imgSrc}
+                  // download={img.title}
                   onClick={() => handleDownload(img.image_url, img.title)}
                   className="cursor-pointer hover:scale-105 transition-transform"
                 >
                   <DownloadSvg />
-                </button>
+                </a>
               </div>
             </div>
           </div>

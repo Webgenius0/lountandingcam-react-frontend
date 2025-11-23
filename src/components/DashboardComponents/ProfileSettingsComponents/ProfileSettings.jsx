@@ -20,9 +20,8 @@ export default function ProfileSettings() {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res.data)
+      console.log(res.data);
       return res.data;
-      
     },
   });
 
@@ -90,7 +89,7 @@ export default function ProfileSettings() {
       console.log("upload", updatedUser.avatar);
     } catch (err) {
       console.log(err);
-     toast.error("Error saving profile!");
+      toast.error("Error saving profile!");
     }
   };
 

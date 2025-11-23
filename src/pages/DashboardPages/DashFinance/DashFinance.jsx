@@ -8,7 +8,6 @@ import { useQuery } from "@tanstack/react-query";
 import JournelLoader from "../../../components/common/loader/JournelLoader";
 
 export default function DashFinance() {
-
   const axiosSecure = useAxiosSecure();
 
   // Get method
@@ -20,21 +19,20 @@ export default function DashFinance() {
     },
   });
 
-    //loading-skeleton
-    if (isLoading) {
-      return (
-        <>
-          <JournelLoader/>
-        </>
-      );
-    }
+  //loading-skeleton
+  if (isLoading) {
+    return (
+      <>
+        <JournelLoader />
+      </>
+    );
+  }
 
-      //  extracting finances and progress from API response
+  //  extracting finances and progress from API response
   const financesData = finances.data.finances;
   const progress = finances.data.progress;
 
   // console.log(" finances" , financesData, progress)
-
 
   return (
     <div className="mb-20">
@@ -49,7 +47,9 @@ export default function DashFinance() {
 
         <div className="bg-white flex gap-2 w-full lg:w-fit flex-col items-center justify-center px-4 pb-4 border rounded-xl">
           <MonthProgressChart progress={progress} />
-          <p className="text-gray-500">You’ve completed {progress.completed} of {progress.total} months.</p>
+          <p className="text-gray-500">
+            You’ve completed {progress.completed} of {progress.total} months.
+          </p>
         </div>
       </div>
       <InputTextBoxFinance financesData={financesData} />

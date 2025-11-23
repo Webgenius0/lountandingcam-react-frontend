@@ -22,12 +22,12 @@ export default function DashCreative() {
   if (isLoading) {
     return (
       <>
-       <CreativeLoader/>
+        <CreativeLoader />
       </>
     );
   }
 
-//  extracting API response
+  //  extracting API response
   const creativeDesignData = creativeDesign.data;
 
   return (
