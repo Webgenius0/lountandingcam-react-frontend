@@ -1,4 +1,4 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import {
   Link,
   NavLink,
@@ -30,17 +30,12 @@ export default function DashboardLayouts() {
   const userData = useSelector((state) => state?.userData?.value);
   const userToken = useSelector((state) => state.userToken?.value);
 
-const storedUser = useMemo(() => {
-  try {
-    return JSON.parse(localStorage.getItem("LG_userData")) || {};
-  } catch {
-    return {};
-  }
-}, []);
 
 
   
-  const userName = storedUser?.name;
+  const userName = userData?.name;
+  const userPhoto = userData?.avatar;
+  // console.log(userPhoto)
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -160,7 +155,7 @@ const storedUser = useMemo(() => {
           onClick={closeSheet}
         >
           <span className="flex gap-2 items-center">
-           <img src={profileSvg} className="rounded-full bg-primary size-10" alt="svg" />  {userName}
+           {userPhoto? <img src= {userPhoto} className="rounded-full bg-primary size-10" alt="user" /> : <img src= {profileSvg} className="rounded-full bg-primary size-10" alt="svg" /> }  {userName}
           </span>
           <DownArrowSvg />
         </NavLink>

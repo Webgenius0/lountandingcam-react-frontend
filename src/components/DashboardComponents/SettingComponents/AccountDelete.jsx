@@ -23,7 +23,7 @@ export default function AccountDelete() {
         password: password,
       });
 
-      toast.success("Delete account successfully");
+      toast.success("Account Deleted Successfully");
       if (res.status === 200) {
         dispatch(userData(null));
         dispatch(userToken(null));

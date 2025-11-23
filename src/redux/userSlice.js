@@ -1,6 +1,5 @@
 import { createSlice } from '@reduxjs/toolkit'
 
-
 const LG_user = localStorage.getItem("LG_userData")
 
 const initialState = {

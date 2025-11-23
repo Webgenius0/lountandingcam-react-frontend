@@ -14,6 +14,7 @@ import { FcBusinessman } from "react-icons/fc";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
+import { saveAs } from "file-saver";
 
 const DesignGallery = ({ creativeDesignData }) => {
   const axiosSecure = useAxiosSecure();
@@ -62,9 +63,10 @@ const DesignGallery = ({ creativeDesignData }) => {
     }
   };
 
-  const handleDownload = () => {
-    toast.error("This feature is currently under development.");
-  };
+const handleDownload = (url, title) => {
+  saveAs(url, title || "design.jpg");
+};
+
 
   return (
     <div className="flex flex-col justify-center items-center md:justify-start md:items-start">
@@ -139,7 +141,7 @@ const DesignGallery = ({ creativeDesignData }) => {
               <div className="flex items-center gap-3">
                 <p className="text-xs text-gray-500">{img.size}</p>
                 <button
-                  onClick={handleDownload}
+                  onClick={() => handleDownload(img.image_url, img.title)}
                   className="cursor-pointer hover:scale-105 transition-transform"
                 >
                   <DownloadSvg />
