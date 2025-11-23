@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import DownloadSvg from "../../svg/DownloadSvg";
-import { FcBusinessman } from "react-icons/fc";
+import profileSvg from '../../../assets/Img/ProfileSvg (2).png'
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -167,8 +167,8 @@ const DesignGallery = ({ creativeDesignData }) => {
             />
 
             <div className="flex items-center mt-2 justify-between">
-              <span className="rounded-full p-1">
-                <FcBusinessman size={24} />
+              <span className="rounded-full bg-primary ">
+                <img src={profileSvg} className="size-8" alt="profile svg" />
               </span>
               <div className="flex items-center gap-3">
                 <p className="text-xs text-gray-500">{img.size}</p>

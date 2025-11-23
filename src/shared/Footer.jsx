@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router";
-import { BsTwitterX } from "react-icons/bs";
-import { FaFacebookF, FaLinkedinIn, FaYoutube } from "react-icons/fa6";
 import LocationSvg from "../components/svg/LocationSvg";
 import SiteSvg from "../components/svg/SiteSvg";
 import InstagramSvg from "../components/svg/InstagramSvg";
 import MetaSvg from "../components/svg/MetaSvg";
 import TiktokSvg from "../components/svg/TiktokSvg";
-import YoutubeSvg from "../components/svg/YoutubeSvg";
+import YoutubeSvg from "@/components/svg/YoutubeSvg";
+
+
 
 const socialLinks = [
   { id: 1, icon: <InstagramSvg />, link: "https://instagram.com" },
