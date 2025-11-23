@@ -106,6 +106,7 @@ export default function Footer() {
                 Privacy and Policy
               </Link>
             </li>
+            
             <li>
               <Link
                 to="/"
@@ -120,6 +121,22 @@ export default function Footer() {
                 className="text-gray-200 transition-colors duration-300   hover:text-deep-purple-accent-400"
               >
                 Contact
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/cookie"
+                className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              >
+                Cookie Policy
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/terms"
+                className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              >
+                Terms of Use
               </Link>
             </li>
           </ul>
