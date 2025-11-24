@@ -4,6 +4,7 @@ import creativeGfx from "../../../assets/Img/dashFinanceImg.png";
 import DesignGallery from "../../../components/DashboardComponents/CreativeDesign/DesignGallery";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { useQuery } from "@tanstack/react-query";
+import CreativeLoader from "../../../components/common/loader/CreativeLoader";
 
 export default function DashCreative() {
   const axiosSecure = useAxiosSecure();
@@ -21,12 +22,12 @@ export default function DashCreative() {
   if (isLoading) {
     return (
       <>
-        <p>loading...</p>
+        <CreativeLoader />
       </>
     );
   }
 
-//  extracting API response
+  //  extracting API response
   const creativeDesignData = creativeDesign.data;
 
   return (

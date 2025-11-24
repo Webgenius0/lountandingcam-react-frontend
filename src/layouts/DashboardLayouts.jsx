@@ -19,7 +19,7 @@ import SettingSvg from "../components/svg/SettingSvg";
 import LogOutSvg from "../components/svg/LogOutSvg";
 // import { toast } from "sonner";
 import DownArrowSvg from "../components/svg/DownArrowSvg";
-import { FcBusinessman } from "react-icons/fc";
+import profileSvg from '../assets/Img/ProfileSvg (2).png'
 import LogoutConfirmModal from "../components/common/LogoutConfirmModal";
 import { useSelector } from "react-redux";
 import useLogout from "../hooks/auth/useLogout";
@@ -29,6 +29,13 @@ export default function DashboardLayouts() {
   // Universal State
   const userData = useSelector((state) => state?.userData?.value);
   const userToken = useSelector((state) => state.userToken?.value);
+
+
+
+  
+  const userName = userData?.name;
+  const userPhoto = userData?.avatar;
+  // console.log(userPhoto)
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -148,7 +155,7 @@ export default function DashboardLayouts() {
           onClick={closeSheet}
         >
           <span className="flex gap-2 items-center">
-            <FcBusinessman size={24} /> Noor H. Forhad
+           {userPhoto? <img src= {userPhoto} className="rounded-full bg-primary size-10" alt="user" /> : <img src= {profileSvg} className="rounded-full bg-primary size-10" alt="svg" /> }  {userName}
           </span>
           <DownArrowSvg />
         </NavLink>

@@ -1,13 +1,13 @@
 import React from "react";
 import { Link } from "react-router";
-import { BsTwitterX } from "react-icons/bs";
-import { FaFacebookF, FaLinkedinIn, FaYoutube } from "react-icons/fa6";
 import LocationSvg from "../components/svg/LocationSvg";
 import SiteSvg from "../components/svg/SiteSvg";
 import InstagramSvg from "../components/svg/InstagramSvg";
 import MetaSvg from "../components/svg/MetaSvg";
 import TiktokSvg from "../components/svg/TiktokSvg";
-import YoutubeSvg from "../components/svg/YoutubeSvg";
+import YoutubeSvg from "@/components/svg/YoutubeSvg";
+
+
 
 const socialLinks = [
   { id: 1, icon: <InstagramSvg />, link: "https://instagram.com" },
@@ -106,6 +106,7 @@ export default function Footer() {
                 Privacy and Policy
               </Link>
             </li>
+            
             <li>
               <Link
                 to="/"
@@ -120,6 +121,22 @@ export default function Footer() {
                 className="text-gray-200 transition-colors duration-300   hover:text-deep-purple-accent-400"
               >
                 Contact
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/cookie"
+                className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              >
+                Cookie Policy
+              </Link>
+            </li>
+            <li>
+              <Link
+                to="/terms"
+                className="text-gray-200 transition-colors duration-300 hover:text-deep-purple-accent-400"
+              >
+                Terms of Use
               </Link>
             </li>
           </ul>

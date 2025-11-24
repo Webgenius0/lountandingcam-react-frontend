@@ -32,7 +32,7 @@ export default function SignIn() {
   // API Calling
   const { mutate: loginMutate, isPending: loginPending } = useLogin({
     onSuccess: (res) => {
-      console.log(res);
+      // console.log(res);
       toast.success(res?.message || "Login Succesfull")
       reset()
       

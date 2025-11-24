@@ -35,7 +35,7 @@ const AllPages = () => {
 
     // ==== SETTINGS SUB-PAGES ====
     { name: "🔑 Change Password", link: "/dashboard/profile/setting" },
-    { name: "🔔 Notification Settings", link: "/dashboard/profile/setting/notification" },
+    { name: "🔔 Delete Account", link: "/dashboard/profile/setting/delete-account" },
     { name: "💬 Help & Support", link: "/dashboard/profile/setting/help-support" },
     { name: "", link: "" },
 

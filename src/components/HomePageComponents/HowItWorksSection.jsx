@@ -64,11 +64,13 @@ export default function HowItWorksSection() {
 
             {/* img Section */}
             <div className={`${index % 2 !== 0 ? "md:order-1" : "md:order-2"}`}>
-              <img
+              <div className="w-full overflow-hidden rounded-xl  h-72">
+               <img
                 src={step.image}
                 alt={step.title}
-                className="w-full h-72 object-cover rounded-xl"
+                className=" w-full h-full  hover:scale-105 duration-300 ease-in-out object-cover "
               />
+             </div>
             </div>
           </div>
         ))}

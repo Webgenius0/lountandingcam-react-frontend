@@ -2,46 +2,51 @@ import React from 'react'
 import Header from '../../components/common/Header'
 import PrivacySection from '../../components/AllPrivacyComponents/PrivacySection'
 
-const policySections = [
+const termsSections = [
   {
     id: 1,
-    title: 'Information We Collect',
-    content: 'We collect personal information such as your name, email address, and account preferences to provide a better experience. We may also collect non-personal data like browser type, device, and interaction statistics for improving our services.',
+    title: 'Acceptance of Terms',
+    content: 'By accessing and using Beauté Enterprise, you accept these Terms of Use and all applicable laws. If you do not agree, please discontinue using our platform immediately.',
   },
   {
     id: 2,
-    title: 'How We Use Your Information',
-    content: 'Your data helps us personalize your experience, enhance product features, and communicate important updates. We never sell or misuse your information; it\'s used solely to support your experience with Beauté Enterprise.',
+    title: 'Who Can Use Beauté Enterprise',
+    content: 'Beauté Enterprise is designed for users and young users under parental or guardian supervision. Parents and guardians should review and approve registration and content use.',
   },
   {
     id: 3,
-    title: 'Cookies & Tracking',
-    content: 'We use cookies to improve site performance and remember your preferences. You can manage or disable cookies anytime through your browser settings.',
+    title: 'Account Creation & Responsibilities',
+    content: 'You are responsible for maintaining your account confidentiality and any activity under it. Do not share your password or personal information with others.',
   },
   {
     id: 4,
-    title: 'How We Protect Your Data',
-    content: 'Your privacy matters. We use secure servers, data encryption, and limited-access policies to keep your personal information safe. Only authorized personnel can access your data.',
+    title: 'User Content & Behavior',
+    content: 'Users can write, upload, and design on our platform. Please ensure your content is respectful, safe, and original. We reserve the right to remove inappropriate or harmful content.',
   },
   {
     id: 5,
-    title: 'Your Rights & Choices',
-    content: 'You can access, update, or delete your personal data anytime. To make a request, please contact our support team; we\'ll respond within 7 business days.',
+    title: 'Intellectual Property Rights',
+    content: 'All website materials, profiles, and content are owned by Beauté Enterprise or its licensors. You may not copy, distribute, or modify any materials without written permission.',
   },
   {
     id: 6,
-    title: 'Third-Party Tools & Integrations',
-    content: 'Beauté Enterprise may use trusted third-party tools for analytics or payment processing. These partners follow strict data protection standards aligned with GDPR and CCPA guidelines.',
+    title: 'Third-Party Links',
+    content: 'Beauté Enterprise may contain links to external websites such as fashion or learning platforms. We are not responsible for their content or privacy practices. Use them at your discretion.',
   },
   {
     id: 7,
-    title: 'Updates to This Policy',
-    content: 'We may update our Privacy Policy occasionally. Any changes will be posted here with a revised date at the top of this page.',
+    title: 'Limitation of Liability',
+    content: 'Beauté Enterprise is provided "as is." We are not liable for data loss, technical issues, or any indirect damages arising from use of the platform.',
   },
   {
     id: 8,
-    title: 'Have Questions About Your Privacy?',
-    content: 'Our team is here to help. Email us at privacy@beauteenterprises.com',
+    title: 'Account Suspension or Termination',
+    content: 'We reserve the right to suspend or terminate any account that violates our terms or misuses the platform. You may also deactivate your account anytime via your account settings.',
+  },
+  {
+    id: 9,
+    title: 'Contact Us',
+    content: 'For any questions about these Terms, please reach out to us: Email us at legal@beauteenterprise.com',
   },
 ];
 
@@ -49,20 +54,20 @@ export default function Terms() {
   return (
     <div>
         <Header
-  title="Terms of Use"
-  subtitle="Please read these Terms of Use carefully before using Beauté Enterprise. By accessing our platform, you agree to follow these terms."
-  routeTitle="Terms of Use"
-/>
+          title="Terms of Use"
+          subtitle="Please read these Terms of Use carefully before using Beauté Enterprise. By accessing our platform, you agree to follow these terms."
+          routeTitle="Terms of Use"
+        />
 
- <div className="bg-gray-100 2xl:w-9/12 w-11/12 my-20  mx-auto p-6 sm:p-10 md:p-14 rounded-lg shadow-sm">
-        {policySections.map((section) => (
-          <PrivacySection
-            key={section.id}
-            title={section.title}
-            content={section.content}
-          />
-        ))}
-      </div>
+        <div className="bg-gray-100 2xl:w-9/12 w-11/12 my-20 mx-auto p-6 sm:p-10 md:p-14 rounded-lg shadow-sm">
+          {termsSections.map((section) => (
+            <PrivacySection
+              key={section.id}
+              title={section.title}
+              content={section.content}
+            />
+          ))}
+        </div>
     </div>
   )
 }

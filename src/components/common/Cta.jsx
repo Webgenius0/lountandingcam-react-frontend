@@ -12,7 +12,11 @@ export default function Cta() {
       </p>
 
       <div className="flex gap-5 items-center justify-center">
-        <PrimaryBtn className="text-sm md:text-base" text="Explore More Activities" to="/" />
+        <PrimaryBtn
+          className="text-sm md:text-base"
+          text="Explore More Activities"
+          to="/"
+        />
       </div>
     </div>
   );

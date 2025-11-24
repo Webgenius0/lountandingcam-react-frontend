@@ -1,7 +1,7 @@
 import React from "react";
 import img1 from "../../assets/Img/HowItImg01.png";
-import img2 from "../../assets/Img/HowItImg02.png";
-import img3 from "../../assets/Img/HowItImg03.png";
+import img2 from "../../assets/Img/JournalingImg2.png";
+import img3 from "../../assets/Img/JournalingImg3.png";
 
 const stepsData = [
   {
@@ -65,11 +65,13 @@ export default function HowItWorkJournaling() {
 
             {/* img Section */}
             <div className={`${index % 2 !== 0 ? "md:order-1" : "md:order-2"}`}>
-              <img
+               <div className="w-full overflow-hidden rounded-xl  h-72">
+               <img
                 src={step.image}
                 alt={step.title}
-                className="w-full h-72 object-cover rounded-xl"
+                className=" w-full h-full  hover:scale-105 duration-300 object-cover "
               />
+             </div>
             </div>
           </div>
         ))}

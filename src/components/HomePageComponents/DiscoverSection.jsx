@@ -142,6 +142,7 @@ export default function DiscoverSection() {
           <PrimaryBtn
             className="text-sm lg:text-base"
             text="Join Beaute Today"
+            to="/dashboard"
           />
         </div>
       </div>

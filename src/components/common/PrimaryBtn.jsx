@@ -6,7 +6,7 @@ export default function PrimaryBtn({
   to = "#",
   className = "",
   onClick,
-  type = "button",
+  type = "",
 }) {
   return (
     <Link to={to}>
