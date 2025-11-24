@@ -4,7 +4,7 @@ import { Button } from "@/components/ui/button";
 import { Textarea } from "@/components/ui/textarea";
 import ThreeDotSvg from "../../svg/ThreeDotSvg";
 import OpenLockSvg from "../../svg/OpenLockSvg";
-import ResetSvg from "../../svg/ReloadSvg";
+// import ResetSvg from "../../svg/ReloadSvg";
 import CloseLockSvg from "../../svg/CloseLockSvg";
 import EqualSvg from "../../svg/EqualSvg";
 import {

@@ -20,7 +20,7 @@ export default function ProfileSettings() {
           "Content-Type": "multipart/form-data",
         },
       });
-      console.log(res.data);
+      // console.log(res.data);
       return res.data;
     },
   });
@@ -41,9 +41,9 @@ export default function ProfileSettings() {
       setValue("phone", userData?.phone || "");
 
       // if photo  available
-      // if (userData?.avatar) {
-      //   setPhoto(userData.avatar);
-      // }
+      if (userData?.avatar) {
+        setPhoto(userData.avatar);
+      }
     }
   }, [userData, setValue]);
 
@@ -73,20 +73,25 @@ export default function ProfileSettings() {
         formData.append("avatar", photoFile);
       }
 
-      await saveProfile(formData);
+     const res = await saveProfile(formData);
+
+     console.log(res.data.user)
+
       toast.success("Profile Saved!");
 
       // Update local storage with new data
       const updatedUser = {
         ...userData,
-        name: fullName,
-        phone: data.phone,
-        dob: data.dob,
-        avatar: photoFile ? URL.createObjectURL(photoFile) : userData?.avatar,
+        name: res.data.user.name,
+        phone: res.data.user.phone,
+        dob: res.data.user.dob,
+        avatar: res.data.user.avatar,
       };
       localStorage.setItem("LG_userData", JSON.stringify(updatedUser));
 
-      console.log("upload", updatedUser.avatar);
+  
+
+      // console.log("upload", updatedUser.avatar);
     } catch (err) {
       console.log(err);
       toast.error("Error saving profile!");
@@ -99,7 +104,7 @@ export default function ProfileSettings() {
         {/* hook form  */}
         <form
           onSubmit={handleSubmit(onSubmit)}
-          className="flex-1 w-full grid grid-cols-2 gap-6"
+          className="flex-1 w-full grid grid-cols-1 md:grid-cols-2 gap-6"
           encType="multipart/form-data"
         >
           {/* Profile Upload */}

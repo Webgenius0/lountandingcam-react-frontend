@@ -45,7 +45,7 @@ export default function ChangePassword() {
         navigate("/");
       }
 
-      toast.success("Logged out successfully");
+      toast.success("Password updated successfully. Please log in again.");
     } catch (err) {
       const error = err?.response?.data?.message;
       toast.error(error);

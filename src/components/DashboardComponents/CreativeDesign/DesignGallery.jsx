@@ -10,7 +10,7 @@ import {
   DropdownMenuSeparator,
 } from "@/components/ui/dropdown-menu";
 import DownloadSvg from "../../svg/DownloadSvg";
-import profileSvg from '../../../assets/Img/ProfileSvg (2).png'
+import profileSvg from "../../../assets/Img/ProfileSvg (2).png";
 import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
@@ -32,7 +32,6 @@ const DesignGallery = ({ creativeDesignData }) => {
   });
 
   // handle file upload
-
   const handleFileUpload = async (event) => {
     try {
       const files = Array.from(event.target.files);
@@ -50,7 +49,7 @@ const DesignGallery = ({ creativeDesignData }) => {
           imgSrc: URL.createObjectURL(file),
         };
 
-        setImages((prev) => [newImage, ...prev]);
+        setImages((prev) => [...prev, newImage]);
 
         // Upload single file
         await saveImage(formData);
@@ -67,38 +66,38 @@ const DesignGallery = ({ creativeDesignData }) => {
     saveAs(url, title || "design.jpg");
   };
 
-// const handleDownload = async (url, title, forceDownload = false) => {
-//   try {
-//     if (forceDownload) {
-//       // Force download method - fetches and creates blob URL
-//       const response = await fetch(url);
-//       const buffer = await response.arrayBuffer();
-//       const blob = new Blob([buffer], { type: "image/jpeg" });
-//       const blobUrl = URL.createObjectURL(blob);
-      
-//       const link = document.createElement("a");
-//       link.href = blobUrl;
-//       link.download = title;
-//       document.body.appendChild(link);
-//       link.click();
-//       document.body.removeChild(link);
-      
-//       // Clean up the blob URL after download
-//       setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
-//     } else {
-//       // Simple method - uses the original URL
-//       const link = document.createElement("a");
-//       link.href = url;
-//       link.download = title;
-//       document.body.appendChild(link);
-//       link.click();
-//       document.body.removeChild(link);
-//     }
-//   } catch (error) {
-//     console.error('Download failed:', error);
-//     // You might want to show a user-friendly error message here
-//   }
-// };
+  // const handleDownload = async (url, title, forceDownload = false) => {
+  //   try {
+  //     if (forceDownload) {
+  //       // Force download method - fetches and creates blob URL
+  //       const response = await fetch(url);
+  //       const buffer = await response.arrayBuffer();
+  //       const blob = new Blob([buffer], { type: "image/jpeg" });
+  //       const blobUrl = URL.createObjectURL(blob);
+
+  //       const link = document.createElement("a");
+  //       link.href = blobUrl;
+  //       link.download = title;
+  //       document.body.appendChild(link);
+  //       link.click();
+  //       document.body.removeChild(link);
+
+  //       // Clean up the blob URL after download
+  //       setTimeout(() => URL.revokeObjectURL(blobUrl), 100);
+  //     } else {
+  //       // Simple method - uses the original URL
+  //       const link = document.createElement("a");
+  //       link.href = url;
+  //       link.download = title;
+  //       document.body.appendChild(link);
+  //       link.click();
+  //       document.body.removeChild(link);
+  //     }
+  //   } catch (error) {
+  //     console.error('Download failed:', error);
+  //     // You might want to show a user-friendly error message here
+  //   }
+  // };
 
   return (
     <div className="flex flex-col justify-center items-center md:justify-start md:items-start">
@@ -168,7 +167,8 @@ const DesignGallery = ({ creativeDesignData }) => {
 
             <div className="flex items-center mt-2 justify-between">
               <span className="rounded-full bg-primary ">
-                <img src={profileSvg} className="size-8" alt="profile svg" />
+                {img.avatar ?  <img src={img.avatar} className="size-8 rounded-full p-[2px]" alt="profile svg" /> :  <img src={profileSvg} className="size-8" alt="profile svg" /> }
+               
               </span>
               <div className="flex items-center gap-3">
                 <p className="text-xs text-gray-500">{img.size}</p>
