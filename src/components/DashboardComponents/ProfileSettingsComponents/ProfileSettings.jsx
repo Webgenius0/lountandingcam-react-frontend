@@ -73,9 +73,9 @@ export default function ProfileSettings() {
         formData.append("avatar", photoFile);
       }
 
-     const res = await saveProfile(formData);
+      const res = await saveProfile(formData);
 
-     console.log(res.data.user)
+      console.log(res.data.user);
 
       toast.success("Profile Saved!");
 
@@ -88,8 +88,6 @@ export default function ProfileSettings() {
         avatar: res.data.user.avatar,
       };
       localStorage.setItem("LG_userData", JSON.stringify(updatedUser));
-
-  
 
       // console.log("upload", updatedUser.avatar);
     } catch (err) {

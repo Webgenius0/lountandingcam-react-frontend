@@ -15,6 +15,8 @@ import { toast } from "sonner";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { saveAs } from "file-saver";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
 const DesignGallery = ({ creativeDesignData }) => {
   const axiosSecure = useAxiosSecure();
@@ -64,6 +66,10 @@ const DesignGallery = ({ creativeDesignData }) => {
 
   const handleDownload = (url, title) => {
     saveAs(url, title || "design.jpg");
+  };
+
+  const handleCopy = (imgLink) => {
+    navigator.clipboard.writeText(imgLink);
   };
 
   // const handleDownload = async (url, title, forceDownload = false) => {
@@ -149,26 +155,53 @@ const DesignGallery = ({ creativeDesignData }) => {
                 </DropdownMenuTrigger>
                 <DropdownMenuContent className="w-32" align="end">
                   <DropdownMenuGroup>
-                    <DropdownMenuItem>Copy Link</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        handleCopy(img.image_url);
+                      }}
+                    >
+                      Copy Link
+                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Share Design</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => {
+                        handleCopy(img.image_url);
+                      }}
+                    >
+                      Share Design
+                    </DropdownMenuItem>
                     <DropdownMenuSeparator />
-                    <DropdownMenuItem>Download</DropdownMenuItem>
+                    <DropdownMenuItem
+                      onClick={() => handleDownload(img.image_url, img.title)}
+                    >
+                      Download
+                    </DropdownMenuItem>
                   </DropdownMenuGroup>
                 </DropdownMenuContent>
               </DropdownMenu>
             </div>
 
-            <img
-              src={img.image_url || img.imgSrc}
-              alt={img.title}
-              className="w-full h-40 rounded object-cover"
-            />
+            <PhotoProvider>
+              <PhotoView src={img.image_url || img.imgSrc}>
+                <img
+                  src={img.image_url || img.imgSrc}
+                  alt={img.title}
+                  className="w-full h-40 cursor-grab rounded object-cover"
+                />
+              </PhotoView>
+            </PhotoProvider>
 
             <div className="flex items-center mt-2 justify-between">
               <span className="rounded-full bg-primary ">
-                {img.avatar ?  <img src={img.avatar} className="size-8 rounded-full p-[2px]" alt="profile svg" /> :  <img src={profileSvg} className="size-8" alt="profile svg" /> }
-               
+                {img.avatar ? (
+                  <img
+                    src={img.avatar}
+                    className="size-8 rounded-full p-[2px]"
+                    alt="profile svg"
+                  />
+                ) : (
+                  <img src={profileSvg} className="size-8" alt="profile svg" />
+                )}
               </span>
               <div className="flex items-center gap-3">
                 <p className="text-xs text-gray-500">{img.size}</p>
