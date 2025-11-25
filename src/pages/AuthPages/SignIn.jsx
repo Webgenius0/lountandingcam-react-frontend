@@ -15,7 +15,7 @@ export default function SignIn() {
   const [showPass, setShowPass] = useState(false);
 
   // Universal
-  const dispatch = useDispatch()
+  const dispatch = useDispatch();
 
   // Navigator
   const navigate = useNavigate();
@@ -28,16 +28,15 @@ export default function SignIn() {
     formState: { errors },
   } = useForm();
 
-
   // API Calling
   const { mutate: loginMutate, isPending: loginPending } = useLogin({
     onSuccess: (res) => {
       // console.log(res);
-      toast.success(res?.message || "Login Succesfull")
-      reset()
-      
-      dispatch(userToken(res?.access_token))
-      dispatch(userData(JSON.stringify(res?.data)))
+      toast.success(res?.message || "Login Succesfull");
+      reset();
+
+      dispatch(userToken(res?.access_token));
+      dispatch(userData(JSON.stringify(res?.data)));
 
       setTimeout(() => {
         navigate("/dashboard");
