@@ -4,14 +4,16 @@ import profileSvg from "../../../assets/Img/ProfileSvg (2).png";
 import { useMutation } from "@tanstack/react-query";
 import useAxiosSecure from "../../../hooks/useAxiosSecure";
 import { toast } from "sonner";
-import { useSelector } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { userData } from "../../../redux/userSlice";
 
 export default function ProfileSettings() {
   const [photo, setPhoto] = useState(null);
   const [photoFile, setPhotoFile] = useState(null);
   const axiosSecure = useAxiosSecure();
+  const dispatch = useDispatch();
 
-  const userData = useSelector((state) => state?.userData?.value);
+  const newUserData = useSelector((state) => state?.userData?.value);
 
   const { mutateAsync: saveProfile, isPending } = useMutation({
     mutationFn: async (formData) => {
@@ -34,18 +36,18 @@ export default function ProfileSettings() {
 
   // form default values setup from redux
   useEffect(() => {
-    if (userData) {
-      setValue("firstName", userData?.name?.split(" ")[0] || "");
-      setValue("lastName", userData?.name?.split(" ")[1] || "");
-      setValue("dob", userData?.dob || "");
-      setValue("phone", userData?.phone || "");
+    if (newUserData) {
+      setValue("firstName", newUserData?.name?.split(" ")[0] || "");
+      setValue("lastName", newUserData?.name?.split(" ")[1] || "");
+      setValue("dob", newUserData?.dob || "");
+      setValue("phone", newUserData?.phone || "");
 
       // if photo  available
-      if (userData?.avatar) {
-        setPhoto(userData.avatar);
+      if (newUserData?.avatar) {
+        setPhoto(newUserData.avatar);
       }
     }
-  }, [userData, setValue]);
+  }, [newUserData, setValue]);
 
   const handlePhotoUpload = (e) => {
     const file = e.target.files[0];
@@ -65,31 +67,31 @@ export default function ProfileSettings() {
 
       // append form data
       formData.append("name", fullName || "");
-      formData.append("phone", data.phone || "");
       formData.append("dob", data.dob || "");
+      formData.append("phone", data.phone || "");
 
       // append photo file if selected
       if (photoFile) {
         formData.append("avatar", photoFile);
       }
 
-     const res = await saveProfile(formData);
+      const res = await saveProfile(formData);
 
-     console.log(res.data.user)
+      console.log(res.data.user);
 
       toast.success("Profile Saved!");
 
       // Update local storage with new data
       const updatedUser = {
-        ...userData,
+        ...newUserData,
         name: res.data.user.name,
         phone: res.data.user.phone,
         dob: res.data.user.dob,
         avatar: res.data.user.avatar,
       };
-      localStorage.setItem("LG_userData", JSON.stringify(updatedUser));
 
-  
+      localStorage.setItem("LG_userData", JSON.stringify(updatedUser));
+      dispatch(userData(JSON.stringify(updatedUser)));
 
       // console.log("upload", updatedUser.avatar);
     } catch (err) {
@@ -166,13 +168,13 @@ export default function ProfileSettings() {
           <div className="md:col-span-2">
             <label className="text-sm text-gray-600">Phone Number</label>
             <input
-              {...register("phone", { required: true })}
+              {...register("phone")}
               type="tel"
               className="w-full mt-1 p-3 border rounded-md bg-gray-50 focus:outline-none focus:ring-2 focus:ring-primary"
             />
-            {errors.phone && (
+            {/* {errors.phone && (
               <p className="text-red-500 text-xs mt-1">Phone required</p>
-            )}
+            )} */}
           </div>
 
           {/* Date of Birth */}
