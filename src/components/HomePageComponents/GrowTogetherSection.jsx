@@ -1,8 +1,12 @@
 import React from "react";
 import groupImg from "../../assets/Img/GroupImg.png";
 import PrimaryBtn from "../common/PrimaryBtn";
+import { useSelector } from "react-redux";
 
 export default function GrowTogetherSection() {
+
+  const userToken = useSelector((state) => state?.userToken?.value);
+
   return (
     <section className="relative   mx-auto  py-10 lg:py-40 px-5 lg:px-0 flex items-center justify-center text-white overflow-hidden">
       {/* bg img + gradient */}
@@ -25,10 +29,14 @@ export default function GrowTogetherSection() {
           start your creative journey one prompt, one dream, one step at a time.
         </p>
         <div className="flex flex-col mt-12 md:flex-row items-center gap-4 justify-center ">
-          <PrimaryBtn
-            className="bg-white text-sm md:text-base text-black!"
+          {userToken? <PrimaryBtn
+            to="/dashboard"
+            className="bg-white hover:text-white! text-sm md:text-base text-black!"
+            text="Go Dashboard"
+          /> : <PrimaryBtn
+            className="bg-white hover:text-white! text-sm md:text-base text-black!"
             text="Create My Account"
-          />
+          />}
         </div>
       </div>
     </section>

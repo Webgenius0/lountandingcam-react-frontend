@@ -1,7 +1,8 @@
 import React from "react";
+import { PhotoProvider, PhotoView } from "react-photo-view";
+import "react-photo-view/dist/react-photo-view.css";
 
-export default function BrowseExplore({fashionData}) {
-
+export default function BrowseExplore({ fashionData }) {
   return (
     <section className="bg-white border rounded-2xl my-6 p-6">
       <h2 className="text-xl font-semibold mb-2">Browse & Explore</h2>
@@ -16,11 +17,16 @@ export default function BrowseExplore({fashionData}) {
             key={brand.id}
             className="border rounded-xl overflow-hidden p-1 md:w-fit w-full space-y-4 shadow-sm hover:shadow-md transition bg-gray-50"
           >
-            <img
-              src={brand.image}
-              alt={brand.name}
-              className="w-full h-36 rounded-xl object-cover"
-            />
+            <PhotoProvider>
+              <PhotoView src={brand.image}>
+                <img
+                  src={brand.image}
+                  alt={brand.name}
+                  className="w-full h-36 cursor-grab rounded-xl object-cover"
+                />
+              </PhotoView>
+            </PhotoProvider>
+
             <div className="flex flex-col gap-4  items-start p-3">
               <img src={brand.logo} alt="" className="h-8 mb-2" />
               <a
