@@ -8,6 +8,7 @@ import PaintSvg from "../svg/PaintSvg";
 import ClothSvg from "../svg/ClothSvg";
 import StarSvg from "../svg/StarSvg";
 import PrimaryBtn from "../common/PrimaryBtn";
+import { Link } from "react-router";
 
 export default function DiscoverSection() {
   return (
@@ -47,12 +48,12 @@ export default function DiscoverSection() {
               Reflect on weekly events with guided prompts. Write, save, and
               grow your self-awareness with 52 creative entries a year.
             </p>
-            <button className="text-primary flex gap-1 cursor-pointer group items-center hover:underline">
+            <Link to='/journaling' className="text-primary flex gap-1 cursor-pointer group items-center hover:underline">
               Learn More{" "}
               <span className="group-hover:rotate-45 duration-300 ease-in-out">
                 <ArrowSvg />
               </span>
-            </button>
+            </Link>
           </div>
 
           {/* box 02 Finance */}
@@ -67,12 +68,12 @@ export default function DiscoverSection() {
               Learn how to budget and save responsibly. Track your allowance and
               spending monthly, and see your progress over time.
             </p>
-            <button className="text-primary flex gap-1 cursor-pointer group items-center hover:underline">
+            <Link to='/finance' className="text-primary flex gap-1 cursor-pointer group items-center hover:underline">
               Learn More{" "}
               <span className="group-hover:rotate-45 duration-300 ease-in-out">
                 <ArrowSvg />
               </span>
-            </button>
+            </Link >
           </div>
 
           {/* img box */}
@@ -107,12 +108,12 @@ export default function DiscoverSection() {
               Discover your unique style! Browse brands like Zara & H&M, save
               your favorite pieces, and curate your dream wardrobe.
             </p>
-            <button className="text-primary flex gap-1 cursor-pointer group items-center hover:underline">
+            <Link to='/fashion'  className="text-primary flex gap-1 cursor-pointer group items-center hover:underline">
               Learn More{" "}
               <span className="group-hover:rotate-45 duration-300 ease-in-out">
                 <ArrowSvg />
               </span>
-            </button>
+            </Link >
           </div>
 
           {/* Creative Design box 04 */}
@@ -129,12 +130,12 @@ export default function DiscoverSection() {
               Unleash your imagination! Customize virtual items like shoes and
               cars using a built-in design tool.
             </p>
-            <button className="text-primary flex gap-1 cursor-pointer group items-center hover:underline">
+            <Link to='/creative-design'  className="text-primary flex gap-1 cursor-pointer group items-center hover:underline">
               Learn More{" "}
               <span className="group-hover:rotate-45 duration-300 ease-in-out">
                 <ArrowSvg />
               </span>
-            </button>
+            </Link >
           </div>
         </div>
 
